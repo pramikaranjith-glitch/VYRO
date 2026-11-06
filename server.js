@@ -2118,7 +2118,7 @@ const server = http.createServer((req, res) => {
   res.end(build404Page());
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`\n======================================================`);
   console.log(`  VYRO — LUXURY PERFORMANCE MEDICAL WEAR`);
   console.log(`  WEAR THE PROFESSIONAL YOU.`);

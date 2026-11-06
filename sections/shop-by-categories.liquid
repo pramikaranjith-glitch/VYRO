@@ -1,0 +1,42 @@
+<section class="category-strip" aria-label="Shop by categories">
+  <div class="container">
+    <h2 class="category-strip__title">Shop By Categories</h2>
+    <div class="category-strip__row">
+      <a href="{{ routes.collections_url }}/all?gender=Women%27s" class="category-pill">
+        <img class="category-pill__img" src="{{ 'mock/product-front-womens.jpg' | asset_url }}" alt="Women's Medical Scrubs" width="40" height="40" loading="lazy">
+        <span class="category-pill__label">Women's</span>
+      </a>
+      <a href="{{ routes.collections_url }}/all?gender=Men%27s" class="category-pill">
+        <img class="category-pill__img" src="{{ 'mock/product-front.jpg' | asset_url }}" alt="Men's Medical Scrubs" width="40" height="40" loading="lazy">
+        <span class="category-pill__label">Men's</span>
+      </a>
+      <a href="{{ routes.collections_url }}/all" class="category-pill">
+        <img class="category-pill__img" src="{{ 'mock/hero-slide-1.jpg' | asset_url }}" alt="FLEXFIT 01 Sets" width="40" height="40" loading="lazy">
+        <span class="category-pill__label">FLEXFIT 01 Sets</span>
+      </a>
+      <a href="{{ routes.collections_url }}/all?category=Lab+Coats" class="category-pill">
+        <img class="category-pill__img" src="{{ 'mock/lab-coat-front.jpg' | asset_url }}" alt="Executive Lab Coats" width="40" height="40" loading="lazy">
+        <span class="category-pill__label">Executive Lab Coats</span>
+      </a>
+      <a href="{{ routes.collections_url }}/all" class="category-pill">
+        <img class="category-pill__img" src="{{ 'mock/cargo-pant-front.jpg' | asset_url }}" alt="Kinetic Cargo Pants" width="40" height="40" loading="lazy">
+        <span class="category-pill__label">Cargo Pants</span>
+      </a>
+      <a href="{{ routes.collections_url }}/all?category=Essentials" class="category-pill">
+        <img class="category-pill__img" src="{{ 'mock/base-layer-front.jpg' | asset_url }}" alt="Shift Base Layers" width="40" height="40" loading="lazy">
+        <span class="category-pill__label">Shift Base Layers</span>
+      </a>
+      <a href="{{ routes.collections_url }}/all?category=Accessories" class="category-pill">
+        <img class="category-pill__img" src="{{ 'mock/scrub-cap-front.jpg' | asset_url }}" alt="Ergonomic Scrub Caps" width="40" height="40" loading="lazy">
+        <span class="category-pill__label">Scrub Caps</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop By Categories",
+  "settings": []
+}
+{% endschema %}

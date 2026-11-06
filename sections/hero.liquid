@@ -44,6 +44,22 @@
           {%- endif -%}
 
           <div class="hero__gradient" aria-hidden="true"></div>
+
+          {%- if forloop.first -%}
+            <!-- Garment Performance Hotspot Tags -->
+            <div class="hero__hotspot-tag" style="top: 36%; right: 26%;">
+              <span class="hero__hotspot-dot"></span>
+              FLEXFIT 01 • Midnight Navy
+            </div>
+            <div class="hero__hotspot-tag" style="top: 52%; right: 38%;">
+              <span class="hero__hotspot-dot"></span>
+              4-Way Mechanical Stretch
+            </div>
+            <div class="hero__hotspot-tag" style="top: 68%; right: 20%;">
+              <span class="hero__hotspot-dot"></span>
+              Concealed Zipper Pocket
+            </div>
+          {%- endif -%}
         </div>
       {%- endif -%}
     {%- endfor -%}

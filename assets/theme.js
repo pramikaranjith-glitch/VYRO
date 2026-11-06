@@ -1324,8 +1324,57 @@ on($('.js-search-open'), 'click', function() {
     });
   }
 
+  // Read URL search params (e.g. ?colour=Midnight+Navy or ?gender=Women%27s)
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var urlColour = params.get('colour');
+    var urlGender = params.get('gender') || params.get('category');
+    if (urlColour) {
+      allFilterOptions.forEach(function(opt) {
+        if ((opt.dataset.filter === 'colour' || getGroupType(opt) === 'colour') && opt.dataset.value === urlColour) {
+          opt.classList.add('is-active');
+          opt.setAttribute('aria-checked', 'true');
+        }
+      });
+    }
+    if (urlGender) {
+      allFilterOptions.forEach(function(opt) {
+        if ((opt.dataset.filter === 'gender' || getGroupType(opt) === 'gender') && opt.dataset.value.toLowerCase().indexOf(urlGender.toLowerCase()) !== -1) {
+          opt.classList.add('is-active');
+          opt.setAttribute('aria-checked', 'true');
+        }
+      });
+    }
+  } catch (err) {}
+
   // Run once on load to sync if any filters are pre-selected
   applyFilters();
+})();
+
+/* ============================================================
+   PRODUCT CAROUSEL NAVIGATION (smooth left/right scroll)
+   ============================================================ */
+
+(function initCarousels() {
+  $$('.js-carousel').forEach(function(carousel) {
+    var track = carousel.querySelector('.js-carousel-track');
+    var prevBtn = carousel.querySelector('.js-carousel-prev');
+    var nextBtn = carousel.querySelector('.js-carousel-next');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    function getStep() {
+      var firstCard = track.querySelector('.product-card');
+      return firstCard ? firstCard.offsetWidth + 24 : 320;
+    }
+
+    on(prevBtn, 'click', function() {
+      track.scrollBy({ left: -getStep(), behavior: 'smooth' });
+    });
+
+    on(nextBtn, 'click', function() {
+      track.scrollBy({ left: getStep(), behavior: 'smooth' });
+    });
+  });
 })();
 
 console.log('%cVYRO Theme loaded. WEAR THE PROFESSIONAL YOU.', 'color:#84958C;font-weight:700;font-size:12px;');

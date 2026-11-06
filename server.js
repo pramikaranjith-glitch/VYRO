@@ -140,21 +140,90 @@ function renderHeader() {
             </button>
 
             <div class="mega-menu" id="mega-menu-shop" role="region" aria-label="Shop navigation">
-              <div>
-                <div class="mega-menu__group-label">Collections</div>
-                <a href="/collections/all" class="mega-menu__link">Shop All</a>
-                <a href="/collections/all" class="mega-menu__link">Men's Collection</a>
-                <a href="/collections/all" class="mega-menu__link">Women's Collection</a>
-              </div>
-              <div>
-                <div class="mega-menu__group-label">Products</div>
-                <a href="/products/flexfit-01-midnight-navy" class="mega-menu__link">FLEXFIT 01</a>
-                <a href="/collections/all" class="mega-menu__link">Shop by Colour</a>
-              </div>
-              <div>
-                <div class="mega-menu__group-label">Help & Fit</div>
-                <a href="#" class="mega-menu__link js-open-fit-guide">Size Guide</a>
-                <a href="/#anatomy" class="mega-menu__link">Shift Index</a>
+              <div class="mega-menu__container">
+                <!-- Column 1: Shop By Colours -->
+                <div class="mega-menu__sidebar">
+                  <div class="mega-menu__group-label">Shop by Colour</div>
+                  <div class="mega-menu__swatches">
+                    <a href="/collections/all?colour=Midnight+Navy" class="mega-menu__swatch-item">
+                      <span class="mega-menu__dot" style="background:#101E35;"></span>
+                      Midnight Navy
+                    </a>
+                    <a href="/collections/all?colour=Sage" class="mega-menu__swatch-item">
+                      <span class="mega-menu__dot" style="background:#84958C;"></span>
+                      Muted Sage
+                    </a>
+                    <a href="/collections/all?colour=Midnight+Navy" class="mega-menu__swatch-item">
+                      <span class="mega-menu__dot" style="background:#18181b;"></span>
+                      Shadow Black
+                    </a>
+                    <a href="/collections/all?colour=Stark+White" class="mega-menu__swatch-item">
+                      <span class="mega-menu__dot" style="background:#ffffff;"></span>
+                      Stark White
+                    </a>
+                  </div>
+
+                  <div style="margin-top:var(--space-3);border-top:var(--border-hairline);padding-top:var(--space-2);">
+                    <div class="mega-menu__group-label">Quick Links</div>
+                    <a href="/collections/all?category=Men%27s" class="mega-menu__sublink" style="display:block;padding-block:3px;">Men's Collection</a>
+                    <a href="/collections/all?category=Women%27s" class="mega-menu__sublink" style="display:block;padding-block:3px;">Women's Collection</a>
+                    <a href="/collections/all?category=Lab+Coats" class="mega-menu__sublink" style="display:block;padding-block:3px;">Executive Lab Coats</a>
+                    <a href="/collections/all?category=Essentials" class="mega-menu__sublink" style="display:block;padding-block:3px;">Shift Essentials</a>
+                  </div>
+                </div>
+
+                <!-- Column 2: Scrubs & Sets -->
+                <div class="mega-menu__col">
+                  <a href="/collections/all" class="mega-menu__card-img-wrap" tabindex="-1">
+                    <img class="mega-menu__card-img" src="/assets/mock/product-front.jpg" alt="VYRO Performance Medical Scrubs" width="240" height="180">
+                  </a>
+                  <div class="mega-menu__col-title">Scrubs & Sets</div>
+                  <div class="mega-menu__sublinks">
+                    <a href="/products/flexfit-01-midnight-navy" class="mega-menu__sublink">FLEXFIT 01 Men's Set</a>
+                    <a href="/products/flexfit-01-midnight-navy" class="mega-menu__sublink">FLEXFIT 01 Women's Set</a>
+                    <a href="/products/flexfit-01-midnight-navy" class="mega-menu__sublink">Kinetic Cargo Pants</a>
+                  </div>
+                  <a href="/collections/all" class="mega-menu__view-all">Shop All Scrubs →</a>
+                </div>
+
+                <!-- Column 3: Lab Coats -->
+                <div class="mega-menu__col">
+                  <a href="/collections/all?category=Lab+Coats" class="mega-menu__card-img-wrap" tabindex="-1">
+                    <img class="mega-menu__card-img" src="/assets/mock/lab-coat-front.jpg" alt="VYRO Executive Lab Coats" width="240" height="180">
+                  </a>
+                  <div class="mega-menu__col-title">Lab Coats</div>
+                  <div class="mega-menu__sublinks">
+                    <a href="/products/flexfit-01-midnight-navy" class="mega-menu__sublink">Executive Lab Coat</a>
+                    <a href="/products/flexfit-01-midnight-navy" class="mega-menu__sublink">Focus Clinical Coat</a>
+                    <a href="/products/flexfit-01-midnight-navy" class="mega-menu__sublink">Fluid-Shield Twill</a>
+                  </div>
+                  <a href="/collections/all?category=Lab+Coats" class="mega-menu__view-all">Shop All Coats →</a>
+                </div>
+
+                <!-- Column 4: Shift Essentials -->
+                <div class="mega-menu__col">
+                  <a href="/collections/all?category=Essentials" class="mega-menu__card-img-wrap" tabindex="-1">
+                    <img class="mega-menu__card-img" src="/assets/mock/fabric-macro.jpg" alt="VYRO Shift Essentials & Base Layers" width="240" height="180">
+                  </a>
+                  <div class="mega-menu__col-title">Shift Essentials</div>
+                  <div class="mega-menu__sublinks">
+                    <a href="/products/flexfit-01-midnight-navy" class="mega-menu__sublink">Shift Thermal Base Layer</a>
+                    <a href="/products/flexfit-01-midnight-navy" class="mega-menu__sublink">Fluid-Shield Scrub Cap</a>
+                    <a href="/#anatomy" class="mega-menu__sublink">Shift Index System</a>
+                  </div>
+                  <a href="/collections/all?category=Essentials" class="mega-menu__view-all">Shop Essentials →</a>
+                </div>
+
+                <!-- Column 5: Editorial Feature Promo Card -->
+                <div class="mega-menu__promo">
+                  <img class="mega-menu__promo-img" src="/assets/mock/philosophy-editorial.jpg" alt="Clinicians in VYRO Apparel" width="260" height="160">
+                  <div class="mega-menu__promo-content">
+                    <span class="mega-menu__promo-badge">Clinical Innovation</span>
+                    <h4 class="mega-menu__promo-title">ENGINEERED FOR THE 24-HR SHIFT</h4>
+                    <p class="mega-menu__promo-desc">Zero distraction. Fluid-resistant. Built to uphold professional dignity.</p>
+                    <a href="/pages/technology" class="mega-menu__promo-btn">View Technology →</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -225,6 +294,20 @@ function renderHero() {
             height="840"
           >
           <div class="hero__gradient" aria-hidden="true"></div>
+
+          <!-- Hotspot feature indicators pointing to on-model performance garments -->
+          <div class="hero__hotspot-tag" style="top: 36%; right: 26%;">
+            <span class="hero__hotspot-dot"></span>
+            FLEXFIT 01 • Midnight Navy
+          </div>
+          <div class="hero__hotspot-tag" style="top: 52%; right: 38%;">
+            <span class="hero__hotspot-dot"></span>
+            4-Way Mechanical Stretch
+          </div>
+          <div class="hero__hotspot-tag" style="top: 68%; right: 20%;">
+            <span class="hero__hotspot-dot"></span>
+            Concealed Zipper Pocket
+          </div>
         </div>
 
         <div class="hero__slide" aria-hidden="true">
@@ -283,6 +366,249 @@ function renderHero() {
             <span class="hero__indicator-line" aria-hidden="true"></span>
             <span>03</span>
           </button>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+// Render Continuous Marquee Ticker
+function renderMarqueeTicker() {
+  return `
+    <div class="marquee-ticker" role="region" aria-label="Performance highlights">
+      <div class="marquee-ticker__track">
+        <div class="marquee-ticker__group">
+          <span class="marquee-ticker__item">ANTI-DISTRACTION</span>
+          <span class="marquee-ticker__dot">•</span>
+          <span class="marquee-ticker__item">LAB TESTED</span>
+          <span class="marquee-ticker__dot">•</span>
+          <span class="marquee-ticker__item">LONG-SHIFT VERIFIED</span>
+          <span class="marquee-ticker__dot">•</span>
+          <span class="marquee-ticker__item">4-WAY MECHANICAL STRETCH</span>
+          <span class="marquee-ticker__dot">•</span>
+          <span class="marquee-ticker__item">FLUID-RESISTANT FINISH</span>
+          <span class="marquee-ticker__dot">•</span>
+          <span class="marquee-ticker__item">TONS OF CLINICAL STORAGE</span>
+          <span class="marquee-ticker__dot">•</span>
+        </div>
+        <div class="marquee-ticker__group" aria-hidden="true">
+          <span class="marquee-ticker__item">ANTI-DISTRACTION</span>
+          <span class="marquee-ticker__dot">•</span>
+          <span class="marquee-ticker__item">LAB TESTED</span>
+          <span class="marquee-ticker__dot">•</span>
+          <span class="marquee-ticker__item">LONG-SHIFT VERIFIED</span>
+          <span class="marquee-ticker__dot">•</span>
+          <span class="marquee-ticker__item">4-WAY MECHANICAL STRETCH</span>
+          <span class="marquee-ticker__dot">•</span>
+          <span class="marquee-ticker__item">FLUID-RESISTANT FINISH</span>
+          <span class="marquee-ticker__dot">•</span>
+          <span class="marquee-ticker__item">TONS OF CLINICAL STORAGE</span>
+          <span class="marquee-ticker__dot">•</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Render Shop By Categories Pill Strip
+function renderShopByCategories() {
+  return `
+    <section class="category-strip" aria-label="Shop by categories">
+      <div class="container">
+        <h2 class="category-strip__title">Shop By Categories</h2>
+        <div class="category-strip__row">
+          <a href="/collections/all?gender=Women%27s" class="category-pill">
+            <img class="category-pill__img" src="/assets/mock/product-front-womens.jpg" alt="Women's Medical Scrubs" width="40" height="40" loading="lazy">
+            <span class="category-pill__label">Women's</span>
+          </a>
+          <a href="/collections/all?gender=Men%27s" class="category-pill">
+            <img class="category-pill__img" src="/assets/mock/product-front.jpg" alt="Men's Medical Scrubs" width="40" height="40" loading="lazy">
+            <span class="category-pill__label">Men's</span>
+          </a>
+          <a href="/collections/all" class="category-pill">
+            <img class="category-pill__img" src="/assets/mock/hero-slide-1.jpg" alt="FLEXFIT 01 Sets" width="40" height="40" loading="lazy">
+            <span class="category-pill__label">FLEXFIT 01 Sets</span>
+          </a>
+          <a href="/collections/all" class="category-pill">
+            <img class="category-pill__img" src="/assets/mock/lab-coat-front.jpg" alt="Executive Lab Coats" width="40" height="40" loading="lazy">
+            <span class="category-pill__label">Executive Lab Coats</span>
+          </a>
+          <a href="/collections/all" class="category-pill">
+            <img class="category-pill__img" src="/assets/mock/cargo-pant-front.jpg" alt="Kinetic Cargo Pants" width="40" height="40" loading="lazy">
+            <span class="category-pill__label">Cargo Pants</span>
+          </a>
+          <a href="/collections/all" class="category-pill">
+            <img class="category-pill__img" src="/assets/mock/base-layer-front.jpg" alt="Shift Base Layers" width="40" height="40" loading="lazy">
+            <span class="category-pill__label">Shift Base Layers</span>
+          </a>
+          <a href="/collections/all" class="category-pill">
+            <img class="category-pill__img" src="/assets/mock/scrub-cap-front.jpg" alt="Ergonomic Scrub Caps" width="40" height="40" loading="lazy">
+            <span class="category-pill__label">Scrub Caps</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+// Render Shop By Colours Visual Family Cards
+function renderShopByColours() {
+  return `
+    <section class="colours-section" aria-label="Shop by colours">
+      <div class="container">
+        <h2 class="colours-section__title">Shop By Colours</h2>
+        <div class="colours-grid">
+          <a href="/collections/all?colour=Midnight+Navy" class="colour-card">
+            <img class="colour-card__preview" src="/assets/mock/pocket-detail.jpg" alt="Midnight Navy Scrubs" loading="lazy" width="300" height="180">
+            <div class="colour-card__info">
+              <span class="colour-card__name">All Blues (Midnight Navy)</span>
+              <span class="colour-card__dot" style="background:#101E35;"></span>
+            </div>
+          </a>
+
+          <a href="/collections/all?colour=Sage" class="colour-card">
+            <img class="colour-card__preview" src="/assets/mock/product-front-sage.jpg" alt="Muted Sage Scrubs" loading="lazy" width="300" height="180">
+            <div class="colour-card__info">
+              <span class="colour-card__name">All Greens (Muted Sage)</span>
+              <span class="colour-card__dot" style="background:#84958C;"></span>
+            </div>
+          </a>
+
+          <a href="/collections/all?colour=Midnight+Navy" class="colour-card">
+            <img class="colour-card__preview" src="/assets/mock/cargo-pant-front.jpg" alt="Shadow Black Scrubs" loading="lazy" width="300" height="180">
+            <div class="colour-card__info">
+              <span class="colour-card__name">All Darks (Shadow Black)</span>
+              <span class="colour-card__dot" style="background:#18181b;"></span>
+            </div>
+          </a>
+
+          <a href="/collections/all?colour=Stark+White" class="colour-card">
+            <img class="colour-card__preview" src="/assets/mock/lab-coat-front.jpg" alt="Stark White Lab Coats" loading="lazy" width="300" height="180">
+            <div class="colour-card__info">
+              <span class="colour-card__name">All Whites (Stark White)</span>
+              <span class="colour-card__dot" style="background:#FFFFFF;border:1px solid #D5D9DF;"></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+// Reusable Product Card Component
+function renderProductCard(p) {
+  const defaultImg = p.featured_image || '/assets/mock/product-front.jpg';
+  const hoverImg = p.hover_image || defaultImg;
+  const firstVariantId = p.variants && p.variants[0] ? p.variants[0].id : 10101;
+  const colourVal = (p.options && p.options.find(o => o.name === 'Colour')) ? p.options.find(o => o.name === 'Colour').values[0] : 'Midnight Navy';
+  const sizes = p.variants ? p.variants.map(v => v.title.split(' / ')[1] || v.title).join(',') : 'S,M,L';
+  const gender = p.category || "Men's";
+
+  let swatchesHtml = '';
+  if (colourVal === 'Midnight Navy') {
+    swatchesHtml = `
+      <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
+      <span class="product-card__swatch" style="background:#84958C;" title="Muted Sage"></span>
+      <span class="product-card__swatch-more">+2 more</span>
+    `;
+  } else if (colourVal === 'Sage') {
+    swatchesHtml = `
+      <span class="product-card__swatch is-active" style="background:#84958C;" title="Muted Sage"></span>
+      <span class="product-card__swatch" style="background:#101E35;" title="Midnight Navy"></span>
+      <span class="product-card__swatch-more">+2 more</span>
+    `;
+  } else if (colourVal === 'Stark White') {
+    swatchesHtml = `
+      <span class="product-card__swatch is-active" style="background:#FFFFFF;border:1px solid #D5D9DF;" title="Stark White"></span>
+    `;
+  } else {
+    swatchesHtml = `
+      <span class="product-card__swatch is-active" style="background:#101E35;" title="${colourVal}"></span>
+    `;
+  }
+
+  let sizesHtml = '';
+  if (p.variants && p.variants.length > 0) {
+    sizesHtml = p.variants.map(v => {
+      const s = v.title.split(' / ')[1] || v.title;
+      const isOut = !v.available;
+      return `<span class="product-card__size-label"${isOut ? ' style="text-decoration:line-through;opacity:0.3;" title="Out of stock"' : ''}>${s}</span>`;
+    }).join('\n');
+  }
+
+  let badgeHtml = '';
+  if (p.badge) {
+    badgeHtml = `<span class="product-card__badge">${p.badge}</span>`;
+  } else if (p.handle.includes('womens')) {
+    badgeHtml = `<span class="product-card__badge">Contoured Fit</span>`;
+  } else if (p.handle.includes('lab-coat')) {
+    badgeHtml = `<span class="product-card__badge">Executive</span>`;
+  } else if (p.handle.includes('cargo')) {
+    badgeHtml = `<span class="product-card__badge">8 Pockets</span>`;
+  } else if (p.handle.includes('base-layer')) {
+    badgeHtml = `<span class="product-card__badge">Thermal Reg</span>`;
+  } else if (p.handle.includes('scrub-cap')) {
+    badgeHtml = `<span class="product-card__badge">Fluid Shield</span>`;
+  } else {
+    badgeHtml = `<span class="product-card__badge">Core Set</span>`;
+  }
+
+  return `
+    <article class="product-card" aria-label="${p.title}" data-colour="${colourVal}" data-gender="${gender}" data-sizes="${sizes}">
+      ${badgeHtml}
+      <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
+        <img class="product-card__img product-card__img--default" src="${defaultImg}" alt="${p.title}" width="400" height="500" loading="lazy">
+        <img class="product-card__img product-card__img--hover" src="${hoverImg}" alt="${p.title} back" width="400" height="500" loading="lazy">
+        <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="${firstVariantId}" aria-label="Quick add to bag">QUICK ADD</button>
+      </a>
+      <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-top:var(--space-2);">${p.subtitle || 'VYRO Medical Apparel'}</div>
+      <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">${p.title}</a></div>
+      <div class="product-card__price">₹${p.price.toLocaleString('en-IN')}</div>
+      <div style="font-size:11px;color:var(--sage);letter-spacing:0.02em;margin-top:2px;">Free Shipping Across India</div>
+      <div class="product-card__swatches">
+        ${swatchesHtml}
+      </div>
+      <div class="product-card__sizes">
+        ${sizesHtml}
+      </div>
+    </article>
+  `;
+}
+
+// Render Product Carousel with left/right stepping buttons
+function renderProductCarousel(title, subtitle, filterType) {
+  const products = mockData.products || [];
+  let items = [];
+  if (filterType === 'flexfit') {
+    items = products.filter(p => p.collection === 'flexfit-01');
+  } else if (filterType === 'essentials') {
+    items = products.filter(p => p.collection === 'essentials' || p.collection === 'lab-coats');
+  } else {
+    items = products.slice(0, 4);
+  }
+
+  const cardsHtml = items.map(p => renderProductCard(p)).join('\n');
+
+  return `
+    <section class="product-carousel-section reveal js-carousel" aria-label="${title}">
+      <div class="container">
+        <div class="product-carousel-section__header">
+          <div>
+            <h2 class="product-carousel-section__title">${title}</h2>
+            <p class="product-carousel-section__subtitle">${subtitle}</p>
+          </div>
+          <div class="product-carousel__nav" aria-label="Carousel navigation">
+            <button type="button" class="product-carousel__btn js-carousel-prev" aria-label="Previous products">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="product-carousel__btn js-carousel-next" aria-label="Next products">
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="product-carousel__track js-carousel-track">
+          ${cardsHtml}
         </div>
       </div>
     </section>
@@ -1080,7 +1406,12 @@ function renderPage(contentHtml, pageTitle = 'WEAR THE PROFESSIONAL YOU.', templ
 function buildHomepage() {
   const fullContent = [
     renderHero(),
+    renderMarqueeTicker(),
+    renderShopByCategories(),
+    renderShopByColours(),
+    renderProductCarousel('Shop FLEXFIT 01 Sets', 'Engineered with 4-way mechanical stretch technology', 'flexfit'),
     renderFeaturedProduct(),
+    renderProductCarousel('Shop Shift Essentials & Lab Coats', 'High-utility clinical apparel engineered for long shifts', 'essentials'),
     renderFeatureStrip(),
     renderAnatomy(),
     renderScentShift(),
@@ -1262,61 +1593,7 @@ function buildProductPage() {
           <h2 class="h3" style="margin-top:var(--space-1);">You May Also Like</h2>
         </div>
         <div class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:var(--space-6);">
-          <article class="product-card" aria-label="FLEXFIT 01 — Sage">
-            <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-sage.jpg" alt="FLEXFIT 01 Sage" width="400" height="500">
-              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-sage.jpg" alt="FLEXFIT 01 Sage back" width="400" height="500">
-              <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10202" aria-label="Quick add to bag">QUICK ADD</button>
-            </a>
-            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Sage</a></div>
-            <div class="product-card__price">₹2,299</div>
-            <div class="product-card__swatches">
-              <span class="product-card__swatch is-active" style="background:#84958C;" title="Sage"></span>
-            </div>
-            <div class="product-card__sizes">
-              <span class="product-card__size-label">S</span>
-              <span class="product-card__size-label">M</span>
-              <span class="product-card__size-label" style="text-decoration:line-through;opacity:0.3;">L</span>
-            </div>
-          </article>
-
-          <article class="product-card" aria-label="FLEXFIT 01 Women's — Midnight Navy">
-            <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-womens.jpg" alt="FLEXFIT 01 Women's" width="400" height="500">
-              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-womens.jpg" alt="FLEXFIT 01 Women's back" width="400" height="500">
-              <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10302" aria-label="Quick add to bag">QUICK ADD</button>
-            </a>
-            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 Women's</a></div>
-            <div class="product-card__price">₹2,299</div>
-            <div class="product-card__swatches">
-              <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
-            </div>
-            <div class="product-card__sizes">
-              <span class="product-card__size-label">XS</span>
-              <span class="product-card__size-label">S</span>
-              <span class="product-card__size-label">M</span>
-              <span class="product-card__size-label">L</span>
-            </div>
-          </article>
-
-          <article class="product-card" aria-label="FLEXFIT 01 — Midnight Navy">
-            <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front.jpg" alt="FLEXFIT 01 Midnight Navy" width="400" height="500">
-              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back.jpg" alt="FLEXFIT 01 Midnight Navy back" width="400" height="500">
-              <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10102" aria-label="Quick add to bag">QUICK ADD</button>
-            </a>
-            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Midnight Navy</a></div>
-            <div class="product-card__price">₹2,299</div>
-            <div class="product-card__swatches">
-              <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
-            </div>
-            <div class="product-card__sizes">
-              <span class="product-card__size-label">S</span>
-              <span class="product-card__size-label">M</span>
-              <span class="product-card__size-label">L</span>
-              <span class="product-card__size-label" style="text-decoration:line-through;opacity:0.3;">XL</span>
-            </div>
-          </article>
+          ${(mockData.products || []).filter(p => p.handle !== 'flexfit-01-midnight-navy').slice(0, 4).map(p => renderProductCard(p)).join('\n')}
         </div>
       </div>
     </section>
@@ -1354,6 +1631,9 @@ function buildProductPage() {
 
 // Build Collection Page HTML
 function buildCollectionPage() {
+  const products = mockData.products || [];
+  const productsHtml = products.map(p => renderProductCard(p)).join('\n');
+
   const content = `
     <div class="container">
       <div style="padding-block:var(--space-5);border-bottom:var(--border-hairline);margin-bottom:var(--space-5);">
@@ -1370,30 +1650,34 @@ function buildCollectionPage() {
           <div class="filter-sidebar__title">Filter</div>
 
           <div class="filter-group">
-            <div class="filter-group__label">Size</div>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="S"><span class="filter-checkbox"></span> S (3)</label>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="M"><span class="filter-checkbox"></span> M (3)</label>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="L"><span class="filter-checkbox"></span> L (3)</label>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="XL"><span class="filter-checkbox"></span> XL (1)</label>
-          </div>
-
-          <div class="filter-group">
             <div class="filter-group__label">Colour</div>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Midnight Navy"><span class="filter-checkbox"></span> Midnight Navy (2)</label>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Sage"><span class="filter-checkbox"></span> Sage (1)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Midnight Navy"><span class="filter-checkbox"></span> Midnight Navy (5)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Sage"><span class="filter-checkbox"></span> Muted Sage (2)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Stark White"><span class="filter-checkbox"></span> Stark White (1)</label>
           </div>
 
           <div class="filter-group">
-            <div class="filter-group__label">Gender</div>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Men's"><span class="filter-checkbox"></span> Men's (2)</label>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Women's"><span class="filter-checkbox"></span> Women's (1)</label>
+            <div class="filter-group__label">Size</div>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="XS"><span class="filter-checkbox"></span> XS (2)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="S"><span class="filter-checkbox"></span> S (7)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="M"><span class="filter-checkbox"></span> M (7)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="L"><span class="filter-checkbox"></span> L (7)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="XL"><span class="filter-checkbox"></span> XL (4)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="One Size"><span class="filter-checkbox"></span> One Size (1)</label>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-group__label">Category</div>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Men's"><span class="filter-checkbox"></span> Men's (4)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Women's"><span class="filter-checkbox"></span> Women's (2)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Unisex"><span class="filter-checkbox"></span> Unisex (2)</label>
           </div>
         </aside>
 
         <!-- Product Grid -->
         <div>
           <div class="collection-toolbar">
-            <div class="collection-count">3 products</div>
+            <div class="collection-count">${products.length} products</div>
             <div style="display:flex;align-items:center;gap:var(--space-3);">
               <button type="button" class="btn btn--outline js-filter-open mobile-filter-btn" id="mobile-filter-btn" aria-label="Open filters">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" style="margin-right:6px;"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
@@ -1413,64 +1697,7 @@ function buildCollectionPage() {
           </div>
 
           <div class="products-grid">
-            <!-- Card 1 -->
-            <article class="product-card" aria-label="FLEXFIT 01 — Midnight Navy" data-colour="Midnight Navy" data-gender="Men's" data-sizes="S,M,L">
-              <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-                <img class="product-card__img product-card__img--default" src="/assets/mock/product-front.jpg" alt="FLEXFIT 01 Midnight Navy" width="400" height="500">
-                <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back.jpg" alt="FLEXFIT 01 Midnight Navy back" width="400" height="500">
-                <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10102" aria-label="Quick add to bag">QUICK ADD</button>
-              </a>
-              <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Midnight Navy</a></div>
-              <div class="product-card__price">₹2,299</div>
-              <div class="product-card__swatches">
-                <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
-              </div>
-              <div class="product-card__sizes">
-                <span class="product-card__size-label">S</span>
-                <span class="product-card__size-label">M</span>
-                <span class="product-card__size-label">L</span>
-                <span class="product-card__size-label" style="text-decoration:line-through;opacity:0.3;">XL</span>
-              </div>
-            </article>
-
-            <!-- Card 2 -->
-            <article class="product-card" aria-label="FLEXFIT 01 — Sage" data-colour="Sage" data-gender="Men's" data-sizes="S,M">
-              <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-                <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-sage.jpg" alt="FLEXFIT 01 Sage" width="400" height="500">
-                <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-sage.jpg" alt="FLEXFIT 01 Sage back" width="400" height="500">
-                <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10202" aria-label="Quick add to bag">QUICK ADD</button>
-              </a>
-              <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Sage</a></div>
-              <div class="product-card__price">₹2,299</div>
-              <div class="product-card__swatches">
-                <span class="product-card__swatch is-active" style="background:#84958C;" title="Sage"></span>
-              </div>
-              <div class="product-card__sizes">
-                <span class="product-card__size-label">S</span>
-                <span class="product-card__size-label">M</span>
-                <span class="product-card__size-label" style="text-decoration:line-through;opacity:0.3;">L</span>
-              </div>
-            </article>
-
-            <!-- Card 3 -->
-            <article class="product-card" aria-label="FLEXFIT 01 Women's — Midnight Navy" data-colour="Midnight Navy" data-gender="Women's" data-sizes="XS,S,M,L">
-              <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-                <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-womens.jpg" alt="FLEXFIT 01 Women's" width="400" height="500">
-                <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-womens.jpg" alt="FLEXFIT 01 Women's back" width="400" height="500">
-                <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10302" aria-label="Quick add to bag">QUICK ADD</button>
-              </a>
-              <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 Women's</a></div>
-              <div class="product-card__price">₹2,299</div>
-              <div class="product-card__swatches">
-                <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
-              </div>
-              <div class="product-card__sizes">
-                <span class="product-card__size-label">XS</span>
-                <span class="product-card__size-label">S</span>
-                <span class="product-card__size-label">M</span>
-                <span class="product-card__size-label">L</span>
-              </div>
-            </article>
+            ${productsHtml}
           </div>
         </div>
       </div>
@@ -1486,23 +1713,27 @@ function buildCollectionPage() {
       </div>
 
       <div class="filter-group">
-        <div class="filter-group__label">Size</div>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="S"><span class="filter-checkbox"></span> S (3)</label>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="M"><span class="filter-checkbox"></span> M (3)</label>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="L"><span class="filter-checkbox"></span> L (3)</label>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="XL"><span class="filter-checkbox"></span> XL (1)</label>
-      </div>
-
-      <div class="filter-group">
         <div class="filter-group__label">Colour</div>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Midnight Navy"><span class="filter-checkbox"></span> Midnight Navy (2)</label>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Sage"><span class="filter-checkbox"></span> Sage (1)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Midnight Navy"><span class="filter-checkbox"></span> Midnight Navy (5)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Sage"><span class="filter-checkbox"></span> Muted Sage (2)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Stark White"><span class="filter-checkbox"></span> Stark White (1)</label>
       </div>
 
       <div class="filter-group">
-        <div class="filter-group__label">Gender</div>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Men's"><span class="filter-checkbox"></span> Men's (2)</label>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Women's"><span class="filter-checkbox"></span> Women's (1)</label>
+        <div class="filter-group__label">Size</div>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="XS"><span class="filter-checkbox"></span> XS (2)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="S"><span class="filter-checkbox"></span> S (7)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="M"><span class="filter-checkbox"></span> M (7)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="L"><span class="filter-checkbox"></span> L (7)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="XL"><span class="filter-checkbox"></span> XL (4)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="One Size"><span class="filter-checkbox"></span> One Size (1)</label>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group__label">Category</div>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Men's"><span class="filter-checkbox"></span> Men's (4)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Women's"><span class="filter-checkbox"></span> Women's (2)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Unisex"><span class="filter-checkbox"></span> Unisex (2)</label>
       </div>
 
       <div class="filter-drawer__actions">

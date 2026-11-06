@@ -1,0 +1,45 @@
+<section class="colours-section" aria-label="Shop by colours">
+  <div class="container">
+    <h2 class="colours-section__title">Shop By Colours</h2>
+    <div class="colours-grid">
+      <a href="{{ routes.collections_url }}/all?colour=Midnight+Navy" class="colour-card">
+        <img class="colour-card__preview" src="{{ 'mock/pocket-detail.jpg' | asset_url }}" alt="Midnight Navy Scrubs" loading="lazy" width="300" height="180">
+        <div class="colour-card__info">
+          <span class="colour-card__name">All Blues (Midnight Navy)</span>
+          <span class="colour-card__dot" style="background:#101E35;"></span>
+        </div>
+      </a>
+
+      <a href="{{ routes.collections_url }}/all?colour=Sage" class="colour-card">
+        <img class="colour-card__preview" src="{{ 'mock/product-front-sage.jpg' | asset_url }}" alt="Muted Sage Scrubs" loading="lazy" width="300" height="180">
+        <div class="colour-card__info">
+          <span class="colour-card__name">All Greens (Muted Sage)</span>
+          <span class="colour-card__dot" style="background:#84958C;"></span>
+        </div>
+      </a>
+
+      <a href="{{ routes.collections_url }}/all?colour=Midnight+Navy" class="colour-card">
+        <img class="colour-card__preview" src="{{ 'mock/cargo-pant-front.jpg' | asset_url }}" alt="Shadow Black Scrubs" loading="lazy" width="300" height="180">
+        <div class="colour-card__info">
+          <span class="colour-card__name">All Darks (Shadow Black)</span>
+          <span class="colour-card__dot" style="background:#18181b;"></span>
+        </div>
+      </a>
+
+      <a href="{{ routes.collections_url }}/all?colour=Stark+White" class="colour-card">
+        <img class="colour-card__preview" src="{{ 'mock/lab-coat-front.jpg' | asset_url }}" alt="Stark White Lab Coats" loading="lazy" width="300" height="180">
+        <div class="colour-card__info">
+          <span class="colour-card__name">All Whites (Stark White)</span>
+          <span class="colour-card__dot" style="background:#FFFFFF;border:1px solid #D5D9DF;"></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop By Colours",
+  "settings": []
+}
+{% endschema %}

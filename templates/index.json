@@ -17,6 +17,18 @@
       },
       "block_order": ["slide-1", "slide-2", "slide-3"]
     },
+    "marquee-ticker": {
+      "type": "marquee-ticker",
+      "settings": {}
+    },
+    "shop-by-categories": {
+      "type": "shop-by-categories",
+      "settings": {}
+    },
+    "shop-by-colours": {
+      "type": "shop-by-colours",
+      "settings": {}
+    },
     "featured-product": {
       "type": "featured-product",
       "settings": {}
@@ -24,22 +36,22 @@
     "feature-strip": {
       "type": "feature-strip",
       "blocks": {
-        "f1": { "type": "feature", "settings": { "label": "[Feature Label 1 — Pending Verification]", "icon": "feather" } },
-        "f2": { "type": "feature", "settings": { "label": "[Feature Label 2 — Pending Verification]", "icon": "stretch" } },
-        "f3": { "type": "feature", "settings": { "label": "[Feature Label 3 — Pending Verification]", "icon": "wind" } },
-        "f4": { "type": "feature", "settings": { "label": "[Feature Label 4 — Pending Verification]", "icon": "clock" } },
-        "f5": { "type": "feature", "settings": { "label": "[Feature Label 5 — Pending Verification]", "icon": "shield" } }
+        "f1": { "type": "feature", "settings": { "label": "4-Way Mechanical Stretch", "icon": "stretch" } },
+        "f2": { "type": "feature", "settings": { "label": "Fluid-Resistant Finish", "icon": "shield" } },
+        "f3": { "type": "feature", "settings": { "label": "Anti-Distraction Ergonomics", "icon": "clock" } },
+        "f4": { "type": "feature", "settings": { "label": "Concealed Clinical Storage", "icon": "feather" } },
+        "f5": { "type": "feature", "settings": { "label": "Long-Shift Endurance", "icon": "wind" } }
       },
       "block_order": ["f1", "f2", "f3", "f4", "f5"]
     },
     "anatomy-section": {
       "type": "anatomy-section",
       "blocks": {
-        "h1": { "type": "hotspot", "settings": { "position_x": 50, "position_y": 12, "label": "[Neckline — Pending]", "description": "[Description pending brand data]" } },
-        "h2": { "type": "hotspot", "settings": { "position_x": 20, "position_y": 25, "label": "[Shoulder — Pending]", "description": "[Description pending brand data]" } },
-        "h3": { "type": "hotspot", "settings": { "position_x": 40, "position_y": 40, "label": "[Pocket — Pending]", "description": "[Description pending brand data]" } },
-        "h4": { "type": "hotspot", "settings": { "position_x": 70, "position_y": 55, "label": "[Stitching — Pending]", "description": "[Description pending brand data]" } },
-        "h5": { "type": "hotspot", "settings": { "position_x": 50, "position_y": 70, "label": "[Fabric — Pending]", "description": "[Description pending brand data]" } }
+        "h1": { "type": "hotspot", "settings": { "position_x": 50, "position_y": 12, "label": "Contoured Ergonomic Collar", "description": "Engineered non-chafing neckline designed for stethoscopes." } },
+        "h2": { "type": "hotspot", "settings": { "position_x": 20, "position_y": 25, "label": "Articulated Raglan Shoulder", "description": "Full shoulder extension without hem lifting." } },
+        "h3": { "type": "hotspot", "settings": { "position_x": 40, "position_y": 40, "label": "Concealed Zipper Pocket", "description": "Internal security pocket for shears and pagers." } },
+        "h4": { "type": "hotspot", "settings": { "position_x": 70, "position_y": 55, "label": "Reinforced Bar-Tack Seams", "description": "Stress-point reinforcement tested for 1,000+ clinical cycles." } },
+        "h5": { "type": "hotspot", "settings": { "position_x": 50, "position_y": 70, "label": "ScentShift Membrane", "description": "Antimicrobial micro-weave neutralizing odour compounds." } }
       },
       "block_order": ["h1", "h2", "h3", "h4", "h5"]
     },
@@ -54,12 +66,11 @@
     "shift-journal": {
       "type": "shift-journal",
       "blocks": {
-        "a1": { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder]" } },
-        "a2": { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder]" } },
-        "a3": { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder]" } },
-        "a4": { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder]" } }
+        "a1": { "type": "article", "settings": { "category": "Professional Life", "title": "The Art of the Long Shift: Focus, Fatigue, and the Anatomy of Endurance" } },
+        "a2": { "type": "article", "settings": { "category": "Identity & Style", "title": "What Your Scrubs Say About You in the Operating Theatre" } },
+        "a3": { "type": "article", "settings": { "category": "Design & Textile", "title": "Designing for Mobility: Why 4-Way Mechanical Stretch Matters" } }
       },
-      "block_order": ["a1", "a2", "a3", "a4"]
+      "block_order": ["a1", "a2", "a3"]
     },
     "reviews-section": {
       "type": "reviews-section",
@@ -90,6 +101,9 @@
     "announcement-bar",
     "header",
     "hero",
+    "marquee-ticker",
+    "shop-by-categories",
+    "shop-by-colours",
     "featured-product",
     "feature-strip",
     "anatomy-section",

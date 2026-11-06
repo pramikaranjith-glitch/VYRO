@@ -47,21 +47,90 @@
 
         <!-- Mega Menu -->
         <div class="mega-menu" id="mega-menu-shop" role="region" aria-label="Shop navigation">
-          <div>
-            <div class="mega-menu__group-label">Collections</div>
-            <a href="{{ routes.collections_url }}/all" class="mega-menu__link">Shop All</a>
-            <a href="{{ routes.collections_url }}/mens-collection" class="mega-menu__link">Men's Collection</a>
-            <a href="{{ routes.collections_url }}/womens-collection" class="mega-menu__link">Women's Collection</a>
-          </div>
-          <div>
-            <div class="mega-menu__group-label">Products</div>
-            <a href="{{ routes.collections_url }}/flexfit-01" class="mega-menu__link">FLEXFIT 01</a>
-            <a href="{{ routes.collections_url }}/shop-by-colour" class="mega-menu__link">Shop by Colour</a>
-          </div>
-          <div>
-            <div class="mega-menu__group-label">Help</div>
-            <a href="#" class="mega-menu__link js-open-fit-guide">Size Guide</a>
-            <a href="{{ routes.root_url }}#shift-index" class="mega-menu__link">Shift Index</a>
+          <div class="mega-menu__container">
+            <!-- Column 1: Shop By Colours -->
+            <div class="mega-menu__sidebar">
+              <div class="mega-menu__group-label">Shop by Colour</div>
+              <div class="mega-menu__swatches">
+                <a href="{{ routes.collections_url }}/all?colour=Midnight+Navy" class="mega-menu__swatch-item">
+                  <span class="mega-menu__dot" style="background:#101E35;"></span>
+                  Midnight Navy
+                </a>
+                <a href="{{ routes.collections_url }}/all?colour=Sage" class="mega-menu__swatch-item">
+                  <span class="mega-menu__dot" style="background:#84958C;"></span>
+                  Muted Sage
+                </a>
+                <a href="{{ routes.collections_url }}/all?colour=Midnight+Navy" class="mega-menu__swatch-item">
+                  <span class="mega-menu__dot" style="background:#18181b;"></span>
+                  Shadow Black
+                </a>
+                <a href="{{ routes.collections_url }}/all?colour=Stark+White" class="mega-menu__swatch-item">
+                  <span class="mega-menu__dot" style="background:#ffffff;border:1px solid #D5D9DF;"></span>
+                  Stark White
+                </a>
+              </div>
+
+              <div style="margin-top:var(--space-3);border-top:var(--border-hairline);padding-top:var(--space-2);">
+                <div class="mega-menu__group-label">Quick Links</div>
+                <a href="{{ routes.collections_url }}/all?gender=Men%27s" class="mega-menu__sublink" style="display:block;padding-block:3px;">Men's Collection</a>
+                <a href="{{ routes.collections_url }}/all?gender=Women%27s" class="mega-menu__sublink" style="display:block;padding-block:3px;">Women's Collection</a>
+                <a href="{{ routes.collections_url }}/all?category=Lab+Coats" class="mega-menu__sublink" style="display:block;padding-block:3px;">Executive Lab Coats</a>
+                <a href="{{ routes.collections_url }}/all?category=Essentials" class="mega-menu__sublink" style="display:block;padding-block:3px;">Shift Essentials</a>
+              </div>
+            </div>
+
+            <!-- Column 2: Scrubs & Sets -->
+            <div class="mega-menu__col">
+              <a href="{{ routes.collections_url }}/all" class="mega-menu__card-img-wrap" tabindex="-1">
+                <img class="mega-menu__card-img" src="{{ 'mock/product-front.jpg' | asset_url }}" alt="VYRO Performance Medical Scrubs" width="240" height="180">
+              </a>
+              <div class="mega-menu__col-title">Scrubs & Sets</div>
+              <div class="mega-menu__sublinks">
+                <a href="{{ routes.collections_url }}/all?gender=Men%27s" class="mega-menu__sublink">FLEXFIT 01 Men's Set</a>
+                <a href="{{ routes.collections_url }}/all?gender=Women%27s" class="mega-menu__sublink">FLEXFIT 01 Women's Set</a>
+                <a href="{{ routes.collections_url }}/all" class="mega-menu__sublink">Kinetic Cargo Pants</a>
+              </div>
+              <a href="{{ routes.collections_url }}/all" class="mega-menu__view-all">Shop All Scrubs →</a>
+            </div>
+
+            <!-- Column 3: Lab Coats -->
+            <div class="mega-menu__col">
+              <a href="{{ routes.collections_url }}/all?category=Lab+Coats" class="mega-menu__card-img-wrap" tabindex="-1">
+                <img class="mega-menu__card-img" src="{{ 'mock/lab-coat-front.jpg' | asset_url }}" alt="VYRO Executive Lab Coats" width="240" height="180">
+              </a>
+              <div class="mega-menu__col-title">Lab Coats</div>
+              <div class="mega-menu__sublinks">
+                <a href="{{ routes.collections_url }}/all?category=Lab+Coats" class="mega-menu__sublink">Executive Lab Coat</a>
+                <a href="{{ routes.collections_url }}/all?category=Lab+Coats" class="mega-menu__sublink">Focus Clinical Coat</a>
+                <a href="{{ routes.collections_url }}/all?category=Lab+Coats" class="mega-menu__sublink">Fluid-Shield Twill</a>
+              </div>
+              <a href="{{ routes.collections_url }}/all?category=Lab+Coats" class="mega-menu__view-all">Shop All Coats →</a>
+            </div>
+
+            <!-- Column 4: Shift Essentials -->
+            <div class="mega-menu__col">
+              <a href="{{ routes.collections_url }}/all?category=Essentials" class="mega-menu__card-img-wrap" tabindex="-1">
+                <img class="mega-menu__card-img" src="{{ 'mock/fabric-macro.jpg' | asset_url }}" alt="VYRO Shift Essentials & Base Layers" width="240" height="180">
+              </a>
+              <div class="mega-menu__col-title">Shift Essentials</div>
+              <div class="mega-menu__sublinks">
+                <a href="{{ routes.collections_url }}/all?category=Essentials" class="mega-menu__sublink">Shift Thermal Base Layer</a>
+                <a href="{{ routes.collections_url }}/all?category=Accessories" class="mega-menu__sublink">Fluid-Shield Scrub Cap</a>
+                <a href="{{ routes.root_url }}#shift-index" class="mega-menu__sublink">Shift Index System</a>
+              </div>
+              <a href="{{ routes.collections_url }}/all?category=Essentials" class="mega-menu__view-all">Shop Essentials →</a>
+            </div>
+
+            <!-- Column 5: Editorial Feature Promo Card -->
+            <div class="mega-menu__promo">
+              <img class="mega-menu__promo-img" src="{{ 'mock/philosophy-editorial.jpg' | asset_url }}" alt="Clinicians in VYRO Apparel" width="260" height="160">
+              <div class="mega-menu__promo-content">
+                <span class="mega-menu__promo-badge">Clinical Innovation</span>
+                <h4 class="mega-menu__promo-title">ENGINEERED FOR THE 24-HR SHIFT</h4>
+                <p class="mega-menu__promo-desc">Zero distraction. Fluid-resistant. Built to uphold professional dignity.</p>
+                <a href="/pages/technology" class="mega-menu__promo-btn">View Technology →</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

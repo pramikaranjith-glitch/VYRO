@@ -25,6 +25,18 @@
       "handle": "flexfit-01",
       "title": "FLEXFIT 01 Collection",
       "description": "The inaugural collection. Midnight Navy two-piece performance scrub sets."
+    },
+    {
+      "id": "col-05",
+      "handle": "lab-coats",
+      "title": "Executive Lab Coats",
+      "description": "Precision-tailored clinical lab coats crafted from high-performance liquid-repellent cotton-twill blend."
+    },
+    {
+      "id": "col-06",
+      "handle": "essentials",
+      "title": "Shift Essentials",
+      "description": "Technical underscrubs, ergonomic scrub caps, and high-utility cargo pants."
     }
   ],
   "products": [
@@ -34,6 +46,7 @@
       "title": "FLEXFIT 01 — Midnight Navy",
       "subtitle": "Two-Piece Performance Scrub Set",
       "vendor": "VYRO",
+      "category": "Men's",
       "collection": "flexfit-01",
       "price": 2299,
       "compare_at_price": null,
@@ -88,7 +101,7 @@
           "title": "S",
           "price": 2299,
           "available": true,
-          "inventory_quantity": 42,
+          "inventory_quantity": 24,
           "sku": "VYRO-FF01-NVY-S"
         },
         {
@@ -96,7 +109,7 @@
           "title": "M",
           "price": 2299,
           "available": true,
-          "inventory_quantity": 68,
+          "inventory_quantity": 42,
           "sku": "VYRO-FF01-NVY-M"
         },
         {
@@ -104,7 +117,7 @@
           "title": "L",
           "price": 2299,
           "available": true,
-          "inventory_quantity": 25,
+          "inventory_quantity": 31,
           "sku": "VYRO-FF01-NVY-L"
         },
         {
@@ -115,74 +128,15 @@
           "inventory_quantity": 0,
           "sku": "VYRO-FF01-NVY-XL"
         }
-      ],
-      "description": "Built for the demands of 24-hour healthcare shifts. The FLEXFIT 01 Two-Piece Scrub Set combines an athletic silhouette with four-way mechanical stretch, fluid resistance, and reinforced seams at high-stress points.",
-      "specifications_pending": true,
-      "wash_care_pending": true
-    },
-    {
-      "id": 102,
-      "handle": "flexfit-01-sage-placeholder",
-      "title": "FLEXFIT 01 — Sage",
-      "subtitle": "Two-Piece Performance Scrub Set",
-      "vendor": "VYRO",
-      "collection": "mens-collection",
-      "price": 2299,
-      "compare_at_price": null,
-      "currency": "INR",
-      "currency_symbol": "₹",
-      "isMock": true,
-      "featured_image": "/assets/mock/product-front-sage.jpg",
-      "hover_image": "/assets/mock/product-back-sage.jpg",
-      "images": [
-        {
-          "src": "/assets/mock/product-front-sage.jpg",
-          "alt": "FLEXFIT 01 Sage — Front view"
-        }
-      ],
-      "options": [
-        {
-          "name": "Colour",
-          "values": ["Sage"]
-        },
-        {
-          "name": "Size",
-          "values": ["S", "M", "L"]
-        }
-      ],
-      "variants": [
-        {
-          "id": 10201,
-          "title": "S",
-          "price": 2299,
-          "available": true,
-          "inventory_quantity": 18,
-          "sku": "VYRO-FF01-SGE-S"
-        },
-        {
-          "id": 10202,
-          "title": "M",
-          "price": 2299,
-          "available": true,
-          "inventory_quantity": 30,
-          "sku": "VYRO-FF01-SGE-M"
-        },
-        {
-          "id": 10203,
-          "title": "L",
-          "price": 2299,
-          "available": false,
-          "inventory_quantity": 0,
-          "sku": "VYRO-FF01-SGE-L"
-        }
       ]
     },
     {
-      "id": 103,
-      "handle": "flexfit-01-womens-midnight-navy-placeholder",
+      "id": 102,
+      "handle": "flexfit-01-womens-midnight-navy",
       "title": "FLEXFIT 01 Women's — Midnight Navy",
       "subtitle": "Tailored Two-Piece Scrub Set",
       "vendor": "VYRO",
+      "category": "Women's",
       "collection": "womens-collection",
       "price": 2299,
       "compare_at_price": null,
@@ -195,6 +149,10 @@
         {
           "src": "/assets/mock/product-front-womens.jpg",
           "alt": "FLEXFIT 01 Women's Midnight Navy — Front view"
+        },
+        {
+          "src": "/assets/mock/product-back-womens.jpg",
+          "alt": "FLEXFIT 01 Women's Midnight Navy — Back view"
         }
       ],
       "options": [
@@ -209,36 +167,420 @@
       ],
       "variants": [
         {
-          "id": 10301,
+          "id": 10201,
           "title": "XS",
           "price": 2299,
           "available": true,
-          "inventory_quantity": 12,
-          "sku": "VYRO-FF01W-NVY-XS"
+          "inventory_quantity": 15,
+          "sku": "VYRO-FF01-W-NVY-XS"
         },
         {
-          "id": 10302,
+          "id": 10202,
           "title": "S",
           "price": 2299,
           "available": true,
-          "inventory_quantity": 24,
-          "sku": "VYRO-FF01W-NVY-S"
+          "inventory_quantity": 35,
+          "sku": "VYRO-FF01-W-NVY-S"
         },
         {
-          "id": 10303,
+          "id": 10203,
           "title": "M",
           "price": 2299,
           "available": true,
-          "inventory_quantity": 36,
-          "sku": "VYRO-FF01W-NVY-M"
+          "inventory_quantity": 28,
+          "sku": "VYRO-FF01-W-NVY-M"
         },
         {
-          "id": 10304,
+          "id": 10204,
           "title": "L",
           "price": 2299,
           "available": true,
+          "inventory_quantity": 12,
+          "sku": "VYRO-FF01-W-NVY-L"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "handle": "flexfit-01-sage",
+      "title": "FLEXFIT 01 — Sage",
+      "subtitle": "Performance Two-Piece Scrub Set",
+      "vendor": "VYRO",
+      "category": "Men's",
+      "collection": "mens-collection",
+      "price": 2299,
+      "compare_at_price": null,
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "isMock": true,
+      "featured_image": "/assets/mock/product-front-sage.jpg",
+      "hover_image": "/assets/mock/product-back-sage.jpg",
+      "images": [
+        {
+          "src": "/assets/mock/product-front-sage.jpg",
+          "alt": "FLEXFIT 01 Sage — Front view"
+        },
+        {
+          "src": "/assets/mock/product-back-sage.jpg",
+          "alt": "FLEXFIT 01 Sage — Back view"
+        }
+      ],
+      "options": [
+        {
+          "name": "Colour",
+          "values": ["Sage"]
+        },
+        {
+          "name": "Size",
+          "values": ["S", "M", "L"]
+        }
+      ],
+      "variants": [
+        {
+          "id": 10301,
+          "title": "S",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 18,
+          "sku": "VYRO-FF01-SGE-S"
+        },
+        {
+          "id": 10302,
+          "title": "M",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 30,
+          "sku": "VYRO-FF01-SGE-M"
+        },
+        {
+          "id": 10303,
+          "title": "L",
+          "price": 2299,
+          "available": false,
+          "inventory_quantity": 0,
+          "sku": "VYRO-FF01-SGE-L"
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "handle": "flexfit-01-womens-sage",
+      "title": "FLEXFIT 01 Women's — Sage",
+      "subtitle": "Contoured Tailored Scrub Set",
+      "vendor": "VYRO",
+      "category": "Women's",
+      "collection": "womens-collection",
+      "price": 2299,
+      "compare_at_price": null,
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "isMock": true,
+      "featured_image": "/assets/mock/product-front-womens-sage.jpg",
+      "hover_image": "/assets/mock/product-back-womens-sage.jpg",
+      "images": [
+        {
+          "src": "/assets/mock/product-front-womens-sage.jpg",
+          "alt": "FLEXFIT 01 Women's Sage — Front view"
+        },
+        {
+          "src": "/assets/mock/product-back-womens-sage.jpg",
+          "alt": "FLEXFIT 01 Women's Sage — Back view"
+        }
+      ],
+      "options": [
+        {
+          "name": "Colour",
+          "values": ["Sage"]
+        },
+        {
+          "name": "Size",
+          "values": ["XS", "S", "M", "L"]
+        }
+      ],
+      "variants": [
+        {
+          "id": 10401,
+          "title": "XS",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 20,
+          "sku": "VYRO-FF01-W-SGE-XS"
+        },
+        {
+          "id": 10402,
+          "title": "S",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 25,
+          "sku": "VYRO-FF01-W-SGE-S"
+        },
+        {
+          "id": 10403,
+          "title": "M",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 22,
+          "sku": "VYRO-FF01-W-SGE-M"
+        },
+        {
+          "id": 10404,
+          "title": "L",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 14,
+          "sku": "VYRO-FF01-W-SGE-L"
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "handle": "vyro-executive-lab-coat",
+      "title": "VYRO Executive Lab Coat",
+      "subtitle": "Fluid-Repellent Tailored Twill Coat",
+      "vendor": "VYRO",
+      "category": "Lab Coats",
+      "collection": "lab-coats",
+      "price": 2699,
+      "compare_at_price": null,
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "isMock": true,
+      "featured_image": "/assets/mock/lab-coat-front.jpg",
+      "hover_image": "/assets/mock/lab-coat-back.jpg",
+      "images": [
+        {
+          "src": "/assets/mock/lab-coat-front.jpg",
+          "alt": "VYRO Executive Lab Coat — Front view"
+        },
+        {
+          "src": "/assets/mock/lab-coat-back.jpg",
+          "alt": "VYRO Executive Lab Coat — Back view"
+        }
+      ],
+      "options": [
+        {
+          "name": "Colour",
+          "values": ["Stark White"]
+        },
+        {
+          "name": "Size",
+          "values": ["36", "38", "40", "42"]
+        }
+      ],
+      "variants": [
+        {
+          "id": 10501,
+          "title": "36",
+          "price": 2699,
+          "available": true,
+          "inventory_quantity": 16,
+          "sku": "VYRO-LC-WHT-36"
+        },
+        {
+          "id": 10502,
+          "title": "38",
+          "price": 2699,
+          "available": true,
+          "inventory_quantity": 28,
+          "sku": "VYRO-LC-WHT-38"
+        },
+        {
+          "id": 10503,
+          "title": "40",
+          "price": 2699,
+          "available": true,
+          "inventory_quantity": 20,
+          "sku": "VYRO-LC-WHT-40"
+        },
+        {
+          "id": 10504,
+          "title": "42",
+          "price": 2699,
+          "available": true,
+          "inventory_quantity": 10,
+          "sku": "VYRO-LC-WHT-42"
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "handle": "kinetic-cargo-scrub-pant",
+      "title": "Kinetic Multi-Pocket Cargo Pant",
+      "subtitle": "8-Pocket Technical Scrub Trouser",
+      "vendor": "VYRO",
+      "category": "Essentials",
+      "collection": "essentials",
+      "price": 1499,
+      "compare_at_price": null,
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "isMock": true,
+      "featured_image": "/assets/mock/cargo-pant-front.jpg",
+      "hover_image": "/assets/mock/cargo-pant-back.jpg",
+      "images": [
+        {
+          "src": "/assets/mock/cargo-pant-front.jpg",
+          "alt": "Kinetic Multi-Pocket Cargo Pant — Front view"
+        },
+        {
+          "src": "/assets/mock/cargo-pant-back.jpg",
+          "alt": "Kinetic Multi-Pocket Cargo Pant — Back view"
+        }
+      ],
+      "options": [
+        {
+          "name": "Colour",
+          "values": ["Midnight Navy"]
+        },
+        {
+          "name": "Size",
+          "values": ["S", "M", "L", "XL"]
+        }
+      ],
+      "variants": [
+        {
+          "id": 10601,
+          "title": "S",
+          "price": 1499,
+          "available": true,
+          "inventory_quantity": 22,
+          "sku": "VYRO-KCP-NVY-S"
+        },
+        {
+          "id": 10602,
+          "title": "M",
+          "price": 1499,
+          "available": true,
+          "inventory_quantity": 38,
+          "sku": "VYRO-KCP-NVY-M"
+        },
+        {
+          "id": 10603,
+          "title": "L",
+          "price": 1499,
+          "available": true,
+          "inventory_quantity": 25,
+          "sku": "VYRO-KCP-NVY-L"
+        },
+        {
+          "id": 10604,
+          "title": "XL",
+          "price": 1499,
+          "available": true,
+          "inventory_quantity": 18,
+          "sku": "VYRO-KCP-NVY-XL"
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "handle": "shift-thermal-base-layer",
+      "title": "Shift Thermal Seamless Base Layer",
+      "subtitle": "Micro-Rib Breathable Underscrub",
+      "vendor": "VYRO",
+      "category": "Essentials",
+      "collection": "essentials",
+      "price": 1199,
+      "compare_at_price": null,
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "isMock": true,
+      "featured_image": "/assets/mock/base-layer-front.jpg",
+      "hover_image": "/assets/mock/base-layer-back.jpg",
+      "images": [
+        {
+          "src": "/assets/mock/base-layer-front.jpg",
+          "alt": "Shift Thermal Seamless Base Layer — Front view"
+        },
+        {
+          "src": "/assets/mock/base-layer-back.jpg",
+          "alt": "Shift Thermal Seamless Base Layer — Back view"
+        }
+      ],
+      "options": [
+        {
+          "name": "Colour",
+          "values": ["Midnight Navy"]
+        },
+        {
+          "name": "Size",
+          "values": ["XS", "S", "M", "L"]
+        }
+      ],
+      "variants": [
+        {
+          "id": 10701,
+          "title": "XS",
+          "price": 1199,
+          "available": true,
+          "inventory_quantity": 19,
+          "sku": "VYRO-SBL-NVY-XS"
+        },
+        {
+          "id": 10702,
+          "title": "S",
+          "price": 1199,
+          "available": true,
+          "inventory_quantity": 30,
+          "sku": "VYRO-SBL-NVY-S"
+        },
+        {
+          "id": 10703,
+          "title": "M",
+          "price": 1199,
+          "available": true,
+          "inventory_quantity": 34,
+          "sku": "VYRO-SBL-NVY-M"
+        },
+        {
+          "id": 10704,
+          "title": "L",
+          "price": 1199,
+          "available": true,
           "inventory_quantity": 15,
-          "sku": "VYRO-FF01W-NVY-L"
+          "sku": "VYRO-SBL-NVY-L"
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "handle": "ergonomic-scrub-cap",
+      "title": "Ergonomic Fluid-Shield Scrub Cap",
+      "subtitle": "Sweatband-Lined Comfort Cap",
+      "vendor": "VYRO",
+      "category": "Accessories",
+      "collection": "essentials",
+      "price": 699,
+      "compare_at_price": null,
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "isMock": true,
+      "featured_image": "/assets/mock/scrub-cap-front.jpg",
+      "hover_image": "/assets/mock/scrub-cap-front.jpg",
+      "images": [
+        {
+          "src": "/assets/mock/scrub-cap-front.jpg",
+          "alt": "Ergonomic Fluid-Shield Scrub Cap"
+        }
+      ],
+      "options": [
+        {
+          "name": "Colour",
+          "values": ["Midnight Navy"]
+        },
+        {
+          "name": "Size",
+          "values": ["One Size"]
+        }
+      ],
+      "variants": [
+        {
+          "id": 10801,
+          "title": "One Size",
+          "price": 699,
+          "available": true,
+          "inventory_quantity": 50,
+          "sku": "VYRO-ESC-NVY-OS"
         }
       ]
     }

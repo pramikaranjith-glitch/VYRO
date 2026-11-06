@@ -1,0 +1,114 @@
+{% comment %}
+  SECTION: Cart Drawer
+  Slide-in from right. Uses Shopify Cart AJAX API.
+  Shows empty state when cart is empty.
+{% endcomment %}
+
+<div
+  class="cart-drawer"
+  id="cart-drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Shopping cart"
+  tabindex="-1"
+>
+  <div class="cart-drawer__header">
+    <h2 class="cart-drawer__title">Your Bag</h2>
+    <button
+      class="cart-drawer__close js-drawer-close"
+      aria-label="Close cart"
+      data-drawer="cart-drawer"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/>
+        <line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Cart body — populated by JS -->
+  <div class="cart-drawer__body js-cart-drawer-body">
+    {%- if cart.item_count == 0 -%}
+      <div class="cart-drawer__empty js-cart-empty-state">
+        <svg class="cart-drawer__empty-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" fill="none" stroke="currentColor"/>
+          <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1"/>
+          <path d="M16 10a4 4 0 01-8 0" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round"/>
+        </svg>
+        <p class="font-heading" style="font-size:var(--text-md);font-weight:800;text-transform:uppercase;letter-spacing:-0.01em;">Your bag is empty</p>
+        <p class="body-sm text-muted">When you add products, they'll appear here.</p>
+        <button class="btn btn--outline js-cart-close" style="margin-top:var(--space-2);">Start Shopping</button>
+      </div>
+    {%- else -%}
+      {%- for item in cart.items -%}
+        <div class="cart-item" data-item-key="{{ item.key }}">
+          <img
+            class="cart-item__img"
+            src="{{ item.image | image_url: width: 160 }}"
+            alt="{{ item.title | escape }}"
+            width="80"
+            height="100"
+            loading="lazy"
+          >
+          <div class="cart-item__info">
+            <div class="cart-item__name">{{ item.product.title }}</div>
+            <div class="cart-item__meta">
+              {%- if item.variant.title != 'Default Title' -%}
+                {{ item.variant.title }}
+              {%- endif -%}
+            </div>
+            <div class="cart-item__price">{{ item.final_price | money }}</div>
+            <div class="cart-item__qty">
+              <button
+                class="qty-btn js-qty-minus"
+                aria-label="Decrease quantity"
+                data-key="{{ item.key }}"
+                data-qty="{{ item.quantity | minus: 1 }}"
+              >−</button>
+              <span class="qty-value js-qty-value">{{ item.quantity }}</span>
+              <button
+                class="qty-btn js-qty-plus"
+                aria-label="Increase quantity"
+                data-key="{{ item.key }}"
+                data-qty="{{ item.quantity | plus: 1 }}"
+              >+</button>
+              <button
+                class="cart-item__remove js-remove-item"
+                data-key="{{ item.key }}"
+              >Remove</button>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  <!-- Footer / checkout -->
+  {%- if cart.item_count > 0 -%}
+    <div class="cart-drawer__footer js-cart-footer">
+      <div class="cart-subtotal">
+        <span class="cart-subtotal__label">Subtotal</span>
+        <span class="cart-subtotal__amount js-cart-subtotal">{{ cart.total_price | money }}</span>
+      </div>
+      <p class="body-sm text-muted" style="font-size:var(--text-xs);opacity:0.6;text-align:center;">Shipping &amp; taxes calculated at checkout</p>
+      <a href="{{ routes.checkout_url }}" class="btn btn--primary btn--full btn--lg">
+        Checkout <span class="btn__arrow">→</span>
+      </a>
+      <button class="btn btn--outline btn--full js-cart-close">Continue Shopping</button>
+    </div>
+  {%- else -%}
+    <div class="cart-drawer__footer js-cart-footer" style="display:none;"></div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Cart Drawer"
+    }
+  ]
+}
+{% endschema %}

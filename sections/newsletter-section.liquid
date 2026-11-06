@@ -1,0 +1,100 @@
+{% comment %}
+  SECTION: Newsletter — STAY IN THE SHIFT.
+  Client-side validation. Configurable endpoint. No fake success without real endpoint.
+{% endcomment %}
+
+<section class="newsletter-section section" aria-label="Newsletter sign-up">
+  <div class="container container--narrow" style="text-align:center;">
+
+    <span class="eyebrow eyebrow--light" style="margin-bottom:var(--space-4);color:var(--sage);">
+      {{ section.settings.eyebrow | default: 'The Shift Journal' }}
+    </span>
+
+    <h2 class="newsletter-section__headline">
+      {{ section.settings.headline | default: 'STAY IN THE SHIFT.' }}
+    </h2>
+
+    <p class="newsletter-section__sub">
+      {{ section.settings.subtext | default: 'Stories, launches, and updates from VYRO. For the people who never clock out.' }}
+    </p>
+
+    <form
+      class="newsletter-form js-newsletter-form"
+      action="#"
+      method="post"
+      novalidate
+      data-endpoint="{{ settings.newsletter_endpoint }}"
+      aria-label="Newsletter sign-up form"
+    >
+      <input
+        type="email"
+        class="newsletter-form__input"
+        name="email"
+        placeholder="{{ section.settings.placeholder | default: 'Enter your email address' }}"
+        aria-label="Email address"
+        required
+        autocomplete="email"
+        style="font-size:16px;" <!-- Prevent iOS zoom -->
+      >
+      <button type="submit" class="newsletter-form__submit" aria-label="Subscribe to newsletter">
+        <span>Subscribe</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </form>
+
+    <div
+      class="newsletter-form__message js-newsletter-msg"
+      role="alert"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    {%- if settings.newsletter_endpoint == blank -%}
+      <span class="newsletter-integration-note">Newsletter Integration Pending</span>
+    {%- endif -%}
+
+    <p style="margin-top:var(--space-4);font-size:var(--text-xs);color:rgba(244,241,233,0.3);letter-spacing:0.06em;">
+      No spam. Unsubscribe anytime.
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "The Shift Journal"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "STAY IN THE SHIFT."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Description",
+      "default": "Stories, launches, and updates from VYRO. For the people who never clock out."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input placeholder text",
+      "default": "Enter your email address"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

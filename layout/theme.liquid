@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  {%- if page_title == blank -%}
+    <title>{{ shop.name }} — WEAR THE PROFESSIONAL YOU.</title>
+  {%- else -%}
+    <title>{{ page_title }} | {{ shop.name }}</title>
+  {%- endif -%}
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="{{ shop.name }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:title" content="{{ page_title | default: shop.name }}">
+  <meta property="og:type" content="website">
+  {%- if page_description -%}
+    <meta property="og:description" content="{{ page_description | escape }}">
+  {%- endif -%}
+  {%- if page_image -%}
+    <meta property="og:image" content="{{ page_image | image_url: width: 1200 }}">
+    <meta property="og:image:width" content="1200">
+  {%- endif -%}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="{{ 'favicon.svg' | asset_url }}">
+
+  <!-- Google Fonts: Manrope + Inter (Latin subset, display swap) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap&subset=latin"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap&subset=latin"
+    >
+  </noscript>
+
+  <!-- Critical CSS: Theme System -->
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  <!-- Preload hero image (populated by hero section) -->
+  {{ content_for_header }}
+
+  <!-- Google Analytics (configurable) -->
+  {%- if settings.google_analytics_id != blank -%}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.google_analytics_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ settings.google_analytics_id }}');
+    </script>
+  {%- endif -%}
+
+  <!-- Meta Pixel (configurable) -->
+  {%- if settings.meta_pixel_id != blank -%}
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '{{ settings.meta_pixel_id }}');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id={{ settings.meta_pixel_id }}&ev=PageView&noscript=1"/></noscript>
+  {%- endif -%}
+
+  <script>document.documentElement.classList.remove('no-js');</script>
+</head>
+
+<body class="{% if template == 'index' %}template-index{% elsif template.name == 'product' %}template-product{% elsif template.name == 'collection' %}template-collection{% else %}template-{{ template.name }}{% endif %}">
+
+  <a class="skip-to-content visually-hidden" href="#main-content">Skip to content</a>
+
+  <!-- MOCK DATA INDICATOR (dev only) -->
+  {%- if settings.show_mock_badge -%}
+    <div class="mock-badge" aria-hidden="true">⚠ MOCK DATA</div>
+  {%- endif -%}
+
+  <!-- Drawer overlay (shared) -->
+  <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+
+  <!-- Mobile Navigation Drawer -->
+  {%- section 'mobile-drawer' -%}
+
+  <!-- Cart Drawer -->
+  {%- section 'cart-drawer' -%}
+
+  <!-- Announcement Bar -->
+  {%- section 'announcement-bar' -%}
+
+  <!-- Site Header / Navigation -->
+  {%- section 'header' -%}
+
+  <!-- Main Content -->
+  <main id="main-content" class="site-body" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  <!-- Footer -->
+  {%- section 'footer' -%}
+
+  <!-- Fit Guide Modal (available globally) -->
+  {%- section 'fit-guide-modal' -%}
+
+  <!-- Main JS -->
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+
+</body>
+</html>

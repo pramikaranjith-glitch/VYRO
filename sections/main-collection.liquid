@@ -1,0 +1,317 @@
+{% comment %}
+  SECTION: Main Collection
+  Shopify collection with filter sidebar (desktop) and filter drawer (mobile).
+  Product cards with hover image swap, swatches, quick add.
+  Sort, loading, empty, no-results states.
+{% endcomment %}
+
+{%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+{%- assign filter_count = 0 -%}
+{%- for filter in collection.filters -%}
+  {%- assign filter_count = filter_count | plus: filter.active_values.size -%}
+{%- endfor -%}
+
+<div class="container">
+
+  <!-- Collection header -->
+  <div style="padding-block:var(--space-8);border-bottom:var(--border-hairline);margin-bottom:var(--space-6);">
+    <span class="eyebrow eyebrow--sage" style="margin-bottom:var(--space-2);">VYRO Collection</span>
+    <h1 class="h2" style="margin-bottom:0;">{{ collection.title | default: 'All Products' }}</h1>
+    {%- if collection.description != blank -%}
+      <p style="margin-top:var(--space-2);font-size:var(--text-md);color:var(--sage);max-width:600px;">{{ collection.description }}</p>
+    {%- endif -%}
+  </div>
+
+  <!-- Active filter chips -->
+  {%- if filter_count > 0 -%}
+    <div class="active-filters" aria-label="Active filters">
+      {%- for filter in collection.filters -%}
+        {%- for value in filter.active_values -%}
+          <a
+            class="active-filter-chip"
+            href="{{ value.url_to_remove }}"
+            aria-label="Remove filter: {{ filter.label }} {{ value.label }}"
+          >
+            {{ filter.label }}: {{ value.label }}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </a>
+        {%- endfor -%}
+      {%- endfor -%}
+      <a href="{{ collection.url }}" class="active-filter-chip" style="background:transparent;color:var(--navy);border-color:var(--silver);">
+        Clear all
+      </a>
+    </div>
+  {%- endif -%}
+
+  <div class="collection-page">
+
+    <!-- Desktop Filter Sidebar -->
+    <aside class="filter-sidebar" aria-label="Product filters">
+      <div class="filter-sidebar__title">Filter</div>
+
+      {%- for filter in collection.filters -%}
+        <div class="filter-group">
+          <div class="filter-group__label" id="filter-{{ filter.param_name }}">
+            {{ filter.label }}
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+
+          {%- case filter.type -%}
+            {%- when 'list' -%}
+              {%- for value in filter.values -%}
+                <label class="filter-option{% if value.active %} is-active{% endif %}">
+                  <input
+                    type="checkbox"
+                    name="{{ value.param_name }}"
+                    value="{{ value.value }}"
+                    {% if value.active %}checked{% endif %}
+                    {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                    class="visually-hidden js-filter-checkbox"
+                    aria-label="{{ filter.label }}: {{ value.label }} ({{ value.count }} products)"
+                  >
+                  <span class="filter-checkbox" aria-hidden="true"></span>
+                  {{ value.label }}
+                  <span style="font-size:var(--text-xs);color:var(--sage);margin-left:auto;">({{ value.count }})</span>
+                </label>
+              {%- endfor -%}
+
+            {%- when 'price_range' -%}
+              <div style="display:flex;gap:var(--space-2);align-items:center;padding-block:var(--space-2);">
+                <input
+                  type="number"
+                  name="{{ filter.min_value.param_name }}"
+                  value="{{ filter.min_value.value | divided_by: 100 }}"
+                  placeholder="Min"
+                  min="0"
+                  max="{{ filter.range_max | divided_by: 100 }}"
+                  style="width:80px;border:var(--border-hairline);padding:6px 8px;border-radius:var(--radius-sm);font-size:var(--text-xs);"
+                  aria-label="Minimum price"
+                >
+                <span style="color:var(--sage);">—</span>
+                <input
+                  type="number"
+                  name="{{ filter.max_value.param_name }}"
+                  value="{{ filter.max_value.value | divided_by: 100 }}"
+                  placeholder="Max"
+                  min="0"
+                  max="{{ filter.range_max | divided_by: 100 }}"
+                  style="width:80px;border:var(--border-hairline);padding:6px 8px;border-radius:var(--radius-sm);font-size:var(--text-xs);"
+                  aria-label="Maximum price"
+                >
+              </div>
+          {%- endcase -%}
+
+        </div>
+      {%- else -%}
+        <!-- MOCK filter options when no Shopify filters available -->
+        {%- assign mock_filters = 'Size,Colour,Gender,Fit,Price' | split: ',' -%}
+        {%- assign mock_size_opts = 'S,M,L,XL' | split: ',' -%}
+        {%- assign mock_colour_opts = 'Midnight Navy,Sage,Ivory' | split: ',' -%}
+        {%- assign mock_gender_opts = "Men's,Women's,Unisex" | split: ',' -%}
+        {%- assign mock_fit_opts = 'Regular,Slim,Relaxed' | split: ',' -%}
+
+        <div class="filter-group">
+          <div class="filter-group__label">Size</div>
+          {%- for opt in mock_size_opts -%}
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+              <span class="filter-checkbox" aria-hidden="true"></span>
+              {{ opt }}
+            </label>
+          {%- endfor -%}
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__label">Colour</div>
+          {%- for opt in mock_colour_opts -%}
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+              <span class="filter-checkbox" aria-hidden="true"></span>
+              {{ opt }}
+            </label>
+          {%- endfor -%}
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__label">Gender</div>
+          {%- for opt in mock_gender_opts -%}
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+              <span class="filter-checkbox" aria-hidden="true"></span>
+              {{ opt }}
+            </label>
+          {%- endfor -%}
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__label">Fit</div>
+          {%- for opt in mock_fit_opts -%}
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+              <span class="filter-checkbox" aria-hidden="true"></span>
+              {{ opt }}
+            </label>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </aside>
+
+    <!-- Products area -->
+    <div>
+      <!-- Toolbar: count + sort -->
+      <div class="collection-toolbar">
+        <div class="collection-count">
+          {{ collection.products_count | default: 1 }} product{{ collection.products_count | default: 1 | plural: '', 's' }}
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--space-3);">
+          <!-- Mobile filter trigger -->
+          <button class="btn btn--outline js-filter-open" style="display:none;" aria-label="Open filters" id="mobile-filter-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            Filters {%- if filter_count > 0 -%} ({{ filter_count }}){%- endif -%}
+          </button>
+
+          <form method="GET">
+            <label for="sort-select" class="visually-hidden">Sort by</label>
+            <select
+              id="sort-select"
+              name="sort_by"
+              class="sort-select"
+              onchange="this.form.submit()"
+              aria-label="Sort products"
+            >
+              <option value="featured" {% if sort_by == 'featured' %}selected{% endif %}>Sort: Featured</option>
+              <option value="created-descending" {% if sort_by == 'created-descending' %}selected{% endif %}>Newest</option>
+              <option value="price-ascending" {% if sort_by == 'price-ascending' %}selected{% endif %}>Price: Low to High</option>
+              <option value="price-descending" {% if sort_by == 'price-descending' %}selected{% endif %}>Price: High to Low</option>
+            </select>
+          </form>
+        </div>
+      </div>
+
+      <!-- Products grid -->
+      {%- if collection.products.size > 0 -%}
+        <div class="products-grid">
+          {%- for product in collection.products -%}
+            {%- render 'product-card', product: product -%}
+          {%- endfor -%}
+        </div>
+
+        <!-- Pagination -->
+        {%- if paginate.pages > 1 -%}
+          <div style="display:flex;justify-content:center;gap:var(--space-2);margin-top:var(--space-10);">
+            {%- if paginate.previous -%}
+              <a href="{{ paginate.previous.url }}" class="btn btn--outline" aria-label="Previous page">← Previous</a>
+            {%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}" class="btn btn--outline" aria-label="Page {{ part.title }}">{{ part.title }}</a>
+              {%- else -%}
+                <span class="btn btn--primary" aria-current="page" aria-label="Current page, page {{ part.title }}">{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}
+              <a href="{{ paginate.next.url }}" class="btn btn--outline" aria-label="Next page">Next →</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+      {%- elsif filter_count > 0 -%}
+        <!-- No results with active filters -->
+        <div style="text-align:center;padding:var(--space-16) var(--space-4);">
+          <p class="h3" style="margin-bottom:var(--space-3);">No products found</p>
+          <p style="color:var(--sage);margin-bottom:var(--space-5);">Try adjusting or clearing your filters.</p>
+          <a href="{{ collection.url }}" class="btn btn--outline">Clear filters</a>
+        </div>
+
+      {%- else -%}
+        <!-- MOCK product cards when no Shopify collection -->
+        <!-- PLACEHOLDER: Replace with real VYRO products per PLACEHOLDERS.md -->
+        <div class="products-grid">
+          {%- assign mock_products = 'FLEXFIT 01 — Midnight Navy,FLEXFIT 01 — Sage [PLACEHOLDER],FLEXFIT 01 — Ivory [PLACEHOLDER]' | split: ',' -%}
+          {%- for mock_name in mock_products -%}
+            <div class="product-card">
+              <div class="product-card__img-wrap">
+                <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a2f52,#101E35);display:flex;align-items:center;justify-content:center;" aria-label="{{ mock_name }} — PLACEHOLDER image">
+                  <span style="color:rgba(244,241,233,0.1);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;text-align:center;padding:1rem;">PLACEHOLDER</span>
+                </div>
+                <button class="product-card__quick-add" data-variant-id="" aria-label="Quick add {{ mock_name }}">QUICK ADD</button>
+              </div>
+              <div class="product-card__name">{{ mock_name }}</div>
+              <div class="product-card__price">₹2,299</div>
+              <div class="product-card__swatches">
+                <span class="product-card__swatch is-active" style="background:#101E35;" aria-label="Midnight Navy" title="Midnight Navy"></span>
+              </div>
+              <div class="product-card__sizes">
+                {%- for s in 'S,M,L,XL' | split: ',' -%}
+                  <span class="product-card__size-label">{{ s }}</span>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Filter Drawer -->
+<div
+  class="filter-drawer"
+  id="filter-drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Product filters"
+  tabindex="-1"
+>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-4);">
+    <h2 style="font-family:var(--font-heading);font-size:var(--text-md);font-weight:800;text-transform:uppercase;letter-spacing:0.04em;">Filters</h2>
+    <button class="mobile-drawer__close js-filter-close" aria-label="Close filters">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <!-- Same filter groups as sidebar — duplicated for mobile -->
+  {%- assign mobile_filter_opts_size = 'S,M,L,XL' | split: ',' -%}
+  {%- assign mobile_filter_opts_colour = 'Midnight Navy,Sage,Ivory' | split: ',' -%}
+  {%- assign mobile_filter_opts_gender = "Men's,Women's,Unisex" | split: ',' -%}
+
+  <div class="filter-group">
+    <div class="filter-group__label">Size</div>
+    {%- for opt in mobile_filter_opts_size -%}
+      <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+        <span class="filter-checkbox" aria-hidden="true"></span>{{ opt }}
+      </label>
+    {%- endfor -%}
+  </div>
+  <div class="filter-group">
+    <div class="filter-group__label">Colour</div>
+    {%- for opt in mobile_filter_opts_colour -%}
+      <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+        <span class="filter-checkbox" aria-hidden="true"></span>{{ opt }}
+      </label>
+    {%- endfor -%}
+  </div>
+  <div class="filter-group">
+    <div class="filter-group__label">Gender</div>
+    {%- for opt in mobile_filter_opts_gender -%}
+      <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+        <span class="filter-checkbox" aria-hidden="true"></span>{{ opt }}
+      </label>
+    {%- endfor -%}
+  </div>
+
+  <div class="filter-drawer__actions">
+    <button class="btn btn--outline btn--full js-filter-clear">Clear</button>
+    <button class="btn btn--primary btn--full js-filter-apply">Apply</button>
+  </div>
+</div>
+
+<style>
+  @media (max-width: 1023px) {
+    #mobile-filter-btn { display: flex !important; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [],
+  "presets": [{ "name": "Collection" }]
+}
+{% endschema %}

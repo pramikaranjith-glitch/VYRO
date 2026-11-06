@@ -1,0 +1,117 @@
+{% comment %}
+  SECTION: Feature Strip
+  5 items with line icons and vertical dividers.
+  ALL labels are configurable. Each is marked "pending verification" in settings.
+  NEVER presented as confirmed claims.
+{% endcomment %}
+
+<section class="feature-strip" aria-label="FLEXFIT 01 features">
+  <div class="feature-strip__inner container">
+    {%- for block in section.blocks -%}
+      <div class="feature-strip__item" {{ block.shopify_attributes }}>
+        <!-- Icon -->
+        <div class="feature-strip__icon" aria-hidden="true">
+          {%- case block.settings.icon -%}
+            {%- when 'feather' -%}
+              <svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 00-8.49-8.49L5 10.5V19h8.5l6.74-6.76zM16 8L2 22M17.5 15H9"/></svg>
+            {%- when 'stretch' -%}
+              <svg viewBox="0 0 24 24"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></svg>
+            {%- when 'wind' -%}
+              <svg viewBox="0 0 24 24"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg>
+            {%- when 'clock' -%}
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            {%- when 'shield' -%}
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            {%- else -%}
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          {%- endcase -%}
+        </div>
+
+        <!-- Label (pending verification) -->
+        <span class="feature-strip__label">
+          {{ block.settings.label | default: '[Feature Label — Pending Verification]' }}
+        </span>
+        <span class="feature-strip__pending" aria-label="Content pending verification">
+          ◎ Pending verification
+        </span>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature Strip",
+  "max_blocks": 7,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Feature label",
+          "info": "⚠ PENDING VERIFICATION — Do not publish claims without brand confirmation. See PLACEHOLDERS.md."
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "feather", "label": "Feather (Ultra-Light)" },
+            { "value": "stretch", "label": "Arrows (Stretch)" },
+            { "value": "wind", "label": "Wind (Breathable)" },
+            { "value": "clock", "label": "Clock (All-Day)" },
+            { "value": "shield", "label": "Shield (Quality)" }
+          ],
+          "default": "feather"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Strip",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "label": "[Feature Label 1 — Pending Verification]",
+            "icon": "feather"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "label": "[Feature Label 2 — Pending Verification]",
+            "icon": "stretch"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "label": "[Feature Label 3 — Pending Verification]",
+            "icon": "wind"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "label": "[Feature Label 4 — Pending Verification]",
+            "icon": "clock"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "label": "[Feature Label 5 — Pending Verification]",
+            "icon": "shield"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

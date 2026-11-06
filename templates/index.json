@@ -1,0 +1,106 @@
+{
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "disabled": false
+    },
+    "header": {
+      "type": "header",
+      "disabled": false
+    },
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "slide-1": { "type": "slide", "settings": {} },
+        "slide-2": { "type": "slide", "settings": {} },
+        "slide-3": { "type": "slide", "settings": {} }
+      },
+      "block_order": ["slide-1", "slide-2", "slide-3"]
+    },
+    "featured-product": {
+      "type": "featured-product",
+      "settings": {}
+    },
+    "feature-strip": {
+      "type": "feature-strip",
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "label": "[Feature Label 1 — Pending Verification]", "icon": "feather" } },
+        "f2": { "type": "feature", "settings": { "label": "[Feature Label 2 — Pending Verification]", "icon": "stretch" } },
+        "f3": { "type": "feature", "settings": { "label": "[Feature Label 3 — Pending Verification]", "icon": "wind" } },
+        "f4": { "type": "feature", "settings": { "label": "[Feature Label 4 — Pending Verification]", "icon": "clock" } },
+        "f5": { "type": "feature", "settings": { "label": "[Feature Label 5 — Pending Verification]", "icon": "shield" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5"]
+    },
+    "anatomy-section": {
+      "type": "anatomy-section",
+      "blocks": {
+        "h1": { "type": "hotspot", "settings": { "position_x": 50, "position_y": 12, "label": "[Neckline — Pending]", "description": "[Description pending brand data]" } },
+        "h2": { "type": "hotspot", "settings": { "position_x": 20, "position_y": 25, "label": "[Shoulder — Pending]", "description": "[Description pending brand data]" } },
+        "h3": { "type": "hotspot", "settings": { "position_x": 40, "position_y": 40, "label": "[Pocket — Pending]", "description": "[Description pending brand data]" } },
+        "h4": { "type": "hotspot", "settings": { "position_x": 70, "position_y": 55, "label": "[Stitching — Pending]", "description": "[Description pending brand data]" } },
+        "h5": { "type": "hotspot", "settings": { "position_x": 50, "position_y": 70, "label": "[Fabric — Pending]", "description": "[Description pending brand data]" } }
+      },
+      "block_order": ["h1", "h2", "h3", "h4", "h5"]
+    },
+    "scentshift-section": {
+      "type": "scentshift-section",
+      "settings": {}
+    },
+    "philosophy-section": {
+      "type": "philosophy-section",
+      "settings": {}
+    },
+    "shift-journal": {
+      "type": "shift-journal",
+      "blocks": {
+        "a1": { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder]" } },
+        "a2": { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder]" } },
+        "a3": { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder]" } },
+        "a4": { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder]" } }
+      },
+      "block_order": ["a1", "a2", "a3", "a4"]
+    },
+    "reviews-section": {
+      "type": "reviews-section",
+      "settings": {}
+    },
+    "newsletter-section": {
+      "type": "newsletter-section",
+      "settings": {}
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
+    },
+    "mobile-drawer": {
+      "type": "mobile-drawer",
+      "settings": {}
+    },
+    "cart-drawer": {
+      "type": "cart-drawer",
+      "settings": {}
+    },
+    "fit-guide-modal": {
+      "type": "fit-guide-modal",
+      "settings": {}
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header",
+    "hero",
+    "featured-product",
+    "feature-strip",
+    "anatomy-section",
+    "scentshift-section",
+    "philosophy-section",
+    "shift-journal",
+    "reviews-section",
+    "newsletter-section",
+    "footer",
+    "mobile-drawer",
+    "cart-drawer",
+    "fit-guide-modal"
+  ]
+}

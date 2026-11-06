@@ -1,0 +1,246 @@
+{
+  "isMock": true,
+  "notice": "MOCK DATA LAYER — Remove or replace with real Shopify catalog before commercial launch. Recorded in /docs/PLACEHOLDERS.md",
+  "collections": [
+    {
+      "id": "col-01",
+      "handle": "all",
+      "title": "Shop All",
+      "description": "Engineered for the shift. Explore the full performance medical apparel collection."
+    },
+    {
+      "id": "col-02",
+      "handle": "mens-collection",
+      "title": "Men's Collection",
+      "description": "Athletic-cut medical scrubs tailored for mobility, durability and comfort."
+    },
+    {
+      "id": "col-03",
+      "handle": "womens-collection",
+      "title": "Women's Collection",
+      "description": "Contoured performance scrubs designed with functional pockets and all-day stretch."
+    },
+    {
+      "id": "col-04",
+      "handle": "flexfit-01",
+      "title": "FLEXFIT 01 Collection",
+      "description": "The inaugural collection. Midnight Navy two-piece performance scrub sets."
+    }
+  ],
+  "products": [
+    {
+      "id": 101,
+      "handle": "flexfit-01-midnight-navy",
+      "title": "FLEXFIT 01 — Midnight Navy",
+      "subtitle": "Two-Piece Performance Scrub Set",
+      "vendor": "VYRO",
+      "collection": "flexfit-01",
+      "price": 2299,
+      "compare_at_price": 2799,
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "isMock": true,
+      "featured_image": "/assets/mock/product-front.webp",
+      "hover_image": "/assets/mock/product-back.webp",
+      "images": [
+        {
+          "src": "/assets/mock/product-front.webp",
+          "alt": "FLEXFIT 01 Midnight Navy — On-model front view"
+        },
+        {
+          "src": "/assets/mock/product-back.webp",
+          "alt": "FLEXFIT 01 Midnight Navy — On-model back view"
+        },
+        {
+          "src": "/assets/mock/product-side.webp",
+          "alt": "FLEXFIT 01 Midnight Navy — On-model side profile view"
+        },
+        {
+          "src": "/assets/mock/model-wearing.webp",
+          "alt": "FLEXFIT 01 Midnight Navy — Lifestyle wear in minimalist architectural clinic"
+        },
+        {
+          "src": "/assets/mock/fabric-macro.webp",
+          "alt": "FLEXFIT 01 Midnight Navy — 1:1 technical fabric weave close-up"
+        },
+        {
+          "src": "/assets/mock/pocket-detail.webp",
+          "alt": "FLEXFIT 01 Midnight Navy — Concealed zippered pocket construction"
+        },
+        {
+          "src": "/assets/mock/stitching-detail.webp",
+          "alt": "FLEXFIT 01 Midnight Navy — Reinforced bar-tack stitching detail"
+        }
+      ],
+      "options": [
+        {
+          "name": "Colour",
+          "values": ["Midnight Navy"]
+        },
+        {
+          "name": "Size",
+          "values": ["S", "M", "L", "XL"]
+        }
+      ],
+      "variants": [
+        {
+          "id": 10101,
+          "title": "S",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 42,
+          "sku": "VYRO-FF01-NVY-S"
+        },
+        {
+          "id": 10102,
+          "title": "M",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 68,
+          "sku": "VYRO-FF01-NVY-M"
+        },
+        {
+          "id": 10103,
+          "title": "L",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 25,
+          "sku": "VYRO-FF01-NVY-L"
+        },
+        {
+          "id": 10104,
+          "title": "XL",
+          "price": 2299,
+          "available": false,
+          "inventory_quantity": 0,
+          "sku": "VYRO-FF01-NVY-XL"
+        }
+      ],
+      "description": "Built for the demands of 24-hour healthcare shifts. The FLEXFIT 01 Two-Piece Scrub Set combines an athletic silhouette with four-way mechanical stretch, fluid resistance, and reinforced seams at high-stress points.",
+      "specifications_pending": true,
+      "wash_care_pending": true
+    },
+    {
+      "id": 102,
+      "handle": "flexfit-01-sage-placeholder",
+      "title": "FLEXFIT 01 — Sage [MOCK]",
+      "subtitle": "Two-Piece Performance Scrub Set",
+      "vendor": "VYRO",
+      "collection": "mens-collection",
+      "price": 2299,
+      "compare_at_price": 2799,
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "isMock": true,
+      "featured_image": "/assets/mock/product-front-sage.webp",
+      "hover_image": "/assets/mock/product-back-sage.webp",
+      "images": [
+        {
+          "src": "/assets/mock/product-front-sage.webp",
+          "alt": "FLEXFIT 01 Sage [MOCK] — Front view"
+        }
+      ],
+      "options": [
+        {
+          "name": "Colour",
+          "values": ["Sage"]
+        },
+        {
+          "name": "Size",
+          "values": ["S", "M", "L"]
+        }
+      ],
+      "variants": [
+        {
+          "id": 10201,
+          "title": "S",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 18,
+          "sku": "VYRO-FF01-SGE-S"
+        },
+        {
+          "id": 10202,
+          "title": "M",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 30,
+          "sku": "VYRO-FF01-SGE-M"
+        },
+        {
+          "id": 10203,
+          "title": "L",
+          "price": 2299,
+          "available": false,
+          "inventory_quantity": 0,
+          "sku": "VYRO-FF01-SGE-L"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "handle": "flexfit-01-womens-midnight-navy-placeholder",
+      "title": "FLEXFIT 01 Women's — Midnight Navy [MOCK]",
+      "subtitle": "Tailored Two-Piece Scrub Set",
+      "vendor": "VYRO",
+      "collection": "womens-collection",
+      "price": 2299,
+      "compare_at_price": 2799,
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "isMock": true,
+      "featured_image": "/assets/mock/product-front-womens.webp",
+      "hover_image": "/assets/mock/product-back-womens.webp",
+      "images": [
+        {
+          "src": "/assets/mock/product-front-womens.webp",
+          "alt": "FLEXFIT 01 Women's Midnight Navy [MOCK] — Front view"
+        }
+      ],
+      "options": [
+        {
+          "name": "Colour",
+          "values": ["Midnight Navy"]
+        },
+        {
+          "name": "Size",
+          "values": ["XS", "S", "M", "L"]
+        }
+      ],
+      "variants": [
+        {
+          "id": 10301,
+          "title": "XS",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 12,
+          "sku": "VYRO-FF01W-NVY-XS"
+        },
+        {
+          "id": 10302,
+          "title": "S",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 24,
+          "sku": "VYRO-FF01W-NVY-S"
+        },
+        {
+          "id": 10303,
+          "title": "M",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 36,
+          "sku": "VYRO-FF01W-NVY-M"
+        },
+        {
+          "id": 10304,
+          "title": "L",
+          "price": 2299,
+          "available": true,
+          "inventory_quantity": 15,
+          "sku": "VYRO-FF01W-NVY-L"
+        }
+      ]
+    }
+  ]
+}

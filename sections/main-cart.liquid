@@ -1,0 +1,58 @@
+{% comment %}
+  SECTION: Cart page — full page cart view (supplementary to cart drawer)
+{% endcomment %}
+
+<div class="container section">
+  <h1 class="h2" style="margin-bottom:var(--space-8);">Your Bag</h1>
+
+  {%- if cart.item_count > 0 -%}
+    <div style="display:grid;grid-template-columns:1fr 360px;gap:var(--space-10);align-items:start;">
+      <div>
+        {%- for item in cart.items -%}
+          <div class="cart-item" data-item-key="{{ item.key }}" style="grid-template-columns:120px 1fr;">
+            <img class="cart-item__img" src="{{ item.image | image_url: width: 240 }}" alt="{{ item.title | escape }}" width="120" height="150" loading="lazy" style="width:120px;height:150px;">
+            <div class="cart-item__info">
+              <div class="cart-item__name">{{ item.product.title }}</div>
+              <div class="cart-item__meta">{{ item.variant.title != 'Default Title' ? item.variant.title : '' }}</div>
+              <div class="cart-item__price">{{ item.final_price | money }}</div>
+              <div class="cart-item__qty">
+                <button class="qty-btn js-qty-minus" data-key="{{ item.key }}" data-qty="{{ item.quantity | minus: 1 }}" aria-label="Decrease quantity">−</button>
+                <span class="qty-value">{{ item.quantity }}</span>
+                <button class="qty-btn js-qty-plus" data-key="{{ item.key }}" data-qty="{{ item.quantity | plus: 1 }}" aria-label="Increase quantity">+</button>
+                <button class="cart-item__remove js-remove-item" data-key="{{ item.key }}">Remove</button>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div style="border:var(--border-hairline);border-radius:var(--radius-sm);padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-3);position:sticky;top:calc(var(--ann-height)+var(--nav-height)+var(--space-4));">
+        <h2 class="h4" style="margin-bottom:0;">Order Summary</h2>
+        <div class="cart-subtotal">
+          <span class="cart-subtotal__label">Subtotal</span>
+          <span class="cart-subtotal__amount">{{ cart.total_price | money }}</span>
+        </div>
+        <p style="font-size:var(--text-xs);color:var(--sage);">Shipping & taxes calculated at checkout</p>
+        <a href="{{ routes.checkout_url }}" class="btn btn--primary btn--full btn--lg">Checkout <span class="btn__arrow" aria-hidden="true">→</span></a>
+        <a href="{{ routes.collections_url }}/all" class="btn btn--outline btn--full">Continue Shopping</a>
+      </div>
+    </div>
+  {%- else -%}
+    <div class="cart-drawer__empty" style="min-height:40vh;">
+      <svg class="cart-drawer__empty-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1"/>
+        <path d="M16 10a4 4 0 01-8 0" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round"/>
+      </svg>
+      <p class="font-heading" style="font-size:var(--text-xl);font-weight:800;text-transform:uppercase;">Your bag is empty</p>
+      <a href="{{ routes.collections_url }}/all" class="btn btn--primary">Shop the Collection</a>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [],
+  "presets": [{ "name": "Cart" }]
+}
+{% endschema %}

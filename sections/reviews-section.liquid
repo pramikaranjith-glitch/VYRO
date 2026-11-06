@@ -1,0 +1,168 @@
+{% comment %}
+  SECTION: Reviews — ships with an empty state.
+  HARD CONSTRAINT: No fake reviews, names, ratings or AI-generated customer faces.
+  Empty state shows until real verified reviews are added.
+{% endcomment %}
+
+{%- assign has_reviews = false -%}
+{%- for block in section.blocks -%}
+  {%- if block.type == 'review' -%}
+    {%- assign has_reviews = true -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<section class="reviews-section section" aria-label="Customer reviews">
+  <div class="container">
+
+    <div class="section__header section__header--center reveal">
+      <span class="eyebrow eyebrow--sage" style="margin-bottom:var(--space-3);">
+        {{ section.settings.eyebrow | default: 'Real Stories' }}
+      </span>
+      <h2 class="h2" style="margin-bottom:0;">
+        {{ section.settings.headline | default: 'TRUSTED BY PROFESSIONALS.' }}
+      </h2>
+    </div>
+
+    {%- if has_reviews -%}
+      <!-- Reviews carousel -->
+      <div class="reviews-carousel">
+        <div class="reviews-track" role="list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'review' -%}
+              <div class="review-card" role="listitem" {{ block.shopify_attributes }}>
+                <!-- Stars -->
+                <div class="review-card__stars" aria-label="{{ block.settings.rating | default: 5 }} out of 5 stars">
+                  {%- for i in (1..5) -%}
+                    {%- if i <= block.settings.rating -%}
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    {%- else -%}
+                      <svg viewBox="0 0 24 24" aria-hidden="true" style="opacity:0.2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+
+                <blockquote class="review-card__quote">
+                  "{{ block.settings.quote }}"
+                </blockquote>
+
+                <div class="review-card__author">
+                  <!-- No AI-generated faces used as customer photos -->
+                  <div class="review-card__avatar" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="review-card__name">{{ block.settings.author_name }}</div>
+                    {%- if block.settings.author_role != blank -%}
+                      <div style="font-size:var(--text-xs);color:var(--sage);letter-spacing:0.06em;">{{ block.settings.author_role }}</div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <!-- Navigation -->
+        <div class="reviews-nav" aria-label="Review navigation">
+          <button class="reviews-nav__btn reviews-nav__btn--prev" aria-label="Previous review">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="19" y1="12" x2="5" y2="12" stroke-linecap="round"/>
+              <polyline points="12 19 5 12 12 5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="reviews-nav__btn reviews-nav__btn--next" aria-label="Next review">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+              <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    {%- else -%}
+      <!-- Empty state: shown until real reviews are added -->
+      <div class="reviews-empty" role="status" aria-live="polite">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M24 8L28.5 17.5L39 19L31.5 26.5L33.5 37L24 32L14.5 37L16.5 26.5L9 19L19.5 17.5L24 8Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p class="font-heading" style="font-size:var(--text-lg);font-weight:800;text-transform:uppercase;letter-spacing:-0.01em;opacity:0.6;">
+          Reviews Coming Soon
+        </p>
+        <p style="font-size:var(--text-sm);max-width:420px;text-align:center;line-height:1.65;">
+          {{ section.settings.empty_state_message | default: 'Verified customer stories will appear here after launch. We never publish unverified or fabricated reviews.' }}
+        </p>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Real Stories"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Section headline",
+      "default": "TRUSTED BY PROFESSIONALS."
+    },
+    {
+      "type": "textarea",
+      "id": "empty_state_message",
+      "label": "Empty state message",
+      "default": "Verified customer stories will appear here after launch. We never publish unverified or fabricated reviews."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Star rating",
+          "default": 5,
+          "info": "⚠ Only publish verified reviews from real customers. No invented quotes."
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Review quote",
+          "info": "⚠ Verified customer quote only. No fabricated content."
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Customer name or initials",
+          "info": "Use real customer name (with permission) or anonymised initials (e.g. Dr. R.S.)."
+        },
+        {
+          "type": "text",
+          "id": "author_role",
+          "label": "Role / profession (optional)",
+          "info": "e.g. MBBS Intern, Surgical Resident"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews"
+    }
+  ]
+}
+{% endschema %}

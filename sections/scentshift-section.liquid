@@ -1,0 +1,143 @@
+{% comment %}
+  SECTION: ScentShift Technology
+  Dark navy section. "CURRENTLY IN DEVELOPMENT." label is prominent.
+  NEVER claims it is proven, available, or sweat-activated.
+{% endcomment %}
+
+<section class="scentshift-section section reveal" id="scentshift" aria-label="ScentShift Technology">
+  <div class="container">
+    <div class="scentshift-section__grid">
+
+      <!-- Left: Text -->
+      <div>
+        <span class="eyebrow eyebrow--light" style="margin-bottom:var(--space-5);color:var(--sage);">
+          VYRO Technology
+        </span>
+
+        <!-- Prominent development status label -->
+        <div class="scentshift-section__status" role="note" aria-label="Development status">
+          <span class="scentshift-section__status-dot" aria-hidden="true"></span>
+          CURRENTLY IN DEVELOPMENT.
+        </div>
+
+        <h2 class="scentshift-section__headline">
+          {{ section.settings.headline | default: 'INTRODUCING SCENTSHIFT.' }}
+        </h2>
+
+        <p class="scentshift-section__desc">
+          {{ section.settings.description | default: 'Exploring the next generation of fragrance-release textile technology.' }}
+        </p>
+
+        <!-- Standalone bordered label — repeated for visual emphasis -->
+        <div class="scentshift-section__dev-label" role="note">
+          CURRENTLY IN DEVELOPMENT.
+        </div>
+
+        <p style="
+          margin-top:var(--space-4);
+          font-size:var(--text-xs);
+          letter-spacing:0.08em;
+          color:rgba(244,241,233,0.3);
+          line-height:1.7;
+          max-width:360px;
+        ">
+          ScentShift is an exploratory concept. No claims are made regarding proven performance, commercial availability, or specific functional mechanisms. All details are subject to change.
+        </p>
+      </div>
+
+      <!-- Right: Macro textile images -->
+      <div class="scentshift-images reveal">
+        {%- if section.settings.image_1 != blank -%}
+          <img
+            src="{{ section.settings.image_1 | image_url: width: 600 }}"
+            alt="{{ section.settings.image_1_alt | default: 'Extreme close-up of woven midnight navy textile fibre' }}"
+            loading="lazy"
+            width="600"
+            height="400"
+          >
+        {%- else -%}
+          <!-- PLACEHOLDER: ScentShift macro textile image 1 — MOCK DATA, replace per PLACEHOLDERS.md. Style: extreme close-up, navy fibre, soft lab light, sage highlights -->
+          <div style="
+            aspect-ratio:3/2;background:#0d1826;
+            border:1px dashed rgba(244,241,233,0.08);border-radius:var(--radius-sm);
+            display:flex;align-items:center;justify-content:center;
+            flex-direction:column;gap:0.5rem;
+          " aria-hidden="true">
+            <span style="color:rgba(132,149,140,0.3);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;">Textile macro 1</span>
+            <span style="color:rgba(244,241,233,0.07);font-size:9px;letter-spacing:0.08em;">PLACEHOLDER</span>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.image_2 != blank -%}
+          <img
+            src="{{ section.settings.image_2 | image_url: width: 600 }}"
+            alt="{{ section.settings.image_2_alt | default: 'Close-up of FLEXFIT fabric weave structure with sage highlights' }}"
+            loading="lazy"
+            width="600"
+            height="400"
+          >
+        {%- else -%}
+          <!-- PLACEHOLDER: ScentShift macro textile image 2 — MOCK DATA, replace per PLACEHOLDERS.md -->
+          <div style="
+            aspect-ratio:3/2;background:#0a1120;
+            border:1px dashed rgba(244,241,233,0.08);border-radius:var(--radius-sm);
+            display:flex;align-items:center;justify-content:center;
+            flex-direction:column;gap:0.5rem;
+          " aria-hidden="true">
+            <span style="color:rgba(132,149,140,0.3);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;">Textile macro 2</span>
+            <span style="color:rgba(244,241,233,0.07);font-size:9px;letter-spacing:0.08em;">PLACEHOLDER</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ScentShift Technology",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "INTRODUCING SCENTSHIFT.",
+      "info": "⚠ NEVER claim ScentShift is proven, available, or sweat-activated. See Section 15 hard constraints."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Exploring the next generation of fragrance-release textile technology.",
+      "info": "⚠ Exploratory framing only. No performance claims."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Macro textile image 1 (3:2)",
+      "info": "Extreme close-up of navy fabric. No text or logos."
+    },
+    {
+      "type": "text",
+      "id": "image_1_alt",
+      "label": "Image 1 alt text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Macro textile image 2 (3:2)"
+    },
+    {
+      "type": "text",
+      "id": "image_2_alt",
+      "label": "Image 2 alt text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ScentShift Technology"
+    }
+  ]
+}
+{% endschema %}

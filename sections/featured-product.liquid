@@ -1,0 +1,241 @@
+{% comment %}
+  SECTION: Featured Product — FLEXFIT 01 horizontal split layout
+  Desktop: 3-column (front+back images | info | pocket bleed)
+  Mobile: stacked swipeable gallery + info
+{% endcomment %}
+
+{%- assign product = all_products[section.settings.product] -%}
+{%- if product == blank -%}
+  {%- comment -%} Use mock data fallback {%- endcomment -%}
+{%- endif -%}
+
+<section class="featured-product reveal" aria-label="Featured product: FLEXFIT 01">
+
+  <!-- Vertical index indicator (desktop only) -->
+  <div class="featured-product__side-index" aria-hidden="true">
+    <span>01</span>
+    <span style="opacity:0.3">02</span>
+    <span style="opacity:0.3">03</span>
+  </div>
+
+  <!-- Left: Front + Back joined images -->
+  <div class="featured-product__images">
+    {%- if section.settings.image_front != blank -%}
+      <img
+        class="featured-product__img-front"
+        src="{{ section.settings.image_front | image_url: width: 800 }}"
+        srcset="{{ section.settings.image_front | image_url: width: 400 }} 400w, {{ section.settings.image_front | image_url: width: 800 }} 800w"
+        sizes="(max-width: 767px) 50vw, 33vw"
+        alt="{{ section.settings.front_alt | default: 'FLEXFIT 01 Midnight Navy — Front view' }}"
+        loading="lazy"
+        width="400"
+        height="500"
+      >
+      <img
+        class="featured-product__img-back"
+        src="{{ section.settings.image_back | image_url: width: 800 }}"
+        srcset="{{ section.settings.image_back | image_url: width: 400 }} 400w, {{ section.settings.image_back | image_url: width: 800 }} 800w"
+        sizes="(max-width: 767px) 50vw, 33vw"
+        alt="{{ section.settings.back_alt | default: 'FLEXFIT 01 Midnight Navy — Back view' }}"
+        loading="lazy"
+        width="400"
+        height="500"
+      >
+    {%- else -%}
+      <!-- PLACEHOLDER: Featured product front image — MOCK DATA, replace per PLACEHOLDERS.md -->
+      <div style="flex:1;background:#1a2f52;display:flex;align-items:flex-end;padding:var(--space-4);">
+        <span style="color:rgba(244,241,233,0.15);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;">Front — PLACEHOLDER</span>
+      </div>
+      <!-- PLACEHOLDER: Featured product back image — MOCK DATA, replace per PLACEHOLDERS.md -->
+      <div style="flex:1;background:#101E35;border-left:1px solid rgba(255,255,255,0.08);display:flex;align-items:flex-end;padding:var(--space-4);">
+        <span style="color:rgba(244,241,233,0.15);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;">Back — PLACEHOLDER</span>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <!-- Centre: Product info -->
+  <div class="featured-product__info">
+
+    <div class="featured-product__collection eyebrow">
+      {{ section.settings.collection_label | default: 'The First Collection' }}
+    </div>
+
+    <h2 class="featured-product__name">
+      {{ section.settings.product_name | default: 'FLEXFIT 01' }}
+    </h2>
+
+    <p class="featured-product__tagline">
+      {{ section.settings.tagline | default: 'Move. Perform. Excel.' }}
+    </p>
+
+    <div class="featured-product__price">
+      {%- if product != blank -%}
+        {{ product.price | money }}
+      {%- else -%}
+        ₹{{ section.settings.price | default: '2,299' }}
+      {%- endif -%}
+    </div>
+
+    <!-- Colour indicator -->
+    <div style="margin-bottom:var(--space-3);">
+      <span class="featured-product__collection" style="display:block;margin-bottom:4px;">Colour</span>
+      <span style="font-size:var(--text-sm);font-weight:500;">{{ section.settings.colour_name | default: 'Midnight Navy' }}</span>
+    </div>
+
+    <!-- Size selector -->
+    <div style="margin-bottom:var(--space-2);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
+        <span class="featured-product__collection" style="display:block;">Size</span>
+        <button class="size-guide-link js-open-fit-guide" aria-label="Open size guide">Size Guide</button>
+      </div>
+      <div class="size-selector" role="group" aria-label="Select a size">
+        {%- assign sizes = 'S,M,L,XL' | split: ',' -%}
+        {%- for size in sizes -%}
+          {%- assign unavailable = false -%}
+          {%- if section.settings.unavailable_sizes contains size -%}
+            {%- assign unavailable = true -%}
+          {%- endif -%}
+          <button
+            class="size-chip"
+            data-size="{{ size }}"
+            data-variant-id="{{ product.variants | where: 'title', size | first | map: 'id' | first | default: '' }}"
+            {% if unavailable %}data-unavailable="true" aria-disabled="true"{% else %}aria-pressed="false"{% endif %}
+            {% if unavailable %}title="{{ size }} — Out of stock"{% endif %}
+          >{{ size }}</button>
+        {%- endfor -%}
+      </div>
+      <div class="size-error" role="alert">Please select a size to continue.</div>
+    </div>
+
+    <!-- Actions -->
+    <div class="featured-product__actions">
+      <button
+        class="btn btn--primary js-add-to-cart"
+        data-original-text="ADD TO BAG"
+        style="flex:1;"
+      >
+        ADD TO BAG
+      </button>
+      <button
+        class="btn btn--outline js-buy-now"
+        style="flex:1;"
+      >
+        BUY NOW
+      </button>
+    </div>
+
+    <!-- Product link -->
+    <a
+      href="{{ product.url | default: '/products/flexfit-01-midnight-navy' }}"
+      class="link-underline"
+      style="margin-top:var(--space-3);font-size:var(--text-xs);color:var(--sage);"
+    >
+      View full details <span aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <!-- Right: Pocket detail bleeding off edge -->
+  {%- if section.settings.image_pocket != blank -%}
+    <img
+      class="featured-product__pocket"
+      src="{{ section.settings.image_pocket | image_url: width: 600 }}"
+      srcset="{{ section.settings.image_pocket | image_url: width: 400 }} 400w, {{ section.settings.image_pocket | image_url: width: 600 }} 600w"
+      sizes="33vw"
+      alt="{{ section.settings.pocket_alt | default: 'FLEXFIT 01 — Pocket detail' }}"
+      loading="lazy"
+      width="400"
+      height="500"
+    >
+  {%- else -%}
+    <!-- PLACEHOLDER: Pocket detail image — MOCK DATA, replace per PLACEHOLDERS.md -->
+    <div class="featured-product__pocket" style="background:#0d1826;display:flex;align-items:flex-end;padding:var(--space-4);">
+      <span style="color:rgba(244,241,233,0.1);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;">Pocket — PLACEHOLDER</span>
+    </div>
+  {%- endif -%}
+
+</section>
+
+{% schema %}
+{
+  "name": "Featured Product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "text",
+      "id": "collection_label",
+      "label": "Collection eyebrow",
+      "default": "The First Collection"
+    },
+    {
+      "type": "text",
+      "id": "product_name",
+      "label": "Product name",
+      "default": "FLEXFIT 01"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Product tagline",
+      "default": "Move. Perform. Excel."
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price display (fallback if product not set)",
+      "default": "2,299"
+    },
+    {
+      "type": "text",
+      "id": "colour_name",
+      "label": "Colour name",
+      "default": "Midnight Navy"
+    },
+    {
+      "type": "text",
+      "id": "unavailable_sizes",
+      "label": "Out of stock sizes (comma-separated)",
+      "default": "XL",
+      "info": "e.g. XL,XXL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_front",
+      "label": "Front image (4:5)"
+    },
+    {
+      "type": "text",
+      "id": "front_alt",
+      "label": "Front image alt text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_back",
+      "label": "Back image (4:5)"
+    },
+    {
+      "type": "text",
+      "id": "back_alt",
+      "label": "Back image alt text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_pocket",
+      "label": "Pocket detail image (bleeds right edge)"
+    },
+    {
+      "type": "text",
+      "id": "pocket_alt",
+      "label": "Pocket image alt text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Product"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,174 @@
+{% comment %}
+  SECTION: Hero
+  Full-bleed crossfade slideshow.
+  Desktop: 16:7 aspect, left gradient. Mobile: 4:5 aspect, bottom gradient.
+  Eyebrow, headline, subline, CTA. Slide indicators.
+{% endcomment %}
+
+{%- assign slide_count = section.blocks | where: 'type', 'slide' | size -%}
+
+<section class="hero" aria-label="Hero campaign">
+
+  <div class="hero__slides">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'slide' -%}
+        <div
+          class="hero__slide{% if forloop.first %} is-active{% endif %}"
+          aria-hidden="{{ forloop.first | unless: true | then: 'false' | else: 'true' }}"
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.image != blank -%}
+            <img
+              class="hero__slide-img"
+              src="{{ block.settings.image | image_url: width: 1920 }}"
+              srcset="
+                {{ block.settings.image | image_url: width: 768 }} 768w,
+                {{ block.settings.image | image_url: width: 1200 }} 1200w,
+                {{ block.settings.image | image_url: width: 1920 }} 1920w
+              "
+              sizes="100vw"
+              alt="{{ block.settings.image_alt | default: 'VYRO hero campaign' | escape }}"
+              {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+              width="1920"
+              height="840"
+            >
+          {%- else -%}
+            <!-- PLACEHOLDER: Hero image {{ forloop.index }} — Replace with real VYRO photography per PLACEHOLDERS.md -->
+            <div style="
+              width:100%;height:100%;
+              background: linear-gradient(135deg, #101E35 0%, #1a2f52 50%, #2a3f62 100%);
+              display:flex;align-items:center;justify-content:center;
+            " aria-hidden="true">
+              <span style="color:rgba(244,241,233,0.1);font-family:var(--font-heading);font-size:clamp(2rem,8vw,8rem);font-weight:800;letter-spacing:-0.05em;">VYRO</span>
+            </div>
+          {%- endif -%}
+
+          <div class="hero__gradient" aria-hidden="true"></div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+
+    <!-- If no slides defined, show a default placeholder -->
+    {%- if slide_count == 0 -%}
+      <div class="hero__slide is-active">
+        <div style="
+          width:100%;height:100%;
+          background: linear-gradient(135deg, #101E35 0%, #1a2f52 100%);
+        " aria-hidden="true"></div>
+        <div class="hero__gradient" aria-hidden="true"></div>
+      </div>
+    {%- endif -%}
+
+    <!-- Hero content overlay -->
+    <div class="hero__content">
+      <span class="eyebrow eyebrow--light">
+        {{ section.settings.eyebrow | default: 'Premium Medical Apparel' }}
+      </span>
+
+      <h1 class="hero__headline">
+        {{ section.settings.headline | default: 'BUILT FOR THE LONG SHIFT.' }}
+      </h1>
+
+      <p class="hero__subline">
+        {{ section.settings.subline | default: 'Engineered for the Shift. Designed for You.' }}
+      </p>
+
+      <a
+        href="{{ section.settings.cta_url | default: routes.collections_url | append: '/all' }}"
+        class="btn btn--ivory btn--lg"
+      >
+        {{ section.settings.cta_label | default: 'SHOP THE COLLECTION' }}
+        <span class="btn__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <!-- Slide indicators -->
+    {%- assign indicator_slides = section.blocks | where: 'type', 'slide' -%}
+    {%- if indicator_slides.size > 1 or slide_count == 0 -%}
+      <div class="hero__indicators" role="tablist" aria-label="Slide navigation">
+        {%- assign count = indicator_slides.size | at_least: 3 -%}
+        {%- for i in (1..count) -%}
+          <button
+            class="hero__indicator{% if forloop.first %} is-active{% endif %}"
+            role="tab"
+            aria-selected="{{ forloop.first }}"
+            aria-label="Slide {{ i }}"
+            data-slide="{{ forloop.index0 }}"
+          >
+            <span class="hero__indicator-line" aria-hidden="true"></span>
+            <span class="visually-hidden">0{{ i }}</span>
+            <span aria-hidden="true" class="d-none d-md-inline">0{{ i }}</span>
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Premium Medical Apparel"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Main headline",
+      "default": "BUILT FOR THE LONG SHIFT."
+    },
+    {
+      "type": "text",
+      "id": "subline",
+      "label": "Sub-headline",
+      "default": "Engineered for the Shift. Designed for You."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button text",
+      "default": "SHOP THE COLLECTION"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide image",
+          "info": "Recommended: 1920×840px (16:7). Provide a 4:5 mobile crop separately if needed."
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text",
+          "info": "Describe the image for screen readers."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" }
+      ]
+    }
+  ]
+}
+{% endschema %}

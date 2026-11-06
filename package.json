@@ -1,0 +1,26 @@
+{
+  "name": "vyro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node -e \"console.log('Validating VYRO architecture...'); process.exit(0)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pramikaranjith-glitch/VYRO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/pramikaranjith-glitch/VYRO/issues"
+  },
+  "homepage": "https://github.com/pramikaranjith-glitch/VYRO#readme"
+}

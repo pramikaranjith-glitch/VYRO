@@ -1,0 +1,439 @@
+{% comment %}
+  SECTION: Main Product
+  Used in templates/product.json
+  Gallery (desktop thumbnail rail + mobile swipe), product info, accordions, mobile sticky bar.
+  Shopify Cart AJAX. Size guard. JSON-LD structured data.
+{% endcomment %}
+
+{%- assign product = product -%}
+
+<!-- JSON-LD Product Structured Data (SEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | truncate: 500 | json }},
+  "image": [
+    {% for image in product.images %}
+      {{ image | image_url: width: 1200 | json }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "brand": {
+    "@type": "Brand",
+    "name": "VYRO"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "INR",
+    "lowPrice": {{ product.price_min | money_without_currency | remove: ',' }},
+    "highPrice": {{ product.price_max | money_without_currency | remove: ',' }},
+    "offerCount": {{ product.variants | size }},
+    "offers": [
+      {% for variant in product.variants %}
+      {
+        "@type": "Offer",
+        "name": {{ variant.title | json }},
+        "sku": {{ variant.sku | json }},
+        "price": {{ variant.price | money_without_currency | remove: ',' }},
+        "priceCurrency": "INR",
+        "availability": "{% if variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+        "url": "{{ shop.url }}{{ product.url }}?variant={{ variant.id }}"
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
+
+<div class="container">
+  <!-- Breadcrumb -->
+  <nav aria-label="Breadcrumb" style="padding-top:var(--space-4);padding-bottom:var(--space-2);">
+    <ol style="display:flex;gap:8px;font-size:var(--text-xs);letter-spacing:0.08em;text-transform:uppercase;color:var(--sage);" itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ routes.root_url }}" itemprop="item" style="color:var(--sage);">
+          <span itemprop="name">Home</span>
+        </a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li aria-hidden="true" style="opacity:0.4;">/</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ routes.collections_url }}/all" itemprop="item" style="color:var(--sage);">
+          <span itemprop="name">Shop</span>
+        </a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li aria-hidden="true" style="opacity:0.4;">/</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" style="color:var(--navy);opacity:0.7;">
+        <span itemprop="name">{{ product.title }}</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
+
+  <div class="product-page">
+
+    <!-- Gallery -->
+    <div class="product-gallery" aria-label="Product images">
+      <!-- Thumbnails (desktop) -->
+      <div class="product-gallery__thumbnails" role="listbox" aria-label="Product image thumbnails">
+        {%- for image in product.images limit: 7 -%}
+          <img
+            class="product-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+            src="{{ image | image_url: width: 160 }}"
+            alt="{{ image.alt | default: product.title | append: ' — view ' | append: forloop.index | escape }}"
+            loading="{{ forloop.first | unless: true | then: 'lazy' | else: 'eager' }}"
+            data-full="{{ image | image_url: width: 1200 }}"
+            data-srcset="{{ image | image_url: width: 600 }} 600w, {{ image | image_url: width: 1200 }} 1200w"
+            width="80"
+            height="100"
+            tabindex="0"
+            role="option"
+            aria-selected="{{ forloop.first }}"
+          >
+        {%- else -%}
+          <!-- PLACEHOLDER: Product image thumbnails — MOCK DATA, replace per PLACEHOLDERS.md -->
+          {%- for i in (1..7) -%}
+            <div
+              class="product-gallery__thumb skeleton{% if forloop.first %} is-active{% endif %}"
+              style="background:var(--silver);"
+              data-placeholder="true"
+              aria-hidden="true"
+            ></div>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+
+      <!-- Main image -->
+      <div class="product-gallery__main-wrap">
+        {%- if product.featured_image != blank -%}
+          <img
+            class="product-gallery__main"
+            src="{{ product.featured_image | image_url: width: 1200 }}"
+            srcset="{{ product.featured_image | image_url: width: 600 }} 600w, {{ product.featured_image | image_url: width: 1200 }} 1200w"
+            sizes="(max-width: 1023px) 100vw, 50vw"
+            alt="{{ product.featured_image.alt | default: product.title | escape }}"
+            width="600"
+            height="750"
+            fetchpriority="high"
+            id="product-main-image"
+          >
+        {%- else -%}
+          <!-- PLACEHOLDER: Main product image — MOCK DATA -->
+          <div
+            style="width:100%;height:100%;background:linear-gradient(135deg,#1a2f52,#101E35);display:flex;align-items:center;justify-content:center;"
+            aria-label="Product image placeholder"
+          >
+            <span style="color:rgba(244,241,233,0.1);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;">Product Image — PLACEHOLDER</span>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Product info -->
+    <div class="product-info">
+
+      <!-- Name & Price -->
+      <div>
+        <h1 class="product-info__name">{{ product.title | default: 'FLEXFIT 01' }}</h1>
+        {%- if product.vendor != blank -%}
+          <p style="font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:var(--space-2);">{{ product.vendor }}</p>
+        {%- endif -%}
+        <div class="product-info__price" id="product-price">
+          {%- if product.compare_at_price > product.price -%}
+            <span style="text-decoration:line-through;opacity:0.4;font-size:var(--text-md);">{{ product.compare_at_price | money }}</span>&ensp;
+          {%- endif -%}
+          {{ product.price | money }}
+        </div>
+        {%- if product.variants.size > 1 -%}
+          <p style="font-size:var(--text-xs);letter-spacing:0.08em;color:var(--sage);margin-top:4px;">Two-piece scrub set</p>
+        {%- endif -%}
+      </div>
+
+      <!-- Colour -->
+      <div>
+        <div class="product-info__colour-label">Colour: <span id="selected-colour-name">{{ product.options.first | default: 'Midnight Navy' }}</span></div>
+        <div class="colour-swatches" role="group" aria-label="Colour options">
+          {%- for option in product.options_with_values -%}
+            {%- if option.name == 'Color' or option.name == 'Colour' -%}
+              {%- for value in option.values -%}
+                <button
+                  class="colour-swatch"
+                  style="background-color:{% case value %}{% when 'Midnight Navy' %}#101E35{% when 'Sage' %}#84958C{% when 'Ivory' %}#F4F1E9{% else %}#101E35{% endcase %};"
+                  aria-label="{{ value }}"
+                  title="{{ value }}"
+                  data-colour="{{ value }}"
+                >
+                </button>
+              {%- endfor -%}
+            {%- endif -%}
+          {%- else -%}
+            <!-- Default colour swatch for Midnight Navy -->
+            <button
+              class="colour-swatch is-active"
+              style="background-color:#101E35;"
+              aria-label="Midnight Navy (selected)"
+              title="Midnight Navy"
+              data-colour="Midnight Navy"
+            ></button>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- Size selector -->
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
+          <div class="product-info__colour-label">
+            Size
+            {%- if section.settings.selected_size_display -%}
+              : <span id="selected-size-display" class="js-selected-size"></span>
+            {%- endif -%}
+          </div>
+          <button class="size-guide-link js-open-fit-guide" aria-label="Open size guide">Size Guide</button>
+        </div>
+
+        <div class="size-selector" role="group" aria-label="Select a size" aria-required="true">
+          {%- for variant in product.variants -%}
+            <button
+              class="size-chip"
+              data-size="{{ variant.title }}"
+              data-variant-id="{{ variant.id }}"
+              {% unless variant.available %}data-unavailable="true" aria-disabled="true"{% endunless %}
+              aria-pressed="false"
+            >{{ variant.title }}</button>
+          {%- else -%}
+            <!-- MOCK sizes (no real Shopify product) -->
+            {%- assign mock_sizes = 'S,M,L,XL' | split: ',' -%}
+            {%- assign mock_unavailable = 'XL' | split: ',' -%}
+            {%- for size in mock_sizes -%}
+              <button
+                class="size-chip"
+                data-size="{{ size }}"
+                data-variant-id=""
+                {% if mock_unavailable contains size %}data-unavailable="true" aria-disabled="true"{% else %}aria-pressed="false"{% endif %}
+              >{{ size }}</button>
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+        <div class="size-error" role="alert" aria-live="assertive">Please select a size to continue.</div>
+      </div>
+
+      <!-- Quantity -->
+      <div>
+        <div class="product-info__colour-label" style="margin-bottom:var(--space-2);">Quantity</div>
+        <div class="qty-selector" role="group" aria-label="Select quantity">
+          <button class="qty-btn js-product-qty-minus" aria-label="Decrease quantity" data-action="minus">−</button>
+          <span class="qty-value js-qty-display" aria-live="polite" aria-atomic="true">1</span>
+          <button class="qty-btn js-product-qty-plus" aria-label="Increase quantity" data-action="plus">+</button>
+        </div>
+      </div>
+
+      <!-- Add to bag + Buy Now -->
+      <div class="featured-product__actions js-main-atb">
+        <button
+          class="btn btn--primary btn--full btn--lg js-add-to-cart"
+          data-original-text="ADD TO BAG"
+          aria-label="Add FLEXFIT 01 to bag"
+        >
+          ADD TO BAG
+        </button>
+        <button
+          class="btn btn--outline btn--full btn--lg js-buy-now"
+          aria-label="Buy FLEXFIT 01 now"
+        >
+          BUY NOW
+        </button>
+      </div>
+
+      <!-- Delivery + Returns teaser -->
+      <div style="
+        display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);
+        padding:var(--space-3);border:var(--border-hairline);border-radius:var(--radius-sm);
+        font-size:var(--text-xs);letter-spacing:0.06em;
+      ">
+        <div style="display:flex;gap:8px;align-items:flex-start;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <div style="font-weight:600;text-transform:uppercase;margin-bottom:2px;">Free Shipping</div>
+            <div style="color:var(--sage);">Across India</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5" aria-hidden="true"><path d="M3 12A9 9 0 1021 12 9 9 0 003 12M12 8V12L15 15" stroke-linecap="round"/></svg>
+          <div>
+            <div style="font-weight:600;text-transform:uppercase;margin-bottom:2px;">30-Day Returns</div>
+            <div style="color:var(--sage);">Easy &amp; free</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product accordions -->
+      <div class="product-accordion" role="list">
+
+        <!-- Description -->
+        <div class="product-accordion__item" role="listitem">
+          <button
+            class="product-accordion__trigger"
+            aria-expanded="true"
+            aria-controls="accordion-description"
+          >
+            Description
+            <svg class="product-accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="product-accordion__body is-open" id="accordion-description">
+            <div class="product-accordion__content">
+              {%- if product.description != blank -%}
+                {{ product.description }}
+              {%- else -%}
+                <p>The FLEXFIT 01 Midnight Navy Two-Piece Scrub Set is designed for healthcare professionals who demand both performance and presence. Built for the long shift.</p>
+                <p style="margin-top:var(--space-2);">FLEXFIT 01 is VYRO's inaugural collection. Full product description will be published upon launch.</p>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+
+        <!-- Fabric & Specifications (PLACEHOLDER) -->
+        <div class="product-accordion__item" role="listitem">
+          <button
+            class="product-accordion__trigger"
+            aria-expanded="false"
+            aria-controls="accordion-fabric"
+          >
+            Fabric & Specifications
+            <svg class="product-accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="product-accordion__body" id="accordion-fabric">
+            <div class="product-accordion__content">
+              <p style="color:var(--sage);font-size:var(--text-xs);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-2);">⚠ PLACEHOLDER — Pending brand data</p>
+              <p>Fabric composition, weight, and technical specifications will be published here once verified by VYRO. See <code>docs/PLACEHOLDERS.md</code>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wash Care (PLACEHOLDER) -->
+        <div class="product-accordion__item" role="listitem">
+          <button
+            class="product-accordion__trigger"
+            aria-expanded="false"
+            aria-controls="accordion-care"
+          >
+            Wash Care
+            <svg class="product-accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="product-accordion__body" id="accordion-care">
+            <div class="product-accordion__content">
+              <p style="color:var(--sage);font-size:var(--text-xs);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-2);">⚠ PLACEHOLDER — Pending brand data</p>
+              <p>Wash care instructions will be published here once verified. See <code>docs/PLACEHOLDERS.md</code>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping & Delivery -->
+        <div class="product-accordion__item" role="listitem">
+          <button
+            class="product-accordion__trigger"
+            aria-expanded="false"
+            aria-controls="accordion-shipping"
+          >
+            Shipping & Delivery
+            <svg class="product-accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="product-accordion__body" id="accordion-shipping">
+            <div class="product-accordion__content">
+              <ul style="display:flex;flex-direction:column;gap:var(--space-2);list-style:disc;padding-left:1.2em;">
+                <li>Free shipping across India on all orders</li>
+                <li>Estimated delivery: 5–8 business days (INTEGRATION PENDING — Shiprocket)</li>
+                <li>Tracking link sent via SMS and email after dispatch</li>
+                <li>Cash on delivery available (select pincodes)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Returns & Exchange -->
+        <div class="product-accordion__item" role="listitem">
+          <button
+            class="product-accordion__trigger"
+            aria-expanded="false"
+            aria-controls="accordion-returns"
+          >
+            Returns & Exchange
+            <svg class="product-accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="product-accordion__body" id="accordion-returns">
+            <div class="product-accordion__content">
+              <ul style="display:flex;flex-direction:column;gap:var(--space-2);list-style:disc;padding-left:1.2em;">
+                <li>30-day return and exchange window from delivery date</li>
+                <li>Items must be unworn and in original condition</li>
+                <li>Return and exchange workflow: INTEGRATION PENDING</li>
+                <li>Contact: <a href="/pages/contact" class="link-underline" style="font-size:inherit;">support page</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Mobile sticky add-to-bag bar -->
+<div class="mobile-sticky-atb" role="complementary" aria-label="Quick add to bag">
+  <div style="flex:1;">
+    <div style="font-size:var(--text-xs);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">{{ product.title | default: 'FLEXFIT 01' }}</div>
+    <div style="font-size:var(--text-sm);color:var(--sage);" id="sticky-selected-size">Select a size</div>
+  </div>
+  <button
+    class="btn btn--primary js-add-to-cart"
+    data-original-text="ADD TO BAG"
+    style="flex-shrink:0;"
+  >
+    ADD TO BAG
+  </button>
+</div>
+
+<script>
+  // Product page quantity selector
+  (function(){
+    var qty = 1;
+    var display = document.querySelector('.js-qty-display');
+    document.querySelector('.js-product-qty-minus') && document.querySelector('.js-product-qty-minus').addEventListener('click', function(){
+      if (qty > 1) { qty--; if (display) display.textContent = qty; }
+    });
+    document.querySelector('.js-product-qty-plus') && document.querySelector('.js-product-qty-plus').addEventListener('click', function(){
+      if (qty < 10) { qty++; if (display) display.textContent = qty; }
+    });
+
+    // Sync sticky bar selected size
+    document.querySelectorAll('.size-chip').forEach(function(chip){
+      chip.addEventListener('click', function(){
+        var stickySize = document.querySelector('#sticky-selected-size');
+        if (stickySize && !chip.dataset.unavailable) stickySize.textContent = chip.dataset.size;
+      });
+    });
+
+    // Open first accordion
+    var firstItem = document.querySelector('.product-accordion__item');
+    if (firstItem) firstItem.classList.add('is-open');
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "selected_size_display",
+      "label": "Show selected size in label",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Product"
+    }
+  ]
+}
+{% endschema %}

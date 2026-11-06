@@ -1,0 +1,214 @@
+{% comment %}
+  SECTION: Footer
+  Navy background, 4-column desktop layout.
+  VYRO wordmark, Quick Links, Policies, Stay in Touch (newsletter + social).
+  Bottom bar with dynamic copyright year.
+{% endcomment %}
+
+<footer class="site-footer" role="contentinfo" aria-label="Site footer">
+  <div class="container">
+    <div class="site-footer__grid">
+
+      <!-- Brand column -->
+      <div class="footer-col">
+        <div style="margin-bottom: var(--space-3);">
+          {%- render 'icon-logo', variant: 'ivory' -%}
+        </div>
+        <p class="site-footer__brand-tagline">{{ section.settings.tagline | default: 'WEAR THE PROFESSIONAL YOU.' }}</p>
+      </div>
+
+      <!-- Quick links -->
+      <div class="footer-col">
+        <div class="footer-col__label">Quick Links</div>
+        <ul class="footer-col__links">
+          <li><a href="{{ routes.collections_url }}/all">Shop</a></li>
+          <li><a href="/pages/our-story">Our Story</a></li>
+          <li><a href="/pages/technology">Technology</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Policies -->
+      <div class="footer-col">
+        <div class="footer-col__label">Policies</div>
+        <ul class="footer-col__links">
+          <li><a href="{{ shop.url }}/policies/shipping-policy">Shipping Policy</a></li>
+          <li><a href="{{ shop.url }}/policies/refund-policy">Return &amp; Exchange</a></li>
+          <li><a href="{{ shop.url }}/policies/privacy-policy">Privacy Policy</a></li>
+          <li><a href="{{ shop.url }}/policies/terms-of-service">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- Stay in touch -->
+      <div class="footer-col">
+        <div class="footer-col__label">Stay in Touch</div>
+        <p style="font-size:var(--text-sm);opacity:0.65;margin-bottom:var(--space-3);line-height:1.6;">
+          {{ section.settings.newsletter_copy | default: 'Get the latest updates and offers.' }}
+        </p>
+
+        <!-- Footer newsletter form -->
+        <div class="footer-newsletter">
+          <form
+            class="footer-newsletter__input-wrap js-footer-newsletter-form"
+            action="#"
+            method="post"
+            novalidate
+            aria-label="Newsletter sign-up"
+          >
+            <input
+              type="email"
+              class="footer-newsletter__input"
+              placeholder="your@email.com"
+              aria-label="Email address"
+              name="email"
+              required
+              autocomplete="email"
+            >
+            <button
+              type="submit"
+              class="footer-newsletter__submit"
+              aria-label="Subscribe"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </form>
+          <div class="newsletter-form__message js-footer-nl-msg" role="alert" aria-live="polite"></div>
+          <div class="newsletter-integration-note">Integration Pending</div>
+        </div>
+
+        <!-- Social links -->
+        <div class="footer-socials" style="margin-top:var(--space-4);">
+          {%- if section.settings.instagram_url != blank -%}
+            <a href="{{ section.settings.instagram_url }}" class="footer-social-btn" aria-label="VYRO on Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          {%- else -%}
+            <a href="#" class="footer-social-btn" aria-label="VYRO on Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.whatsapp_number != blank -%}
+            <a href="https://wa.me/{{ section.settings.whatsapp_number }}" class="footer-social-btn" aria-label="VYRO on WhatsApp" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          {%- else -%}
+            <a href="#" class="footer-social-btn" aria-label="VYRO on WhatsApp">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.youtube_url != blank -%}
+            <a href="{{ section.settings.youtube_url }}" class="footer-social-btn" aria-label="VYRO on YouTube" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z" stroke-linecap="round" stroke-linejoin="round"/>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          {%- else -%}
+            <a href="#" class="footer-social-btn" aria-label="VYRO on YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z" stroke-linecap="round" stroke-linejoin="round"/>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="site-footer__bottom">
+      <span>
+        &copy; <span class="js-copyright-year"></span> {{ shop.name }}. All rights reserved.
+      </span>
+      <span>Made for Healthcare Professionals.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dynamic copyright year — never hard-code
+  document.querySelectorAll('.js-copyright-year').forEach(function(el){
+    el.textContent = new Date().getFullYear();
+  });
+
+  // Footer newsletter (client-side only; endpoint is configurable via settings)
+  (function(){
+    var form = document.querySelector('.js-footer-newsletter-form');
+    var msg  = document.querySelector('.js-footer-nl-msg');
+    if (!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var email = form.querySelector('input[type="email"]').value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (msg) {
+          msg.textContent = 'Please enter a valid email address.';
+          msg.className = 'newsletter-form__message newsletter-form__message--error js-footer-nl-msg';
+        }
+        return;
+      }
+      // INTEGRATION PENDING — no fake success shown without a real endpoint
+      if (msg) {
+        msg.textContent = 'Newsletter integration is pending. We\'ll be in touch soon.';
+        msg.className = 'newsletter-form__message js-footer-nl-msg';
+        msg.style.color = 'rgba(244,241,233,0.5)';
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Brand tagline",
+      "default": "WEAR THE PROFESSIONAL YOU."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_copy",
+      "label": "Newsletter description",
+      "default": "Get the latest updates and offers."
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp number (digits only, with country code, e.g. 919876543210)"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,114 @@
+{% comment %}
+  SECTION: Mobile Drawer
+  Full-height slide-in drawer with focus trap and Escape to close.
+  Contains: logo, Shop (expandable), Our Story, Technology, Contact, Account, Track Order, Support.
+{% endcomment %}
+
+<div
+  class="mobile-drawer"
+  id="mobile-drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation menu"
+  tabindex="-1"
+>
+  <div class="mobile-drawer__header">
+    <a href="{{ routes.root_url }}" class="site-logo__link" aria-label="{{ shop.name }} Home">
+      {%- render 'icon-logo', variant: 'navy' -%}
+    </a>
+    <button
+      class="mobile-drawer__close js-drawer-close"
+      aria-label="Close navigation menu"
+      data-drawer="mobile-drawer"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/>
+        <line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="mobile-drawer__nav" aria-label="Mobile navigation">
+    <ul>
+
+      <!-- Shop (expandable) -->
+      <li class="mobile-nav__item">
+        <button
+          class="mobile-nav__link js-mobile-subnav-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-subnav-shop"
+        >
+          Shop
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-subnav" id="mobile-subnav-shop" aria-hidden="true">
+          <li><a href="{{ routes.collections_url }}/all" class="mobile-subnav__link">Shop All</a></li>
+          <li><a href="{{ routes.collections_url }}/mens-collection" class="mobile-subnav__link">Men's Collection</a></li>
+          <li><a href="{{ routes.collections_url }}/womens-collection" class="mobile-subnav__link">Women's Collection</a></li>
+          <li><a href="{{ routes.collections_url }}/flexfit-01" class="mobile-subnav__link">FLEXFIT 01</a></li>
+          <li><a href="{{ routes.collections_url }}/shop-by-colour" class="mobile-subnav__link">Shop by Colour</a></li>
+          <li><a href="#" class="mobile-subnav__link js-open-fit-guide">Size Guide</a></li>
+        </ul>
+      </li>
+
+      <li class="mobile-nav__item">
+        <a href="/pages/our-story" class="mobile-nav__link">
+          Our Story
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </li>
+
+      <li class="mobile-nav__item">
+        <a href="/pages/technology" class="mobile-nav__link">
+          Technology
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </li>
+
+      <li class="mobile-nav__item">
+        <a href="/pages/contact" class="mobile-nav__link">
+          Contact
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+  <div class="mobile-drawer__footer">
+    <a href="{{ routes.account_url }}" class="mobile-drawer__action">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke-linecap="round"/>
+      </svg>
+      Account
+    </a>
+    <a href="#" class="mobile-drawer__action">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-linecap="round"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      Track Order
+    </a>
+    <a href="/pages/contact" class="mobile-drawer__action">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.0 1.19 2 2 0 012 .0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" stroke-linecap="round"/>
+      </svg>
+      Support
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Mobile Drawer",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Mobile Drawer"
+    }
+  ]
+}
+{% endschema %}

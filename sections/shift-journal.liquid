@@ -1,0 +1,179 @@
+{% comment %}
+  SECTION: Shift Journal — magazine-style editorial grid
+  One large feature card + 3 smaller stories.
+  All copy and images are clearly marked placeholders.
+  No fabricated named people or quotes.
+{% endcomment %}
+
+<section class="shift-journal section" aria-label="VYRO Shift Journal">
+  <div class="container">
+
+    <div class="section__header">
+      <span class="eyebrow eyebrow--sage" style="margin-bottom:var(--space-3);">
+        {{ section.settings.eyebrow | default: 'The Shift Journal' }}
+      </span>
+      <h2 class="h2" style="margin-bottom:0;">
+        {{ section.settings.headline | default: 'STORIES FROM THE SHIFT.' }}
+      </h2>
+    </div>
+
+    <div class="shift-journal__grid reveal-stagger">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'article' -%}
+          <article class="journal-card" {{ block.shopify_attributes }}>
+            <div class="journal-card__img-wrap">
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 800 }}"
+                  srcset="{{ block.settings.image | image_url: width: 400 }} 400w, {{ block.settings.image | image_url: width: 800 }} 800w"
+                  sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, {{ forloop.first | replace: 'true', '40vw' | replace: 'false', '25vw' }}"
+                  alt="{{ block.settings.image_alt | default: 'Shift Journal editorial image — PLACEHOLDER' }}"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                  style="width:100%;height:100%;object-fit:cover;"
+                >
+              {%- else -%}
+                <!-- PLACEHOLDER: Shift Journal image {{ forloop.index }} — MOCK DATA. Style: documentary, hands/detail/light, no readable text -->
+                <div style="
+                  width:100%;height:100%;
+                  background:linear-gradient({{ forloop.index | times: 60 }}deg,#1a2f52,#101E35);
+                  display:flex;align-items:flex-end;padding:var(--space-3);
+                " aria-hidden="true">
+                  <span style="color:rgba(244,241,233,0.1);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;">Journal image {{ forloop.index }} — PLACEHOLDER</span>
+                </div>
+              {%- endif -%}
+            </div>
+
+            <div class="journal-card__meta">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span class="journal-card__category">
+                  {{ block.settings.category | default: '[Category — Placeholder]' }}
+                </span>
+                <span class="journal-card__issue">
+                  Issue {{ block.settings.issue_number | default: forloop.index | prepend: '0' | slice: -2, 2 }}
+                </span>
+              </div>
+              <h3 class="journal-card__title">
+                {{ block.settings.title | default: '[Article title — PLACEHOLDER. Replace with real VYRO editorial content.]' }}
+              </h3>
+              <a href="{{ block.settings.url | default: '#' }}" class="journal-card__read link-underline">
+                Read
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if section.blocks.size == 0 -%}
+        <!-- Default placeholder articles -->
+        {%- assign placeholder_titles = 'The Art of the Long Shift,What Your Scrubs Say About You,Designing for Comfort and Performance,Inside VYRO: Behind the First Collection' | split: ',' -%}
+        {%- assign placeholder_cats = 'Professional Life,Identity & Style,Design,Brand Story' | split: ',' -%}
+        {%- for i in (1..4) -%}
+          <article class="journal-card">
+            <div class="journal-card__img-wrap">
+              <div style="width:100%;height:100%;background:linear-gradient({{ i | times: 45 }}deg,#1a2f52,#101E35);display:flex;align-items:flex-end;padding:var(--space-3);" aria-hidden="true">
+                <span style="color:rgba(244,241,233,0.07);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;">Journal {{ i }} — PLACEHOLDER</span>
+              </div>
+            </div>
+            <div class="journal-card__meta">
+              <div style="display:flex;justify-content:space-between;">
+                <span class="journal-card__category">{{ placeholder_cats[forloop.index0] }}</span>
+                <span class="journal-card__issue">0{{ i }}</span>
+              </div>
+              <h3 class="journal-card__title">{{ placeholder_titles[forloop.index0] }}</h3>
+              <a href="#" class="journal-card__read link-underline">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        {%- endfor -%}
+      {%- endif -%}
+
+    </div>
+
+    <!-- Journal disclaimer -->
+    <p style="
+      margin-top:var(--space-6);
+      font-size:var(--text-xs);
+      color:var(--sage);
+      opacity:0.6;
+      text-align:center;
+      letter-spacing:0.06em;
+    ">
+      All Shift Journal articles and images are placeholders pending editorial production. No real people, names or quotes are used.
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shift Journal",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "The Shift Journal"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Section headline",
+      "default": "STORIES FROM THE SHIFT."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "Article",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Article image (3:2 or 4:5)",
+          "info": "⚠ MOCK DATA — Replace with real VYRO editorial photography. No identifiable people, no readable text."
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category label",
+          "info": "⚠ PLACEHOLDER — Replace with real category."
+        },
+        {
+          "type": "text",
+          "id": "issue_number",
+          "label": "Issue number (e.g. 01)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Article title",
+          "info": "⚠ PLACEHOLDER — Replace with real article title. No fabricated names or quotes."
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Article URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shift Journal",
+      "blocks": [
+        { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder. Replace with real content.]" } },
+        { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder. Replace with real content.]" } },
+        { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder. Replace with real content.]" } },
+        { "type": "article", "settings": { "category": "[Category — Placeholder]", "title": "[Article Title — Placeholder. Replace with real content.]" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

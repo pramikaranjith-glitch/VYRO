@@ -1,0 +1,139 @@
+{% comment %}
+  SECTION: Header
+  Ivory navigation bar with VYRO wordmark, centre nav links, and right action icons.
+  Desktop: 3-column grid. Mobile: hamburger | VYRO | search+bag.
+{% endcomment %}
+
+<header class="site-header js-site-header" role="banner">
+  <div class="site-header__inner">
+
+    <!-- Left: Hamburger (mobile) / empty on desktop -->
+    <div class="site-header__left">
+      <button
+        class="hamburger js-hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-drawer"
+      >
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+
+    <!-- Centre: VYRO Wordmark -->
+    <div class="site-logo">
+      <a href="{{ routes.root_url }}" class="site-logo__link" aria-label="{{ shop.name }} Home">
+        {%- render 'icon-logo', variant: 'navy' -%}
+      </a>
+    </div>
+
+    <!-- Desktop Centre Nav -->
+    <nav class="site-nav" aria-label="Main navigation">
+
+      <!-- Shop with mega menu -->
+      <div class="site-nav__item js-mega-trigger" data-menu="shop">
+        <button
+          class="site-nav__link"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="mega-menu-shop"
+        >
+          Shop
+          <svg class="site-nav__chevron" viewBox="0 0 10 10" aria-hidden="true">
+            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- Mega Menu -->
+        <div class="mega-menu" id="mega-menu-shop" role="region" aria-label="Shop navigation">
+          <div>
+            <div class="mega-menu__group-label">Collections</div>
+            <a href="{{ routes.collections_url }}/all" class="mega-menu__link">Shop All</a>
+            <a href="{{ routes.collections_url }}/mens-collection" class="mega-menu__link">Men's Collection</a>
+            <a href="{{ routes.collections_url }}/womens-collection" class="mega-menu__link">Women's Collection</a>
+          </div>
+          <div>
+            <div class="mega-menu__group-label">Products</div>
+            <a href="{{ routes.collections_url }}/flexfit-01" class="mega-menu__link">FLEXFIT 01</a>
+            <a href="{{ routes.collections_url }}/shop-by-colour" class="mega-menu__link">Shop by Colour</a>
+          </div>
+          <div>
+            <div class="mega-menu__group-label">Help</div>
+            <a href="#" class="mega-menu__link js-open-fit-guide">Size Guide</a>
+            <a href="{{ routes.root_url }}#shift-index" class="mega-menu__link">Shift Index</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-nav__item">
+        <a href="/pages/our-story" class="site-nav__link">Our Story</a>
+      </div>
+
+      <div class="site-nav__item">
+        <a href="/pages/technology" class="site-nav__link">Technology</a>
+      </div>
+
+      <div class="site-nav__item">
+        <a href="/pages/contact" class="site-nav__link">Contact</a>
+      </div>
+
+    </nav>
+
+    <!-- Right: Actions -->
+    <div class="site-header__actions">
+
+      <!-- Search -->
+      <button class="nav-icon-btn js-search-open" aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="M21 21L16.65 16.65" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <!-- Account (hidden on mobile, in drawer) -->
+      <a href="{{ routes.account_url }}" class="nav-icon-btn nav-icon-btn--account" aria-label="Account">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke-linecap="round"/>
+        </svg>
+      </a>
+
+      <!-- Cart / Bag -->
+      <button class="nav-icon-btn js-cart-open" aria-label="Open cart" aria-controls="cart-drawer">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0" stroke-linecap="round"/>
+        </svg>
+        <span class="cart-badge js-cart-badge" aria-label="Cart items">{{ cart.item_count }}</span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<script>
+  // Scroll-triggered header border
+  (function(){
+    var header = document.querySelector('.js-site-header');
+    if (!header) return;
+    var observer = new IntersectionObserver(function(entries){
+      header.classList.toggle('site-header--scrolled', !entries[0].isIntersecting);
+    }, { rootMargin: '-80px 0px 0px 0px' });
+    var sentinel = document.querySelector('#main-content');
+    if (sentinel) observer.observe(sentinel);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Header"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,23 @@
+{% comment %}
+  SECTION: 404 Not Found — refined error page
+{% endcomment %}
+
+<section class="error-page">
+  <div class="error-page__code" aria-hidden="true">404</div>
+  <h1 class="error-page__title">Page Not Found</h1>
+  <p style="font-size:var(--text-md);color:var(--sage);max-width:400px;text-align:center;line-height:1.65;">
+    The page you're looking for has moved, or never existed. Let's get you back to the shift.
+  </p>
+  <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;justify-content:center;margin-top:var(--space-4);">
+    <a href="{{ routes.root_url }}" class="btn btn--primary">Back to Home</a>
+    <a href="{{ routes.collections_url }}/all" class="btn btn--outline">Shop All</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "settings": [],
+  "presets": [{ "name": "404 Page" }]
+}
+{% endschema %}

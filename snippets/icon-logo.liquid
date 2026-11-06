@@ -1,0 +1,33 @@
+{% comment %}
+  SNIPPET: icon-logo
+  VYRO wordmark — wide-tracked, thin uppercase, inline SVG.
+  Usage: {% render 'icon-logo', variant: 'navy' %}
+         {% render 'icon-logo', variant: 'ivory' %}
+  variant: 'navy' (default) | 'ivory'
+{% endcomment %}
+
+{%- assign logo_color = variant | default: 'navy' -%}
+{%- if logo_color == 'ivory' -%}
+  {%- assign fill_color = '#F4F1E9' -%}
+{%- else -%}
+  {%- assign fill_color = '#101E35' -%}
+{%- endif -%}
+
+<svg
+  width="80"
+  height="22"
+  viewBox="0 0 80 22"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-label="VYRO"
+  role="img"
+>
+  <!-- V -->
+  <path d="M2 2L9 20L16 2" stroke="{{ fill_color }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Y -->
+  <path d="M22 2L28 11M34 2L28 11V20" stroke="{{ fill_color }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- R -->
+  <path d="M40 2H48C50.2 2 52 3.8 52 6C52 8.2 50.2 10 48 10H40M40 2V20M40 10L52 20" stroke="{{ fill_color }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- O -->
+  <ellipse cx="66" cy="11" rx="10" ry="9" stroke="{{ fill_color }}" stroke-width="1.5" fill="none"/>
+</svg>

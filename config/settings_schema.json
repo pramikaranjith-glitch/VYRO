@@ -1,0 +1,87 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "VYRO",
+    "theme_version": "1.0.0",
+    "theme_author": "VYRO",
+    "theme_documentation_url": "https://github.com/vyro/theme/docs",
+    "theme_support_url": "https://vyro.in/pages/contact"
+  },
+  {
+    "name": "Analytics & Tracking",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Google Analytics"
+      },
+      {
+        "type": "text",
+        "id": "google_analytics_id",
+        "label": "Google Analytics ID",
+        "info": "Enter your GA4 Measurement ID (e.g. G-XXXXXXXXXX). Leave blank to disable."
+      },
+      {
+        "type": "header",
+        "content": "Meta (Facebook) Pixel"
+      },
+      {
+        "type": "text",
+        "id": "meta_pixel_id",
+        "label": "Meta Pixel ID",
+        "info": "Enter your Meta Pixel ID. Leave blank to disable."
+      }
+    ]
+  },
+  {
+    "name": "Integrations",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Newsletter"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_endpoint",
+        "label": "Newsletter endpoint URL",
+        "info": "INTEGRATION PENDING. The URL that receives email subscriptions. Leave blank until your newsletter provider is configured."
+      },
+      {
+        "type": "header",
+        "content": "WhatsApp Support"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "WhatsApp number",
+        "info": "Digits only, with country code (e.g. 919876543210). INTEGRATION PENDING."
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "instagram_url",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "youtube_url",
+        "label": "YouTube URL"
+      }
+    ]
+  },
+  {
+    "name": "Development",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_mock_badge",
+        "label": "Show MOCK DATA badge",
+        "default": true,
+        "info": "Display an orange badge indicating mock data is active. Disable before launch."
+      }
+    ]
+  }
+]

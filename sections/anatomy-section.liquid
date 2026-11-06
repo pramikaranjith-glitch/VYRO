@@ -1,0 +1,202 @@
+{% comment %}
+  SECTION: Anatomy of FLEXFIT — garment image with clickable hotspot callouts.
+  Hotspots work by hover, click, tap and keyboard.
+  All callout copy is placeholder until verified by brand.
+{% endcomment %}
+
+<section class="anatomy-section section reveal" id="anatomy" aria-label="FLEXFIT 01 Anatomy">
+  <div class="container">
+    <div class="anatomy-section__inner">
+
+      <!-- Left: Garment image with hotspots -->
+      <div class="anatomy-image-wrap" aria-label="FLEXFIT 01 garment diagram with labelled features">
+
+        {%- if section.settings.garment_image != blank -%}
+          <img
+            src="{{ section.settings.garment_image | image_url: width: 800 }}"
+            alt="{{ section.settings.garment_image_alt | default: 'FLEXFIT 01 garment — annotated view showing key design features' }}"
+            loading="lazy"
+            width="800"
+            height="1000"
+            style="width:100%;height:auto;"
+          >
+        {%- else -%}
+          <!-- PLACEHOLDER: Anatomy garment image — MOCK DATA, replace per PLACEHOLDERS.md -->
+          <div style="
+            width:100%;aspect-ratio:4/5;
+            background:rgba(244,241,233,0.04);
+            border:1px dashed rgba(244,241,233,0.1);
+            border-radius:var(--radius-sm);
+            display:flex;align-items:center;justify-content:center;
+            flex-direction:column;gap:1rem;
+          " aria-hidden="true">
+            <svg width="64" height="80" viewBox="0 0 64 80" fill="none" aria-hidden="true">
+              <path d="M32 4C22 4 14 8 14 8L4 20v8h8v44h40V28h8v-8L50 8S42 4 32 4z" stroke="rgba(244,241,233,0.2)" stroke-width="1.5" fill="none"/>
+              <path d="M22 8C22 8 20 16 20 24M42 8C42 8 44 16 44 24" stroke="rgba(244,241,233,0.1)" stroke-width="1" fill="none"/>
+              <rect x="24" y="30" width="16" height="12" rx="1" stroke="rgba(132,149,140,0.3)" stroke-width="1" fill="none"/>
+            </svg>
+            <span style="color:rgba(244,241,233,0.1);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;">Garment image — PLACEHOLDER</span>
+          </div>
+        {%- endif -%}
+
+        <!-- Hotspots — positions are % from top-left of image -->
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'hotspot' -%}
+            <div
+              class="hotspot"
+              style="left:{{ block.settings.position_x }}%;top:{{ block.settings.position_y }}%;"
+              data-hotspot-num="{{ forloop.index }}"
+              {{ block.shopify_attributes }}
+            >
+              <div
+                class="hotspot__dot"
+                role="button"
+                tabindex="0"
+                aria-label="Feature {{ forloop.index }}: {{ block.settings.label | default: '[Label pending]' }}"
+                aria-expanded="false"
+              >
+                <span class="hotspot__number" aria-hidden="true">{{ forloop.index }}</span>
+              </div>
+              <div class="hotspot__line" aria-hidden="true"></div>
+              <div class="hotspot__tooltip" role="tooltip" aria-hidden="true">
+                <div class="hotspot__tooltip-label">
+                  {{ block.settings.label | default: '[Feature Label — Pending Verification]' }}
+                </div>
+                <div class="hotspot__tooltip-desc">
+                  {{ block.settings.description | default: '[Description — Pending brand data. See PLACEHOLDERS.md]' }}
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+      </div>
+
+      <!-- Right: Callout list -->
+      <div class="anatomy-info">
+        <span class="eyebrow eyebrow--light" style="margin-bottom:var(--space-4);">
+          The Anatomy of FLEXFIT
+        </span>
+        <h2 class="h2" style="color:var(--ivory);margin-bottom:var(--space-6);">
+          {{ section.settings.headline | default: 'ENGINEERED IN DETAIL.' }}
+        </h2>
+
+        <div class="anatomy-callout-list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'hotspot' -%}
+              <div
+                class="anatomy-callout-item"
+                data-hotspot-num="{{ forloop.index }}"
+                tabindex="0"
+                role="button"
+                aria-label="Feature {{ forloop.index }}: {{ block.settings.label | default: 'Feature pending' }}"
+              >
+                <div class="anatomy-callout-item__num">0{{ forloop.index }}</div>
+                <div>
+                  <div class="anatomy-callout-item__title">
+                    {{ block.settings.label | default: '[Feature Label — Pending Verification]' }}
+                  </div>
+                  <div class="anatomy-callout-item__desc">
+                    {{ block.settings.description | default: '[Description pending brand data. See PLACEHOLDERS.md]' }}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if section.blocks.size == 0 -%}
+            <!-- Default placeholder callouts -->
+            {%- assign placeholder_items = 'Neckline Construction,Shoulder Panel,Chest Pocket Design,Reinforced Stitching,Fabric Composition,Silhouette & Fit' | split: ',' -%}
+            {%- for item in placeholder_items -%}
+              <div class="anatomy-callout-item" tabindex="0" role="presentation">
+                <div class="anatomy-callout-item__num">0{{ forloop.index }}</div>
+                <div>
+                  <div class="anatomy-callout-item__title">{{ item }}</div>
+                  <div class="anatomy-callout-item__desc">[Detail pending brand verification — see PLACEHOLDERS.md]</div>
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FLEXFIT Anatomy",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "garment_image",
+      "label": "Garment image",
+      "info": "Front-facing garment photo. Hotspot positions are set per block as % from top-left."
+    },
+    {
+      "type": "text",
+      "id": "garment_image_alt",
+      "label": "Garment image alt text"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Section headline",
+      "default": "ENGINEERED IN DETAIL."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "Hotspot",
+      "settings": [
+        {
+          "type": "range",
+          "id": "position_x",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Horizontal position",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "position_y",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Vertical position",
+          "default": 25
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Feature label",
+          "info": "⚠ PENDING VERIFICATION — Do not publish claims without brand confirmation."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature description",
+          "info": "⚠ PENDING VERIFICATION — Placeholder until brand supplies verified copy."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FLEXFIT Anatomy",
+      "blocks": [
+        { "type": "hotspot", "settings": { "position_x": 50, "position_y": 12, "label": "[Neckline — Pending]", "description": "[Description pending brand data]" } },
+        { "type": "hotspot", "settings": { "position_x": 20, "position_y": 25, "label": "[Shoulder — Pending]", "description": "[Description pending brand data]" } },
+        { "type": "hotspot", "settings": { "position_x": 40, "position_y": 40, "label": "[Pocket — Pending]", "description": "[Description pending brand data]" } },
+        { "type": "hotspot", "settings": { "position_x": 70, "position_y": 55, "label": "[Stitching — Pending]", "description": "[Description pending brand data]" } },
+        { "type": "hotspot", "settings": { "position_x": 50, "position_y": 70, "label": "[Fabric — Pending]", "description": "[Description pending brand data]" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

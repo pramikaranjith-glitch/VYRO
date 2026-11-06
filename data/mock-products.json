@@ -40,35 +40,35 @@
       "currency": "INR",
       "currency_symbol": "₹",
       "isMock": true,
-      "featured_image": "/assets/mock/product-front.webp",
-      "hover_image": "/assets/mock/product-back.webp",
+      "featured_image": "/assets/mock/product-front.jpg",
+      "hover_image": "/assets/mock/product-back.jpg",
       "images": [
         {
-          "src": "/assets/mock/product-front.webp",
+          "src": "/assets/mock/product-front.jpg",
           "alt": "FLEXFIT 01 Midnight Navy — On-model front view"
         },
         {
-          "src": "/assets/mock/product-back.webp",
+          "src": "/assets/mock/product-back.jpg",
           "alt": "FLEXFIT 01 Midnight Navy — On-model back view"
         },
         {
-          "src": "/assets/mock/product-side.webp",
+          "src": "/assets/mock/product-side.jpg",
           "alt": "FLEXFIT 01 Midnight Navy — On-model side profile view"
         },
         {
-          "src": "/assets/mock/model-wearing.webp",
+          "src": "/assets/mock/model-wearing.jpg",
           "alt": "FLEXFIT 01 Midnight Navy — Lifestyle wear in minimalist architectural clinic"
         },
         {
-          "src": "/assets/mock/fabric-macro.webp",
+          "src": "/assets/mock/fabric-macro.jpg",
           "alt": "FLEXFIT 01 Midnight Navy — 1:1 technical fabric weave close-up"
         },
         {
-          "src": "/assets/mock/pocket-detail.webp",
+          "src": "/assets/mock/pocket-detail.jpg",
           "alt": "FLEXFIT 01 Midnight Navy — Concealed zippered pocket construction"
         },
         {
-          "src": "/assets/mock/stitching-detail.webp",
+          "src": "/assets/mock/stitching-detail.jpg",
           "alt": "FLEXFIT 01 Midnight Navy — Reinforced bar-tack stitching detail"
         }
       ],
@@ -132,11 +132,11 @@
       "currency": "INR",
       "currency_symbol": "₹",
       "isMock": true,
-      "featured_image": "/assets/mock/product-front-sage.webp",
-      "hover_image": "/assets/mock/product-back-sage.webp",
+      "featured_image": "/assets/mock/product-front-sage.jpg",
+      "hover_image": "/assets/mock/product-back-sage.jpg",
       "images": [
         {
-          "src": "/assets/mock/product-front-sage.webp",
+          "src": "/assets/mock/product-front-sage.jpg",
           "alt": "FLEXFIT 01 Sage — Front view"
         }
       ],
@@ -189,11 +189,11 @@
       "currency": "INR",
       "currency_symbol": "₹",
       "isMock": true,
-      "featured_image": "/assets/mock/product-front-womens.webp",
-      "hover_image": "/assets/mock/product-back-womens.webp",
+      "featured_image": "/assets/mock/product-front-womens.jpg",
+      "hover_image": "/assets/mock/product-back-womens.jpg",
       "images": [
         {
-          "src": "/assets/mock/product-front-womens.webp",
+          "src": "/assets/mock/product-front-womens.jpg",
           "alt": "FLEXFIT 01 Women's Midnight Navy — Front view"
         }
       ],

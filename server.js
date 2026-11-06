@@ -302,7 +302,7 @@ function renderFeaturedProduct() {
       <div class="featured-product__images">
         <img
           class="featured-product__img-front"
-          src="/assets/mock/product-front.svg"
+          src="/assets/mock/product-front.jpg"
           alt="FLEXFIT 01 Midnight Navy — Front view"
           loading="lazy"
           width="400"
@@ -310,7 +310,7 @@ function renderFeaturedProduct() {
         >
         <img
           class="featured-product__img-back"
-          src="/assets/mock/product-back.svg"
+          src="/assets/mock/product-back.jpg"
           alt="FLEXFIT 01 Midnight Navy — Back view"
           loading="lazy"
           width="400"
@@ -371,7 +371,7 @@ function renderFeaturedProduct() {
 
       <img
         class="featured-product__pocket"
-        src="/assets/mock/pocket-detail.svg"
+        src="/assets/mock/pocket-detail.jpg"
         alt="FLEXFIT 01 — Concealed zippered pocket detail"
         loading="lazy"
         width="400"
@@ -593,14 +593,14 @@ function renderScentShift() {
 
           <div class="scentshift-images reveal">
             <img
-              src="/assets/mock/scentshift-macro-1.svg"
+              src="/assets/mock/scentshift-macro-1.jpg"
               alt="Extreme close-up of woven midnight navy textile fibre with sage highlights"
               loading="lazy"
               width="600"
               height="400"
             >
             <img
-              src="/assets/mock/scentshift-macro-2.svg"
+              src="/assets/mock/scentshift-macro-2.jpg"
               alt="Close-up of FLEXFIT fabric weave structure under laboratory lighting"
               loading="lazy"
               width="600"
@@ -666,7 +666,7 @@ function renderShiftJournal() {
         <div class="shift-journal__grid reveal-stagger">
           <article class="journal-card">
             <div class="journal-card__img-wrap">
-              <img src="/assets/mock/journal-1.svg" alt="The Art of the Long Shift editorial photograph" loading="lazy" width="800" height="533">
+              <img src="/assets/mock/journal-1.jpg" alt="The Art of the Long Shift editorial photograph" loading="lazy" width="800" height="533">
             </div>
             <div class="journal-card__meta">
               <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -680,7 +680,7 @@ function renderShiftJournal() {
 
           <article class="journal-card">
             <div class="journal-card__img-wrap">
-              <img src="/assets/mock/journal-2.svg" alt="What Your Scrubs Say About You editorial photograph" loading="lazy" width="800" height="533">
+              <img src="/assets/mock/journal-2.jpg" alt="What Your Scrubs Say About You editorial photograph" loading="lazy" width="800" height="533">
             </div>
             <div class="journal-card__meta">
               <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -694,7 +694,7 @@ function renderShiftJournal() {
 
           <article class="journal-card">
             <div class="journal-card__img-wrap">
-              <img src="/assets/mock/journal-3.svg" alt="Designing for Comfort and Performance editorial photograph" loading="lazy" width="800" height="533">
+              <img src="/assets/mock/journal-3.jpg" alt="Designing for Comfort and Performance editorial photograph" loading="lazy" width="800" height="533">
             </div>
             <div class="journal-card__meta">
               <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -1046,9 +1046,11 @@ function renderPage(contentHtml, pageTitle = 'WEAR THE PROFESSIONAL YOU.', templ
   layout = layout.replace(/\{%-?\s*if\s+settings\.meta_pixel_id[\s\S]*?\{%-?\s*endif\s*-?%\}/g, '');
   layout = layout.replace(/\{\{\s*content_for_header\s*\}\}/g, '');
 
-  // Critical Asset Links
-  layout = layout.replace(/\{\{\s*'theme\.css'\s*\|\s*asset_url\s*\|\s*stylesheet_tag\s*\}\}/g, '<link rel="stylesheet" href="/assets/theme.css">');
-  layout = layout.replace(/\{\{\s*'theme\.js'\s*\|\s*asset_url\s*\}\}/g, '/assets/theme.js');
+  // Critical Asset Links with cache-busting version
+  const assetVer = Date.now();
+  layout = layout.replace(/<link\s+rel="stylesheet"\s+href="[^"]*theme\.css[^"]*">/g, `<link rel="stylesheet" href="/assets/theme.css?v=${assetVer}">`);
+  layout = layout.replace(/\{\{\s*'theme\.css'\s*\|\s*asset_url\s*\|\s*stylesheet_tag\s*\}\}/g, `<link rel="stylesheet" href="/assets/theme.css?v=${assetVer}">`);
+  layout = layout.replace(/\{\{\s*'theme\.js'\s*\|\s*asset_url\s*\}\}/g, `/assets/theme.js?v=${assetVer}`);
   layout = layout.replace(/\{\{\s*'favicon\.svg'\s*\|\s*asset_url\s*\}\}/g, '/assets/mock/favicon.svg');
 
   // TARGET BODY TAG ONLY: Prevents destroying the <head>
@@ -1109,17 +1111,17 @@ function buildProductPage() {
         <!-- Gallery -->
         <div class="product-gallery" aria-label="Product images">
           <div class="product-gallery__thumbnails" role="listbox" aria-label="Product image thumbnails">
-            <img class="product-gallery__thumb is-active" src="/assets/mock/product-front.svg" data-full="/assets/mock/product-front.svg" alt="Front view" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/product-back.svg" data-full="/assets/mock/product-back.svg" alt="Back view" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/product-side.svg" data-full="/assets/mock/product-side.svg" alt="Side profile" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/model-wearing.svg" data-full="/assets/mock/model-wearing.svg" alt="Model wearing in clinic" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/fabric-macro.svg" data-full="/assets/mock/fabric-macro.svg" alt="Fabric close-up" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/pocket-detail.svg" data-full="/assets/mock/pocket-detail.svg" alt="Pocket construction" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/stitching-detail.svg" data-full="/assets/mock/stitching-detail.svg" alt="Bar-tack stitching" tabindex="0" role="option">
+            <img class="product-gallery__thumb is-active" src="/assets/mock/product-front.jpg" data-full="/assets/mock/product-front.jpg" alt="Front view" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/product-back.jpg" data-full="/assets/mock/product-back.jpg" alt="Back view" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/product-side.jpg" data-full="/assets/mock/product-side.jpg" alt="Side profile" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/model-wearing.jpg" data-full="/assets/mock/model-wearing.jpg" alt="Model wearing in clinic" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/fabric-macro.jpg" data-full="/assets/mock/fabric-macro.jpg" alt="Fabric close-up" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/pocket-detail.jpg" data-full="/assets/mock/pocket-detail.jpg" alt="Pocket construction" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/stitching-detail.jpg" data-full="/assets/mock/stitching-detail.jpg" alt="Bar-tack stitching" tabindex="0" role="option">
           </div>
 
           <div class="product-gallery__main-wrap">
-            <img class="product-gallery__main" id="product-main-image" src="/assets/mock/product-front.svg" alt="FLEXFIT 01 Midnight Navy" width="600" height="750" fetchpriority="high">
+            <img class="product-gallery__main" id="product-main-image" src="/assets/mock/product-front.jpg" alt="FLEXFIT 01 Midnight Navy" width="600" height="750" fetchpriority="high">
           </div>
         </div>
 
@@ -1262,11 +1264,11 @@ function buildProductPage() {
         <div class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:var(--space-6);">
           <article class="product-card" aria-label="FLEXFIT 01 — Sage">
             <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-sage.svg" alt="FLEXFIT 01 Sage" width="400" height="500">
-              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-sage.svg" alt="FLEXFIT 01 Sage back" width="400" height="500">
+              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-sage.jpg" alt="FLEXFIT 01 Sage" width="400" height="500">
+              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-sage.jpg" alt="FLEXFIT 01 Sage back" width="400" height="500">
               <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10202" aria-label="Quick add to bag">QUICK ADD</button>
             </a>
-            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Sage<span class="mock-indicator" aria-hidden="true">MOCK</span></a></div>
+            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Sage</a></div>
             <div class="product-card__price">₹2,299</div>
             <div class="product-card__swatches">
               <span class="product-card__swatch is-active" style="background:#84958C;" title="Sage"></span>
@@ -1280,11 +1282,11 @@ function buildProductPage() {
 
           <article class="product-card" aria-label="FLEXFIT 01 Women's — Midnight Navy">
             <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-womens.svg" alt="FLEXFIT 01 Women's" width="400" height="500">
-              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-womens.svg" alt="FLEXFIT 01 Women's back" width="400" height="500">
+              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-womens.jpg" alt="FLEXFIT 01 Women's" width="400" height="500">
+              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-womens.jpg" alt="FLEXFIT 01 Women's back" width="400" height="500">
               <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10302" aria-label="Quick add to bag">QUICK ADD</button>
             </a>
-            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 Women's<span class="mock-indicator" aria-hidden="true">MOCK</span></a></div>
+            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 Women's</a></div>
             <div class="product-card__price">₹2,299</div>
             <div class="product-card__swatches">
               <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
@@ -1299,8 +1301,8 @@ function buildProductPage() {
 
           <article class="product-card" aria-label="FLEXFIT 01 — Midnight Navy">
             <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front.svg" alt="FLEXFIT 01 Midnight Navy" width="400" height="500">
-              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back.svg" alt="FLEXFIT 01 Midnight Navy back" width="400" height="500">
+              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front.jpg" alt="FLEXFIT 01 Midnight Navy" width="400" height="500">
+              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back.jpg" alt="FLEXFIT 01 Midnight Navy back" width="400" height="500">
               <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10102" aria-label="Quick add to bag">QUICK ADD</button>
             </a>
             <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Midnight Navy</a></div>
@@ -1414,8 +1416,8 @@ function buildCollectionPage() {
             <!-- Card 1 -->
             <article class="product-card" aria-label="FLEXFIT 01 — Midnight Navy" data-colour="Midnight Navy" data-gender="Men's" data-sizes="S,M,L">
               <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-                <img class="product-card__img product-card__img--default" src="/assets/mock/product-front.svg" alt="FLEXFIT 01 Midnight Navy" width="400" height="500">
-                <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back.svg" alt="FLEXFIT 01 Midnight Navy back" width="400" height="500">
+                <img class="product-card__img product-card__img--default" src="/assets/mock/product-front.jpg" alt="FLEXFIT 01 Midnight Navy" width="400" height="500">
+                <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back.jpg" alt="FLEXFIT 01 Midnight Navy back" width="400" height="500">
                 <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10102" aria-label="Quick add to bag">QUICK ADD</button>
               </a>
               <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Midnight Navy</a></div>
@@ -1434,11 +1436,11 @@ function buildCollectionPage() {
             <!-- Card 2 -->
             <article class="product-card" aria-label="FLEXFIT 01 — Sage" data-colour="Sage" data-gender="Men's" data-sizes="S,M">
               <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-                <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-sage.svg" alt="FLEXFIT 01 Sage" width="400" height="500">
-                <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-sage.svg" alt="FLEXFIT 01 Sage back" width="400" height="500">
+                <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-sage.jpg" alt="FLEXFIT 01 Sage" width="400" height="500">
+                <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-sage.jpg" alt="FLEXFIT 01 Sage back" width="400" height="500">
                 <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10202" aria-label="Quick add to bag">QUICK ADD</button>
               </a>
-              <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Sage<span class="mock-indicator" aria-hidden="true">MOCK</span></a></div>
+              <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Sage</a></div>
               <div class="product-card__price">₹2,299</div>
               <div class="product-card__swatches">
                 <span class="product-card__swatch is-active" style="background:#84958C;" title="Sage"></span>
@@ -1453,11 +1455,11 @@ function buildCollectionPage() {
             <!-- Card 3 -->
             <article class="product-card" aria-label="FLEXFIT 01 Women's — Midnight Navy" data-colour="Midnight Navy" data-gender="Women's" data-sizes="XS,S,M,L">
               <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
-                <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-womens.svg" alt="FLEXFIT 01 Women's" width="400" height="500">
-                <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-womens.svg" alt="FLEXFIT 01 Women's back" width="400" height="500">
+                <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-womens.jpg" alt="FLEXFIT 01 Women's" width="400" height="500">
+                <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-womens.jpg" alt="FLEXFIT 01 Women's back" width="400" height="500">
                 <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10302" aria-label="Quick add to bag">QUICK ADD</button>
               </a>
-              <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 Women's<span class="mock-indicator" aria-hidden="true">MOCK</span></a></div>
+              <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 Women's</a></div>
               <div class="product-card__price">₹2,299</div>
               <div class="product-card__swatches">
                 <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
@@ -1615,7 +1617,7 @@ function buildLoginPage() {
     <!-- Shopify customer accounts note: Classic customer templates are utilized here for full bespoke UI parity; Shopify hosted customer accounts restrict custom design tokens. -->
     <div class="auth-page">
       <div class="auth-page__image">
-        <img src="/assets/mock/login-editorial.svg" alt="VYRO Performance Medical Apparel" width="600" height="800">
+        <img src="/assets/mock/login-editorial.jpg" alt="VYRO Performance Medical Apparel" width="600" height="800">
       </div>
       <div class="auth-page__form-side">
         <form class="auth-form js-auth-login" novalidate>
@@ -1669,7 +1671,7 @@ function buildRegisterPage() {
     <!-- Shopify customer accounts note: Classic customer templates are utilized here for full bespoke UI parity; Shopify hosted customer accounts restrict custom design tokens. -->
     <div class="auth-page">
       <div class="auth-page__image">
-        <img src="/assets/mock/login-editorial.svg" alt="VYRO Performance Medical Apparel" width="600" height="800">
+        <img src="/assets/mock/login-editorial.jpg" alt="VYRO Performance Medical Apparel" width="600" height="800">
       </div>
       <div class="auth-page__form-side">
         <form class="auth-form js-auth-register" novalidate>
@@ -1746,7 +1748,7 @@ function buildForgotPasswordPage() {
     <!-- Shopify customer accounts note: Classic customer templates are utilized here for full bespoke UI parity; Shopify hosted customer accounts restrict custom design tokens. -->
     <div class="auth-page">
       <div class="auth-page__image">
-        <img src="/assets/mock/login-editorial.svg" alt="VYRO Performance Medical Apparel" width="600" height="800">
+        <img src="/assets/mock/login-editorial.jpg" alt="VYRO Performance Medical Apparel" width="600" height="800">
       </div>
       <div class="auth-page__form-side">
         <form class="auth-form js-auth-forgot" novalidate>
@@ -1882,6 +1884,12 @@ const server = http.createServer((req, res) => {
   if (pathname.startsWith('/assets/')) {
     let filePath = path.join(ROOT, pathname);
 
+    // If an .svg or .webp is requested but a real photograph .jpg counterpart exists, serve the .jpg
+    if (filePath.endsWith('.svg') || filePath.endsWith('.webp')) {
+      const jpgPath = filePath.replace(/\.(svg|webp)$/, '.jpg');
+      if (fs.existsSync(jpgPath)) filePath = jpgPath;
+    }
+
     // If a .webp is requested but an .svg counterpart exists, serve the .svg
     if (!fs.existsSync(filePath) && pathname.endsWith('.webp')) {
       const svgPath = filePath.replace('.webp', '.svg');
@@ -1891,6 +1899,9 @@ const server = http.createServer((req, res) => {
     if (fs.existsSync(filePath)) {
       const ext = path.extname(filePath).toLowerCase();
       const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
       res.writeHead(200, { 'Content-Type': contentType });
       fs.createReadStream(filePath).pipe(res);
       return;

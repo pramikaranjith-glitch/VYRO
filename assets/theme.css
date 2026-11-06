@@ -478,18 +478,31 @@ h4, .h4 { font-size: var(--text-lg); }
    7. ANNOUNCEMENT BAR
    -------------------------------------------------------------------------- */
 
-.announcement-bar {
-  position: fixed;
+/* --------------------------------------------------------------------------
+   7. ANNOUNCEMENT BAR & STICKY HEADER WRAPPER
+   -------------------------------------------------------------------------- */
+
+.site-header-wrapper {
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
-  z-index: var(--z-announcement);
+  width: 100%;
+  z-index: var(--z-header);
+  background-color: var(--ivory);
+}
+
+.announcement-bar {
+  position: relative;
+  width: 100%;
   height: var(--ann-height);
   background-color: var(--navy);
   color: var(--ivory);
   display: flex;
   align-items: center;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .announcement-bar__inner {
@@ -572,16 +585,15 @@ h4, .h4 { font-size: var(--text-lg); }
    -------------------------------------------------------------------------- */
 
 .site-header {
-  position: fixed;
-  top: var(--ann-height);
-  left: 0;
-  right: 0;
-  z-index: var(--z-header);
+  position: relative;
+  width: 100%;
   height: var(--nav-height);
   background-color: var(--ivory);
   color: var(--navy);
   display: flex;
   align-items: center;
+  border-bottom: var(--border-hairline);
+  box-shadow: 0 1px 4px rgba(16, 30, 53, 0.04);
   transition:
     border-bottom var(--duration-base) var(--ease-out-cubic),
     box-shadow    var(--duration-base) var(--ease-out-cubic);
@@ -594,11 +606,19 @@ h4, .h4 { font-size: var(--text-lg); }
 
 .site-header__inner {
   width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-inline: var(--container-pad);
   gap: var(--space-4);
+  height: 100%;
+  flex-wrap: nowrap;
+}
+
+.site-header__left {
+  display: none;
 }
 
 /* Logo */
@@ -822,7 +842,7 @@ h4, .h4 { font-size: var(--text-lg); }
    -------------------------------------------------------------------------- */
 
 .site-body {
-  padding-top: calc(var(--ann-height) + var(--nav-height));
+  padding-top: 0;
 }
 
 /* --------------------------------------------------------------------------
@@ -1155,14 +1175,26 @@ h4, .h4 { font-size: var(--text-lg); }
 
 /* Mobile nav breakpoint */
 @media (max-width: 1023px) {
-  .site-nav { display: none; }
-  .hamburger { display: flex; }
+  .site-header__left {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
 
   .site-header__inner {
     gap: var(--space-2);
   }
 
   .site-logo {
+    flex: 1;
     justify-content: center;
   }
 
@@ -1172,7 +1204,10 @@ h4, .h4 { font-size: var(--text-lg); }
 }
 
 @media (min-width: 1024px) {
-  .hamburger { display: none; }
+  .site-header__left,
+  .hamburger {
+    display: none !important;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1423,7 +1458,7 @@ h4, .h4 { font-size: var(--text-lg); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center top;
 }
 
 /* Navy legibility gradient — left on desktop, bottom on mobile */
@@ -3410,8 +3445,13 @@ h4, .h4 { font-size: var(--text-lg); }
 .d-flex { display: flex; }
 .d-grid { display: grid; }
 
-/* Mock data badge (dev only) */
+/* Mock data badge (dev only: hidden by default, brand tokens only) */
 .mock-badge {
+  display: none !important;
+}
+
+body.show-mock-badge .mock-badge {
+  display: block !important;
   position: fixed;
   bottom: 16px;
   left: 16px;
@@ -3479,40 +3519,37 @@ h4, .h4 { font-size: var(--text-lg); }
 }
 
 .mock-indicator {
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  background: var(--navy);
-  color: rgba(244, 241, 233, 0.6);
-  padding: 1px 4px;
-  border-radius: 1px;
-  vertical-align: super;
-  display: inline-block;
-  margin-left: 4px;
+  display: none !important;
 }
 
 /* Account Drawer */
 .account-drawer {
+  display: none !important;
   position: fixed;
-  top: calc(var(--ann-height) + var(--nav-height));
-  right: 0;
+  top: calc(var(--ann-height) + var(--nav-height) + 8px);
+  right: var(--space-4);
   width: min(320px, 90vw);
   background: var(--ivory);
   border: var(--border-hairline);
-  border-top: none;
-  z-index: calc(var(--z-drawer) - 10);
-  transform: translateY(-10px);
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    opacity var(--duration-base) var(--ease-out-cubic),
-    transform var(--duration-base) var(--ease-out-cubic);
+  z-index: var(--z-drawer);
   box-shadow: var(--shadow-md);
 }
 
 .account-drawer.is-open {
-  transform: translateY(0);
-  opacity: 1;
+  display: block !important;
+  animation: drawer-fade-down 0.2s var(--ease-out-cubic);
+}
+
+@keyframes drawer-fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   pointer-events: auto;
 }
 

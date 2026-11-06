@@ -50,7 +50,7 @@
   </noscript>
 
   <!-- Critical CSS: Theme System -->
-  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}?v=1793952000">
 
   <!-- Preload hero image (populated by hero section) -->
   {{ content_for_header }}
@@ -102,11 +102,11 @@
   <!-- Cart Drawer -->
   {%- section 'cart-drawer' -%}
 
-  <!-- Announcement Bar -->
-  {%- section 'announcement-bar' -%}
-
-  <!-- Site Header / Navigation -->
-  {%- section 'header' -%}
+  <!-- Sticky Header Wrapper: Announcement Bar + Ivory Nav -->
+  <div class="site-header-wrapper">
+    {%- section 'announcement-bar' -%}
+    {%- section 'header' -%}
+  </div>
 
   <!-- Main Content -->
   <main id="main-content" class="site-body" tabindex="-1">

@@ -36,7 +36,7 @@
       "vendor": "VYRO",
       "collection": "flexfit-01",
       "price": 2299,
-      "compare_at_price": 2799,
+      "compare_at_price": null,
       "currency": "INR",
       "currency_symbol": "₹",
       "isMock": true,
@@ -123,12 +123,12 @@
     {
       "id": 102,
       "handle": "flexfit-01-sage-placeholder",
-      "title": "FLEXFIT 01 — Sage [MOCK]",
+      "title": "FLEXFIT 01 — Sage",
       "subtitle": "Two-Piece Performance Scrub Set",
       "vendor": "VYRO",
       "collection": "mens-collection",
       "price": 2299,
-      "compare_at_price": 2799,
+      "compare_at_price": null,
       "currency": "INR",
       "currency_symbol": "₹",
       "isMock": true,
@@ -137,7 +137,7 @@
       "images": [
         {
           "src": "/assets/mock/product-front-sage.webp",
-          "alt": "FLEXFIT 01 Sage [MOCK] — Front view"
+          "alt": "FLEXFIT 01 Sage — Front view"
         }
       ],
       "options": [
@@ -180,12 +180,12 @@
     {
       "id": 103,
       "handle": "flexfit-01-womens-midnight-navy-placeholder",
-      "title": "FLEXFIT 01 Women's — Midnight Navy [MOCK]",
+      "title": "FLEXFIT 01 Women's — Midnight Navy",
       "subtitle": "Tailored Two-Piece Scrub Set",
       "vendor": "VYRO",
       "collection": "womens-collection",
       "price": 2299,
-      "compare_at_price": 2799,
+      "compare_at_price": null,
       "currency": "INR",
       "currency_symbol": "₹",
       "isMock": true,
@@ -194,7 +194,7 @@
       "images": [
         {
           "src": "/assets/mock/product-front-womens.webp",
-          "alt": "FLEXFIT 01 Women's Midnight Navy [MOCK] — Front view"
+          "alt": "FLEXFIT 01 Women's Midnight Navy — Front view"
         }
       ],
       "options": [

@@ -1,0 +1,92 @@
+/* ==========================================================================
+   VYRO DESIGN SYSTEM — tokens.css
+   Brand Colours: --navy: #101E35, --ivory: #F4F1E9, --silver: #D5D9DF,
+                  --sage: #84958C, --white: #FFFFFF, --ivory-grey: #E8E5DD
+   ========================================================================== */
+
+:root {
+  /* Colour palette */
+  --navy:    #101E35;
+  --ivory:   #F4F1E9;
+  --silver:  #D5D9DF;
+  --sage:    #84958C;
+  --white:   #FFFFFF;
+  --ivory-grey: #E8E5DD; /* derived tint for diagonal philosophy panel */
+
+  /* Semantic aliases */
+  --color-bg:          var(--ivory);
+  --color-text:        var(--navy);
+  --color-muted:       #4A5568;
+  --color-border:      var(--silver);
+  --color-accent:      var(--sage);
+  --color-surface:     var(--white);
+  --color-dark-bg:     var(--navy);
+  --color-dark-text:   var(--ivory);
+
+  /* Typography */
+  --font-heading: 'Manrope', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  /* Fluid type scale using clamp() */
+  --text-xs:   clamp(0.625rem, 0.5vw + 0.5rem, 0.75rem);    /* 10–12px */
+  --text-sm:   clamp(0.75rem,  0.6vw + 0.6rem, 0.875rem);   /* 12–14px */
+  --text-base: clamp(0.9375rem, 0.5vw + 0.75rem, 1.0625rem); /* 15–17px */
+  --text-md:   clamp(1rem,     0.8vw + 0.8rem, 1.25rem);    /* 16–20px */
+  --text-lg:   clamp(1.125rem, 1vw + 0.75rem, 1.5rem);      /* 18–24px */
+  --text-xl:   clamp(1.5rem,   2vw + 0.75rem, 2.25rem);     /* 24–36px */
+  --text-2xl:  clamp(2rem,     3vw + 0.75rem, 3.5rem);      /* 32–56px */
+  --text-3xl:  clamp(2.5rem,   4vw + 0.75rem, 5rem);        /* 40–80px */
+  --text-hero: clamp(2.75rem,  5vw + 0.5rem, 6rem);         /* 44–96px */
+
+  /* Spacing — 8px base scale */
+  --space-1:  0.5rem;    /* 8px */
+  --space-2:  1rem;      /* 16px */
+  --space-3:  1.5rem;    /* 24px */
+  --space-4:  2rem;      /* 32px */
+  --space-5:  2.5rem;    /* 40px */
+  --space-6:  3rem;      /* 48px */
+  --space-8:  4rem;      /* 64px */
+  --space-10: 5rem;      /* 80px */
+  --space-12: 6rem;      /* 96px */
+  --space-16: 8rem;      /* 128px */
+  --space-20: 10rem;     /* 160px */
+
+  /* Section vertical rhythm */
+  --section-gap-sm: clamp(var(--space-8), 8vw, var(--space-12));
+  --section-gap-md: clamp(var(--space-12), 10vw, var(--space-16));
+  --section-gap-lg: clamp(var(--space-12), 12vw, var(--space-20));
+
+  /* Border radius — sharp/minimal */
+  --radius-sm: 1px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-pill: 100px;
+
+  /* Borders */
+  --border-hairline: 1px solid var(--silver);
+  --border-dark:     1px solid var(--navy);
+
+  /* Motion tokens */
+  --duration-fast:   200ms;
+  --duration-base:   300ms;
+  --duration-slow:   400ms;
+  --ease-out-cubic:  cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in-out:     cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Shadows — sparing */
+  --shadow-sm:   0 1px 3px rgba(16, 30, 53, 0.08);
+  --shadow-md:   0 4px 16px rgba(16, 30, 53, 0.1);
+
+  /* Z-index scale */
+  --z-announcement: 100;
+  --z-header:       90;
+  --z-drawer:       200;
+  --z-modal:        300;
+  --z-overlay:      250;
+
+  /* Layout */
+  --container-max: 1440px;
+  --container-pad: clamp(var(--space-3), 5vw, var(--space-10));
+  --nav-height:    68px;
+  --ann-height:    40px;
+}

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="le-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#101E35"/>
+      <stop offset="60%" stop-color="#15243d"/>
+      <stop offset="100%" stop-color="#0a1322"/>
+    </linearGradient>
+    <linearGradient id="light-beam" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F4F1E9" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#F4F1E9" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#le-bg)"/>
+  <!-- Minimalist architectural lines -->
+  <polygon points="100,0 260,0 420,800 260,800" fill="url(#light-beam)"/>
+  <line x1="160" y1="0" x2="160" y2="800" stroke="#D5D9DF" stroke-width="0.75" opacity="0.15"/>
+  <line x1="440" y1="0" x2="440" y2="800" stroke="#D5D9DF" stroke-width="0.75" opacity="0.15"/>
+  <line x1="0" y1="620" x2="600" y2="620" stroke="#84958C" stroke-width="0.75" opacity="0.2"/>
+  <!-- Tall confident clinician silhouette in midnight navy scrubs -->
+  <g fill="none" stroke="#F4F1E9" stroke-width="1.8" opacity="0.65" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Head / profile -->
+    <circle cx="300" cy="180" r="32" stroke-width="1.5"/>
+    <!-- V-neck scrub collar -->
+    <path d="M285 220 L300 245 L315 220"/>
+    <!-- Torso and athletic scrub silhouette -->
+    <path d="M260 225 C235 230 200 248 180 275 L205 335 L242 320 L242 490 L358 490 L358 320 L395 335 L420 275 C400 248 365 230 340 225 Z"/>
+    <!-- Concealed chest pocket & waist drape -->
+    <line x1="265" y1="330" x2="310" y2="330" stroke="#84958C" stroke-width="1.5"/>
+    <path d="M275 250 L272 490 M325 250 L328 490" stroke="#84958C" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+    <!-- Athletic tapered scrub pants -->
+    <path d="M246 505 L354 505 L342 740 L305 740 L300 560 L295 740 L258 740 Z" opacity="0.6"/>
+  </g>
+</svg>

@@ -58,8 +58,8 @@ The catalog contains temporary products created exclusively to test collection f
 | Product Title | Handle | Mock Status | Purpose | Deletion Flag |
 |---|---|---|---|---|
 | **FLEXFIT 01 — Midnight Navy** | `flexfit-01-midnight-navy` | Core Mock (Real Collection) | Anchor product for all homepage and PDP testing. Size XL set to out-of-stock for test validation. | **KEEP:** Update variant IDs and price when real Shopify catalog is populated. |
-| **FLEXFIT 01 — Sage [MOCK]** | `flexfit-01-sage-placeholder` | Test Product | Verifies collection filter by color (Sage), swatches, and multi-product grid. | **DELETE BEFORE LAUNCH** |
-| **FLEXFIT 01 Women's — Midnight Navy [MOCK]** | `flexfit-01-womens-midnight-navy-placeholder` | Test Product | Verifies gender filter (Women's), category hierarchy, and XS variant sizing. | **DELETE BEFORE LAUNCH** |
+| **FLEXFIT 01 — Sage** | `flexfit-01-sage-placeholder` | Test Product | Verifies collection filter by color (Sage), swatches, and multi-product grid. | **DELETE BEFORE LAUNCH** |
+| **FLEXFIT 01 Women's — Midnight Navy** | `flexfit-01-womens-midnight-navy-placeholder` | Test Product | Verifies gender filter (Women's), category hierarchy, and XS variant sizing. | **DELETE BEFORE LAUNCH** |
 
 ---
 

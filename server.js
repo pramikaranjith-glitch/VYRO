@@ -83,7 +83,7 @@ function renderAnnouncementBar() {
     </div>
     <script>
       (function(){
-        var msgs = ["Free Shipping Across India", "Easy Returns | 30-Day Policy"];
+        var msgs = ["Free Shipping Across India | Easy Returns"];
         var el = document.querySelector('.js-ann-message');
         if (!el) return;
         var idx = 0;
@@ -180,12 +180,12 @@ function renderHeader() {
             </svg>
           </button>
 
-          <a href="/account" class="nav-icon-btn nav-icon-btn--account" aria-label="Account">
+          <button type="button" class="nav-icon-btn nav-icon-btn--account js-account-open" aria-label="Account" aria-expanded="false" aria-controls="account-drawer">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="8" r="4"/>
               <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke-linecap="round"/>
             </svg>
-          </a>
+          </button>
 
           <button class="nav-icon-btn js-cart-open" aria-label="Open cart" aria-controls="cart-drawer">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -198,6 +198,15 @@ function renderHeader() {
         </div>
       </div>
     </header>
+
+    <div class="account-drawer" id="account-drawer" role="dialog" aria-modal="false" aria-label="Account">
+      <div class="account-drawer__inner">
+        <div class="account-drawer__title">Account</div>
+        <a href="/account/login" class="btn btn--primary btn--full" style="margin-top:var(--space-2);">Sign In</a>
+        <a href="/account/register" class="btn btn--outline btn--full">Create Account</a>
+        <p class="account-drawer__note">Authentication will connect to Shopify customer accounts once the store is set up.</p>
+      </div>
+    </div>
   `;
 }
 
@@ -1120,7 +1129,6 @@ function buildProductPage() {
             <h1 class="product-info__name">FLEXFIT 01 — Midnight Navy</h1>
             <p style="font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:var(--space-2);">VYRO Medical Wear</p>
             <div class="product-info__price" id="product-price">
-              <span style="text-decoration:line-through;opacity:0.4;font-size:var(--text-md);margin-right:6px;">₹2,799</span>
               ₹2,299
             </div>
             <p style="font-size:var(--text-xs);letter-spacing:0.08em;color:var(--sage);margin-top:4px;">Two-piece performance scrub set</p>
@@ -1177,8 +1185,8 @@ function buildProductPage() {
             <div style="display:flex;gap:8px;align-items:flex-start;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5" aria-hidden="true"><path d="M3 12A9 9 0 1021 12 9 9 0 003 12M12 8V12L15 15" stroke-linecap="round"/></svg>
               <div>
-                <div style="font-weight:600;text-transform:uppercase;margin-bottom:2px;">30-Day Returns</div>
-                <div style="color:var(--sage);">Easy &amp; free exchanges</div>
+                <div style="font-weight:600;text-transform:uppercase;margin-bottom:2px;">Easy Returns</div>
+                <div style="color:var(--sage);">Free Shipping Across India</div>
               </div>
             </div>
           </div>
@@ -1244,6 +1252,73 @@ function buildProductPage() {
       </div>
     </div>
 
+    <!-- Complete the Look (Related Products) -->
+    <section class="section reveal" aria-label="Complete the look" style="padding-top:var(--space-8);padding-bottom:var(--space-10);border-top:var(--border-hairline);margin-top:var(--space-10);">
+      <div class="container">
+        <div class="section__header" style="text-align:left;margin-bottom:var(--space-6);">
+          <span class="eyebrow eyebrow--sage">Complete the Look</span>
+          <h2 class="h3" style="margin-top:var(--space-1);">You May Also Like</h2>
+        </div>
+        <div class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:var(--space-6);">
+          <article class="product-card" aria-label="FLEXFIT 01 — Sage">
+            <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
+              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-sage.svg" alt="FLEXFIT 01 Sage" width="400" height="500">
+              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-sage.svg" alt="FLEXFIT 01 Sage back" width="400" height="500">
+              <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10202" aria-label="Quick add to bag">QUICK ADD</button>
+            </a>
+            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Sage<span class="mock-indicator" aria-hidden="true">MOCK</span></a></div>
+            <div class="product-card__price">₹2,299</div>
+            <div class="product-card__swatches">
+              <span class="product-card__swatch is-active" style="background:#84958C;" title="Sage"></span>
+            </div>
+            <div class="product-card__sizes">
+              <span class="product-card__size-label">S</span>
+              <span class="product-card__size-label">M</span>
+              <span class="product-card__size-label" style="text-decoration:line-through;opacity:0.3;">L</span>
+            </div>
+          </article>
+
+          <article class="product-card" aria-label="FLEXFIT 01 Women's — Midnight Navy">
+            <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
+              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-womens.svg" alt="FLEXFIT 01 Women's" width="400" height="500">
+              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-womens.svg" alt="FLEXFIT 01 Women's back" width="400" height="500">
+              <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10302" aria-label="Quick add to bag">QUICK ADD</button>
+            </a>
+            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 Women's<span class="mock-indicator" aria-hidden="true">MOCK</span></a></div>
+            <div class="product-card__price">₹2,299</div>
+            <div class="product-card__swatches">
+              <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
+            </div>
+            <div class="product-card__sizes">
+              <span class="product-card__size-label">XS</span>
+              <span class="product-card__size-label">S</span>
+              <span class="product-card__size-label">M</span>
+              <span class="product-card__size-label">L</span>
+            </div>
+          </article>
+
+          <article class="product-card" aria-label="FLEXFIT 01 — Midnight Navy">
+            <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
+              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front.svg" alt="FLEXFIT 01 Midnight Navy" width="400" height="500">
+              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back.svg" alt="FLEXFIT 01 Midnight Navy back" width="400" height="500">
+              <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10102" aria-label="Quick add to bag">QUICK ADD</button>
+            </a>
+            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Midnight Navy</a></div>
+            <div class="product-card__price">₹2,299</div>
+            <div class="product-card__swatches">
+              <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
+            </div>
+            <div class="product-card__sizes">
+              <span class="product-card__size-label">S</span>
+              <span class="product-card__size-label">M</span>
+              <span class="product-card__size-label">L</span>
+              <span class="product-card__size-label" style="text-decoration:line-through;opacity:0.3;">XL</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Mobile Sticky ATB -->
     <div class="mobile-sticky-atb" role="complementary" aria-label="Quick add to bag">
       <div style="flex:1;">
@@ -1279,7 +1354,7 @@ function buildProductPage() {
 function buildCollectionPage() {
   const content = `
     <div class="container">
-      <div style="padding-block:var(--space-8);border-bottom:var(--border-hairline);margin-bottom:var(--space-6);">
+      <div style="padding-block:var(--space-5);border-bottom:var(--border-hairline);margin-bottom:var(--space-5);">
         <span class="eyebrow eyebrow--sage" style="margin-bottom:var(--space-2);">VYRO Collection</span>
         <h1 class="h2" style="margin-bottom:0;">All Products</h1>
         <p style="margin-top:var(--space-2);font-size:var(--text-md);color:var(--sage);max-width:600px;">
@@ -1294,22 +1369,22 @@ function buildCollectionPage() {
 
           <div class="filter-group">
             <div class="filter-group__label">Size</div>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0"><span class="filter-checkbox"></span> S (3)</label>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0"><span class="filter-checkbox"></span> M (3)</label>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0"><span class="filter-checkbox"></span> L (3)</label>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0"><span class="filter-checkbox"></span> XL (1)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="S"><span class="filter-checkbox"></span> S (3)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="M"><span class="filter-checkbox"></span> M (3)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="L"><span class="filter-checkbox"></span> L (3)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="XL"><span class="filter-checkbox"></span> XL (1)</label>
           </div>
 
           <div class="filter-group">
             <div class="filter-group__label">Colour</div>
-            <label class="filter-option is-active" role="checkbox" aria-checked="true" tabindex="0"><span class="filter-checkbox"></span> Midnight Navy (2)</label>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0"><span class="filter-checkbox"></span> Sage (1)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Midnight Navy"><span class="filter-checkbox"></span> Midnight Navy (2)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Sage"><span class="filter-checkbox"></span> Sage (1)</label>
           </div>
 
           <div class="filter-group">
             <div class="filter-group__label">Gender</div>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0"><span class="filter-checkbox"></span> Men's (2)</label>
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0"><span class="filter-checkbox"></span> Women's (1)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Men's"><span class="filter-checkbox"></span> Men's (2)</label>
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Women's"><span class="filter-checkbox"></span> Women's (1)</label>
           </div>
         </aside>
 
@@ -1328,6 +1403,10 @@ function buildCollectionPage() {
                 <option value="price-desc">Price: High to Low</option>
               </select>
             </div>
+          </div>
+
+          <div class="active-filter-chips" id="active-chips" style="display:none; gap:8px; flex-wrap:wrap; margin-bottom:16px;">
+            <!-- chips added by JS -->
           </div>
 
           <div class="products-grid">
@@ -1352,13 +1431,13 @@ function buildCollectionPage() {
             </article>
 
             <!-- Card 2 -->
-            <article class="product-card" aria-label="FLEXFIT 01 — Sage [MOCK]">
+            <article class="product-card" aria-label="FLEXFIT 01 — Sage">
               <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
                 <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-sage.svg" alt="FLEXFIT 01 Sage" width="400" height="500">
                 <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-sage.svg" alt="FLEXFIT 01 Sage back" width="400" height="500">
                 <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10202" aria-label="Quick add to bag">QUICK ADD</button>
               </a>
-              <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Sage [MOCK]</a></div>
+              <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Sage<span class="mock-indicator" aria-hidden="true">MOCK</span></a></div>
               <div class="product-card__price">₹2,299</div>
               <div class="product-card__swatches">
                 <span class="product-card__swatch is-active" style="background:#84958C;" title="Sage"></span>
@@ -1371,13 +1450,13 @@ function buildCollectionPage() {
             </article>
 
             <!-- Card 3 -->
-            <article class="product-card" aria-label="FLEXFIT 01 Women's — Midnight Navy [MOCK]">
+            <article class="product-card" aria-label="FLEXFIT 01 Women's — Midnight Navy">
               <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
                 <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-womens.svg" alt="FLEXFIT 01 Women's" width="400" height="500">
                 <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-womens.svg" alt="FLEXFIT 01 Women's back" width="400" height="500">
                 <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10302" aria-label="Quick add to bag">QUICK ADD</button>
               </a>
-              <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 Women's [MOCK]</a></div>
+              <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 Women's<span class="mock-indicator" aria-hidden="true">MOCK</span></a></div>
               <div class="product-card__price">₹2,299</div>
               <div class="product-card__swatches">
                 <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
@@ -1515,6 +1594,270 @@ function buildEditorialPage(title, headline, bodyText) {
     </div>
   `;
   return renderPage(content, title, 'page');
+}
+
+// Build Login Page
+function buildLoginPage() {
+  const content = `
+    <!-- Shopify customer accounts note: Classic customer templates are utilized here for full bespoke UI parity; Shopify hosted customer accounts restrict custom design tokens. -->
+    <div class="auth-page">
+      <div class="auth-page__image">
+        <img src="/assets/mock/login-editorial.svg" alt="VYRO Performance Medical Apparel" width="600" height="800">
+      </div>
+      <div class="auth-page__form-side">
+        <form class="auth-form js-auth-login" novalidate>
+          <div>
+            <div class="auth-form__eyebrow">VYRO Account</div>
+            <h1 class="auth-form__title">Sign In</h1>
+          </div>
+
+          <div class="form-field">
+            <label class="form-field__label" for="login-email">Email Address</label>
+            <input class="form-field__input" type="email" id="login-email" name="email" autocomplete="email" required placeholder="doctor@hospital.in">
+            <div class="form-field__error" id="login-email-error">Please enter a valid email address.</div>
+          </div>
+
+          <div class="form-field form-field--password">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <label class="form-field__label" for="login-password">Password</label>
+              <a href="/account/forgot-password" class="auth-form__link" style="font-size:var(--text-xs);">Forgot password?</a>
+            </div>
+            <div class="form-field__password-wrap">
+              <input class="form-field__input" type="password" id="login-password" name="password" autocomplete="current-password" required placeholder="••••••••">
+              <button type="button" class="form-field__password-toggle js-pwd-toggle" aria-label="Toggle password visibility">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div class="form-field__error" id="login-password-error">Password is required.</div>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full btn--lg" style="margin-top:var(--space-2);">
+            SIGN IN
+          </button>
+
+          <div class="auth-form__links" style="justify-content:center;gap:var(--space-1);margin-top:var(--space-1);">
+            <span style="color:var(--sage);">Don't have an account?</span>
+            <a href="/account/register" class="auth-form__link">Create account</a>
+          </div>
+
+          <div class="auth-form__note">
+            Authentication will connect to Shopify customer accounts once the store is set up.
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+  return renderPage(content, 'Sign In — VYRO', 'account-login');
+}
+
+// Build Register Page
+function buildRegisterPage() {
+  const content = `
+    <!-- Shopify customer accounts note: Classic customer templates are utilized here for full bespoke UI parity; Shopify hosted customer accounts restrict custom design tokens. -->
+    <div class="auth-page">
+      <div class="auth-page__image">
+        <img src="/assets/mock/login-editorial.svg" alt="VYRO Performance Medical Apparel" width="600" height="800">
+      </div>
+      <div class="auth-page__form-side">
+        <form class="auth-form js-auth-register" novalidate>
+          <div>
+            <div class="auth-form__eyebrow">Join VYRO</div>
+            <h1 class="auth-form__title">Create Account</h1>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+            <div class="form-field">
+              <label class="form-field__label" for="reg-fname">First Name</label>
+              <input class="form-field__input" type="text" id="reg-fname" name="first_name" autocomplete="given-name" required placeholder="Pramika">
+              <div class="form-field__error" id="reg-fname-error">First name required.</div>
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="reg-lname">Last Name</label>
+              <input class="form-field__input" type="text" id="reg-lname" name="last_name" autocomplete="family-name" required placeholder="Ranjith">
+              <div class="form-field__error" id="reg-lname-error">Last name required.</div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-field__label" for="reg-email">Email Address</label>
+            <input class="form-field__input" type="email" id="reg-email" name="email" autocomplete="email" required placeholder="doctor@hospital.in">
+            <div class="form-field__error" id="reg-email-error">Please enter a valid email address.</div>
+          </div>
+
+          <div class="form-field form-field--password">
+            <label class="form-field__label" for="reg-password">Password</label>
+            <div class="form-field__password-wrap">
+              <input class="form-field__input" type="password" id="reg-password" name="password" autocomplete="new-password" required placeholder="At least 6 characters">
+              <button type="button" class="form-field__password-toggle js-pwd-toggle" aria-label="Toggle password visibility">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div class="form-field__error" id="reg-password-error">Password must be at least 6 characters.</div>
+          </div>
+
+          <div class="form-field form-field--password">
+            <label class="form-field__label" for="reg-confirm">Confirm Password</label>
+            <div class="form-field__password-wrap">
+              <input class="form-field__input" type="password" id="reg-confirm" name="confirm_password" autocomplete="new-password" required placeholder="Confirm password">
+            </div>
+            <div class="form-field__error" id="reg-confirm-error">Passwords must match.</div>
+          </div>
+
+          <label class="form-checkbox">
+            <input type="checkbox" name="marketing_opt_in" id="reg-optin">
+            <span>Keep me informed on new performance colourways, sizing drops, and clinical apparel innovations.</span>
+          </label>
+
+          <button type="submit" class="btn btn--primary btn--full btn--lg" style="margin-top:var(--space-2);">
+            CREATE ACCOUNT
+          </button>
+
+          <div class="auth-form__links" style="justify-content:center;gap:var(--space-1);margin-top:var(--space-1);">
+            <span style="color:var(--sage);">Already registered?</span>
+            <a href="/account/login" class="auth-form__link">Sign in</a>
+          </div>
+
+          <div class="auth-form__note">
+            Authentication will connect to Shopify customer accounts once the store is set up.
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+  return renderPage(content, 'Create Account — VYRO', 'account-register');
+}
+
+// Build Forgot Password Page
+function buildForgotPasswordPage() {
+  const content = `
+    <!-- Shopify customer accounts note: Classic customer templates are utilized here for full bespoke UI parity; Shopify hosted customer accounts restrict custom design tokens. -->
+    <div class="auth-page">
+      <div class="auth-page__image">
+        <img src="/assets/mock/login-editorial.svg" alt="VYRO Performance Medical Apparel" width="600" height="800">
+      </div>
+      <div class="auth-page__form-side">
+        <form class="auth-form js-auth-forgot" novalidate>
+          <div>
+            <div class="auth-form__eyebrow">Recovery</div>
+            <h1 class="auth-form__title">Reset Password</h1>
+            <p style="font-size:var(--text-xs);color:var(--sage);margin-top:var(--space-1);line-height:1.6;">
+              Enter your registered clinical email to receive recovery instructions.
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label class="form-field__label" for="forgot-email">Email Address</label>
+            <input class="form-field__input" type="email" id="forgot-email" name="email" autocomplete="email" required placeholder="doctor@hospital.in">
+            <div class="form-field__error" id="forgot-email-error">Please enter a valid email address.</div>
+          </div>
+
+          <div class="form-field__note js-forgot-success" style="display:none;padding:var(--space-3);background:var(--ivory-grey);border:var(--border-hairline);border-radius:var(--radius-sm);color:var(--navy);font-size:var(--text-xs);line-height:1.6;">
+            If an account exists with this email address, password reset instructions have been dispatched.
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full btn--lg">
+            SEND RESET LINK
+          </button>
+
+          <div class="auth-form__links" style="justify-content:center;margin-top:var(--space-1);">
+            <a href="/account/login" class="auth-form__link">Back to Sign In</a>
+          </div>
+
+          <div class="auth-form__note">
+            Authentication will connect to Shopify customer accounts once the store is set up.
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+  return renderPage(content, 'Reset Password — VYRO', 'account-forgot');
+}
+
+// Build Account Dashboard Page
+function buildAccountPage() {
+  const content = `
+    <!-- Shopify customer accounts note: Classic customer templates are utilized here for full bespoke UI parity; Shopify hosted customer accounts restrict custom design tokens. -->
+    <div class="container section">
+      <div style="border-bottom:var(--border-hairline);padding-bottom:var(--space-6);margin-bottom:var(--space-8);">
+        <span class="eyebrow eyebrow--sage">Clinical Concierge</span>
+        <h1 class="h2" style="margin-top:var(--space-1);margin-bottom:0;">My Account</h1>
+      </div>
+
+      <div class="account-dashboard">
+        <aside class="account-sidebar" aria-label="Account navigation">
+          <div class="account-sidebar__title">Navigation</div>
+          <nav class="account-nav">
+            <a href="#orders" class="account-nav__link is-active js-account-tab-btn" data-tab="orders">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+              Orders
+            </a>
+            <a href="#addresses" class="account-nav__link js-account-tab-btn" data-tab="addresses">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Addresses
+            </a>
+            <a href="#profile" class="account-nav__link js-account-tab-btn" data-tab="profile">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              Profile
+            </a>
+            <a href="/account/login" class="account-nav__link account-nav__link--signout">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+              Sign Out
+            </a>
+          </nav>
+        </aside>
+
+        <main class="account-main">
+          <!-- Orders Tab -->
+          <div class="js-account-tab" id="tab-orders">
+            <h2 class="h4" style="margin-bottom:var(--space-4);">Order History</h2>
+            <div class="account-content__empty">
+              <svg class="account-content__empty-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+              <div class="account-content__empty-title">No Orders Yet</div>
+              <p style="font-size:var(--text-sm);color:var(--sage);max-width:440px;line-height:1.6;">
+                You haven't placed any orders yet. Once you make your first order, tracking and details will appear here.
+              </p>
+              <a href="/collections/all" class="btn btn--primary" style="margin-top:var(--space-2);">
+                Explore Collection <span class="btn__arrow">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Addresses Tab -->
+          <div class="js-account-tab" id="tab-addresses" style="display:none;">
+            <h2 class="h4" style="margin-bottom:var(--space-4);">Saved Addresses</h2>
+            <div class="account-content__empty">
+              <div class="account-content__empty-title">No Addresses Saved</div>
+              <p style="font-size:var(--text-sm);color:var(--sage);max-width:440px;line-height:1.6;">
+                No addresses saved yet. Your shipping details will be stored securely during your first checkout.
+              </p>
+            </div>
+          </div>
+
+          <!-- Profile Tab -->
+          <div class="js-account-tab" id="tab-profile" style="display:none;">
+            <h2 class="h4" style="margin-bottom:var(--space-4);">Profile Details</h2>
+            <div style="max-width:440px;display:flex;flex-direction:column;gap:var(--space-3);">
+              <div>
+                <span style="font-size:var(--text-xs);letter-spacing:0.08em;text-transform:uppercase;color:var(--sage);">Status</span>
+                <p style="font-weight:600;margin-top:2px;">Guest / Preview Session</p>
+              </div>
+              <div>
+                <span style="font-size:var(--text-xs);letter-spacing:0.08em;text-transform:uppercase;color:var(--sage);">Integration Status</span>
+                <p style="font-size:var(--text-xs);color:var(--sage);margin-top:2px;line-height:1.6;">
+                  Sign in to access your account. Authentication connects to Shopify once the store is live.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="auth-form__note" style="margin-top:var(--space-8);">
+            Sign in to access your account. Authentication connects to Shopify once the store is live.
+          </div>
+        </main>
+      </div>
+    </div>
+  `;
+  return renderPage(content, 'Account Dashboard — VYRO', 'account');
 }
 
 // Request Handler
@@ -1732,6 +2075,31 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Customer Account Routes
+  if (pathname === '/account/login') {
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(buildLoginPage());
+    return;
+  }
+
+  if (pathname === '/account/register') {
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(buildRegisterPage());
+    return;
+  }
+
+  if (pathname === '/account/forgot-password') {
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(buildForgotPasswordPage());
+    return;
+  }
+
+  if (pathname === '/account') {
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(buildAccountPage());
+    return;
+  }
+
   // Fallback 404
   res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
   res.end(build404Page());
@@ -1749,6 +2117,9 @@ server.listen(PORT, () => {
   console.log(`  • Product (FLEXFIT): http://localhost:${PORT}/products/flexfit-01-midnight-navy`);
   console.log(`  • Collections:      http://localhost:${PORT}/collections/all`);
   console.log(`  • Cart:             http://localhost:${PORT}/cart`);
+  console.log(`  • Login:            http://localhost:${PORT}/account/login`);
+  console.log(`  • Register:         http://localhost:${PORT}/account/register`);
+  console.log(`  • Account:          http://localhost:${PORT}/account`);
   console.log(`  • Our Story:        http://localhost:${PORT}/pages/our-story`);
   console.log(`  • Technology:       http://localhost:${PORT}/pages/technology`);
   console.log(`  • Contact:          http://localhost:${PORT}/pages/contact`);

@@ -450,7 +450,7 @@ function refreshCartDrawer() {
 // Add to bag buttons
 document.addEventListener('click', function(e) {
   var btn = e.target.closest('.js-add-to-cart');
-  if (!btn) return;
+  if (!btn || btn.classList.contains('product-card__quick-add')) return;
 
   var variantId = getSelectedSize();
   if (!variantId) {
@@ -901,5 +901,254 @@ on($('.js-search-open'), 'click', function() {
   // For now, alert is replaced by a no-op for production readiness
   console.log('VYRO: Search overlay — INTEGRATION PENDING');
 });
+
+/* ============================================================
+   ACCOUNT DRAWER TOGGLE
+   ============================================================ */
+
+(function() {
+  var trigger = $('.js-account-open');
+  var drawer = $('#account-drawer');
+  if (!trigger || !drawer) return;
+
+  function toggleDrawer(open) {
+    var isOpen = open !== undefined ? open : !drawer.classList.contains('is-open');
+    drawer.classList.toggle('is-open', isOpen);
+    trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+
+  on(trigger, 'click', function(e) {
+    e.stopPropagation();
+    toggleDrawer();
+  });
+
+  document.addEventListener('click', function(e) {
+    if (drawer.classList.contains('is-open') && !drawer.contains(e.target) && !trigger.contains(e.target)) {
+      toggleDrawer(false);
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+      toggleDrawer(false);
+      trigger.focus();
+    }
+  });
+})();
+
+/* ============================================================
+   AUTH PAGES & VALIDATION (Login, Register, Forgot Password)
+   ============================================================ */
+
+(function() {
+  // Password Visibility Toggles
+  $$('.js-pwd-toggle').forEach(function(toggle) {
+    on(toggle, 'click', function() {
+      var input = toggle.closest('.form-field__password-wrap').querySelector('input');
+      if (!input) return;
+      var isPassword = input.getAttribute('type') === 'password';
+      input.setAttribute('type', isPassword ? 'text' : 'password');
+      toggle.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+    });
+  });
+
+  // Helper function for field errors
+  function setFieldError(field, errorEl, hasError) {
+    if (field) field.classList.toggle('is-error', hasError);
+    if (errorEl) errorEl.classList.toggle('is-visible', hasError);
+  }
+
+  // Email validator
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  // Login Form
+  var loginForm = $('.js-auth-login');
+  if (loginForm) {
+    on(loginForm, 'submit', function(e) {
+      e.preventDefault();
+      var email = $('#login-email');
+      var password = $('#login-password');
+      var emailErr = $('#login-email-error');
+      var pwdErr = $('#login-password-error');
+
+      var valid = true;
+      if (!email.value.trim() || !isValidEmail(email.value.trim())) {
+        setFieldError(email, emailErr, true);
+        valid = false;
+      } else {
+        setFieldError(email, emailErr, false);
+      }
+
+      if (!password.value.trim()) {
+        setFieldError(password, pwdErr, true);
+        valid = false;
+      } else {
+        setFieldError(password, pwdErr, false);
+      }
+
+      if (valid) {
+        // Never simulate successful sign-in; keep Shopify note visible
+        console.log('VYRO Auth: Validation passed. Connecting to Shopify customer accounts.');
+      }
+    });
+  }
+
+  // Register Form
+  var regForm = $('.js-auth-register');
+  if (regForm) {
+    on(regForm, 'submit', function(e) {
+      e.preventDefault();
+      var fname = $('#reg-fname');
+      var lname = $('#reg-lname');
+      var email = $('#reg-email');
+      var pwd = $('#reg-password');
+      var confirm = $('#reg-confirm');
+
+      var fnameErr = $('#reg-fname-error');
+      var lnameErr = $('#reg-lname-error');
+      var emailErr = $('#reg-email-error');
+      var pwdErr = $('#reg-password-error');
+      var confirmErr = $('#reg-confirm-error');
+
+      var valid = true;
+
+      if (!fname.value.trim()) { setFieldError(fname, fnameErr, true); valid = false; }
+      else { setFieldError(fname, fnameErr, false); }
+
+      if (!lname.value.trim()) { setFieldError(lname, lnameErr, true); valid = false; }
+      else { setFieldError(lname, lnameErr, false); }
+
+      if (!email.value.trim() || !isValidEmail(email.value.trim())) { setFieldError(email, emailErr, true); valid = false; }
+      else { setFieldError(email, emailErr, false); }
+
+      if (!pwd.value || pwd.value.length < 6) { setFieldError(pwd, pwdErr, true); valid = false; }
+      else { setFieldError(pwd, pwdErr, false); }
+
+      if (!confirm.value || confirm.value !== pwd.value) { setFieldError(confirm, confirmErr, true); valid = false; }
+      else { setFieldError(confirm, confirmErr, false); }
+
+      if (valid) {
+        console.log('VYRO Auth: Register form validated. Connecting to Shopify customer accounts.');
+      }
+    });
+  }
+
+  // Forgot Password Form
+  var forgotForm = $('.js-auth-forgot');
+  if (forgotForm) {
+    on(forgotForm, 'submit', function(e) {
+      e.preventDefault();
+      var email = $('#forgot-email');
+      var err = $('#forgot-email-error');
+      var successNotice = $('.js-forgot-success');
+
+      if (!email.value.trim() || !isValidEmail(email.value.trim())) {
+        setFieldError(email, err, true);
+        if (successNotice) successNotice.style.display = 'none';
+      } else {
+        setFieldError(email, err, false);
+        if (successNotice) {
+          successNotice.style.display = 'block';
+          successNotice.setAttribute('role', 'alert');
+        }
+      }
+    });
+  }
+
+  // Account Dashboard Tab Switching
+  $$('.js-account-tab-btn').forEach(function(btn) {
+    on(btn, 'click', function(e) {
+      e.preventDefault();
+      var tabId = btn.dataset.tab;
+      $$('.js-account-tab-btn').forEach(function(b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+
+      $$('.js-account-tab').forEach(function(tab) {
+        tab.style.display = tab.id === 'tab-' + tabId ? 'block' : 'none';
+      });
+    });
+  });
+})();
+
+/* ============================================================
+   COLLECTION SORTING & FILTERING
+   ============================================================ */
+
+(function() {
+  var sortSelect = $('.sort-select');
+  var grid = $('.products-grid');
+  var chipsBar = $('#active-chips');
+  if (!grid) return;
+
+  // Sorting
+  if (sortSelect) {
+    on(sortSelect, 'change', function() {
+      var val = sortSelect.value;
+      var cards = Array.from(grid.querySelectorAll('.product-card'));
+      if (cards.length === 0) return;
+
+      cards.sort(function(a, b) {
+        var priceA = parseInt((a.querySelector('.product-card__price') || {}).textContent.replace(/[^0-9]/g, '') || '0', 10);
+        var priceB = parseInt((b.querySelector('.product-card__price') || {}).textContent.replace(/[^0-9]/g, '') || '0', 10);
+        var nameA = ((a.querySelector('.product-card__name') || {}).textContent || '').trim();
+        var nameB = ((b.querySelector('.product-card__name') || {}).textContent || '').trim();
+
+        if (val === 'price-asc') return priceA - priceB;
+        if (val === 'price-desc') return priceB - priceA;
+        if (val === 'newest') return nameB.localeCompare(nameA);
+        return 0; // featured default
+      });
+
+      cards.forEach(function(card) { grid.appendChild(card); });
+    });
+  }
+
+  // Filter options and active chips
+  var filterOptions = $$('.filter-sidebar .filter-option');
+  if (filterOptions.length > 0) {
+    filterOptions.forEach(function(opt) {
+      on(opt, 'click', function() {
+        var isActive = opt.classList.toggle('is-active');
+        opt.setAttribute('aria-checked', isActive ? 'true' : 'false');
+        updateFilterChips();
+      });
+
+      on(opt, 'keydown', function(e) {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          opt.click();
+        }
+      });
+    });
+  }
+
+  function updateFilterChips() {
+    if (!chipsBar) return;
+    var activeOpts = $$('.filter-sidebar .filter-option.is-active');
+    if (activeOpts.length === 0) {
+      chipsBar.style.display = 'none';
+      chipsBar.innerHTML = '';
+      return;
+    }
+
+    chipsBar.style.display = 'flex';
+    chipsBar.innerHTML = '';
+    activeOpts.forEach(function(opt) {
+      var labelText = opt.textContent.trim().replace(/\s*\(\d+\)$/, '');
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'btn btn--outline';
+      chip.style.cssText = 'padding:4px 10px;font-size:11px;height:auto;gap:6px;';
+      chip.innerHTML = '<span>' + labelText + '</span> <span aria-hidden="true" style="font-weight:700;">×</span>';
+      chip.setAttribute('aria-label', 'Remove filter ' + labelText);
+      on(chip, 'click', function() {
+        opt.click();
+      });
+      chipsBar.appendChild(chip);
+    });
+  }
+})();
 
 console.log('%cVYRO Theme loaded. WEAR THE PROFESSIONAL YOU.', 'color:#84958C;font-weight:700;font-size:12px;');

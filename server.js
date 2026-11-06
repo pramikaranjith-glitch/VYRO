@@ -287,8 +287,8 @@ function renderHero() {
         <div class="hero__slide is-active" aria-hidden="false">
           <img
             class="hero__slide-img"
-            src="/assets/mock/hero-slide-1.jpg"
-            alt="Two healthcare professionals in athletic-fit midnight navy medical apparel"
+            src="/assets/mock/hero-slide-1.jpg?v=1793955"
+            alt="Healthcare professionals walking through minimalist clinical architecture in midnight navy scrubs"
             fetchpriority="high"
             width="1920"
             height="840"
@@ -296,25 +296,25 @@ function renderHero() {
           <div class="hero__gradient" aria-hidden="true"></div>
 
           <!-- Hotspot feature indicators pointing to on-model performance garments -->
-          <div class="hero__hotspot-tag" style="top: 36%; right: 26%;">
+          <div class="hero__hotspot-tag" style="top: 42%; left: 34%;">
             <span class="hero__hotspot-dot"></span>
-            FLEXFIT 01 • Midnight Navy
+            FLEXFIT 01 • Women's Fit
           </div>
-          <div class="hero__hotspot-tag" style="top: 52%; right: 38%;">
+          <div class="hero__hotspot-tag" style="top: 38%; left: 54%;">
             <span class="hero__hotspot-dot"></span>
             4-Way Mechanical Stretch
           </div>
-          <div class="hero__hotspot-tag" style="top: 68%; right: 20%;">
+          <div class="hero__hotspot-tag" style="top: 68%; left: 50%;">
             <span class="hero__hotspot-dot"></span>
-            Concealed Zipper Pocket
+            Reinforced Pocket Seams
           </div>
         </div>
 
         <div class="hero__slide" aria-hidden="true">
           <img
             class="hero__slide-img"
-            src="/assets/mock/hero-slide-2.jpg"
-            alt="Healthcare professional in midnight navy scrubs walking through sunlit corridor"
+            src="/assets/mock/hero-slide-2.jpg?v=1793955"
+            alt="Surgeon reviewing patient data in midnight navy scrubs"
             loading="lazy"
             width="1920"
             height="840"
@@ -325,8 +325,8 @@ function renderHero() {
         <div class="hero__slide" aria-hidden="true">
           <img
             class="hero__slide-img"
-            src="/assets/mock/hero-slide-3.jpg"
-            alt="Seated portrait of clinician wearing midnight navy medical wear"
+            src="/assets/mock/hero-slide-3.jpg?v=1793955"
+            alt="Clinician in sunlit medical corridor in midnight navy scrubs"
             loading="lazy"
             width="1920"
             height="840"
@@ -410,40 +410,95 @@ function renderMarqueeTicker() {
   `;
 }
 
-// Render Shop By Categories Pill Strip
+// Render Shop By Categories (Spacious, creative, seamless luxury gallery)
 function renderShopByCategories() {
   return `
-    <section class="category-strip" aria-label="Shop by categories">
+    <section class="category-strip reveal" aria-label="Shop by categories">
       <div class="container">
-        <h2 class="category-strip__title">Shop By Categories</h2>
-        <div class="category-strip__row">
-          <a href="/collections/all?gender=Women%27s" class="category-pill">
-            <img class="category-pill__img" src="/assets/mock/product-front-womens.jpg" alt="Women's Medical Scrubs" width="40" height="40" loading="lazy">
-            <span class="category-pill__label">Women's</span>
+        <div class="category-strip__header">
+          <div>
+            <span class="eyebrow eyebrow--sage">Curated Equipment</span>
+            <h2 class="category-strip__title">Shop By Categories</h2>
+          </div>
+          <div class="category-strip__nav" aria-label="Category navigation">
+            <button type="button" class="category-nav-btn js-cat-prev" aria-label="Previous categories">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="category-nav-btn js-cat-next" aria-label="Next categories">
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="category-track js-cat-track">
+          <a href="/collections/all?gender=Women%27s" class="category-card">
+            <img class="category-card__img" src="/assets/mock/product-front-womens.jpg?v=1793955" alt="Women's Medical Scrubs" width="300" height="400" loading="lazy">
+            <div class="category-card__overlay"></div>
+            <span class="category-card__tag">Core Set</span>
+            <div class="category-card__content">
+              <div class="category-card__title">Women's Scrubs</div>
+              <div class="category-card__action">Explore Collection <span aria-hidden="true">→</span></div>
+            </div>
           </a>
-          <a href="/collections/all?gender=Men%27s" class="category-pill">
-            <img class="category-pill__img" src="/assets/mock/product-front.jpg" alt="Men's Medical Scrubs" width="40" height="40" loading="lazy">
-            <span class="category-pill__label">Men's</span>
+
+          <a href="/collections/all?gender=Men%27s" class="category-card">
+            <img class="category-card__img" src="/assets/mock/product-front.jpg?v=1793955" alt="Men's Medical Scrubs" width="300" height="400" loading="lazy">
+            <div class="category-card__overlay"></div>
+            <span class="category-card__tag">Athletic Fit</span>
+            <div class="category-card__content">
+              <div class="category-card__title">Men's Scrubs</div>
+              <div class="category-card__action">Explore Collection <span aria-hidden="true">→</span></div>
+            </div>
           </a>
-          <a href="/collections/all" class="category-pill">
-            <img class="category-pill__img" src="/assets/mock/hero-slide-1.jpg" alt="FLEXFIT 01 Sets" width="40" height="40" loading="lazy">
-            <span class="category-pill__label">FLEXFIT 01 Sets</span>
+
+          <a href="/collections/all" class="category-card">
+            <img class="category-card__img" src="/assets/mock/hero-slide-1.jpg?v=1793955" alt="FLEXFIT 01 Sets" width="300" height="400" loading="lazy">
+            <div class="category-card__overlay"></div>
+            <span class="category-card__tag">Complete Set</span>
+            <div class="category-card__content">
+              <div class="category-card__title">FLEXFIT 01 Sets</div>
+              <div class="category-card__action">Explore Collection <span aria-hidden="true">→</span></div>
+            </div>
           </a>
-          <a href="/collections/all" class="category-pill">
-            <img class="category-pill__img" src="/assets/mock/lab-coat-front.jpg" alt="Executive Lab Coats" width="40" height="40" loading="lazy">
-            <span class="category-pill__label">Executive Lab Coats</span>
+
+          <a href="/collections/all?category=Lab+Coats" class="category-card">
+            <img class="category-card__img" src="/assets/mock/lab-coat-front.jpg?v=1793955" alt="Executive Lab Coats" width="300" height="400" loading="lazy">
+            <div class="category-card__overlay"></div>
+            <span class="category-card__tag">Executive</span>
+            <div class="category-card__content">
+              <div class="category-card__title">Executive Lab Coats</div>
+              <div class="category-card__action">Explore Collection <span aria-hidden="true">→</span></div>
+            </div>
           </a>
-          <a href="/collections/all" class="category-pill">
-            <img class="category-pill__img" src="/assets/mock/cargo-pant-front.jpg" alt="Kinetic Cargo Pants" width="40" height="40" loading="lazy">
-            <span class="category-pill__label">Cargo Pants</span>
+
+          <a href="/collections/all" class="category-card">
+            <img class="category-card__img" src="/assets/mock/cargo-pant-front.jpg?v=1793955" alt="Kinetic Cargo Pants" width="300" height="400" loading="lazy">
+            <div class="category-card__overlay"></div>
+            <span class="category-card__tag">8 Pockets</span>
+            <div class="category-card__content">
+              <div class="category-card__title">Cargo Pants</div>
+              <div class="category-card__action">Explore Collection <span aria-hidden="true">→</span></div>
+            </div>
           </a>
-          <a href="/collections/all" class="category-pill">
-            <img class="category-pill__img" src="/assets/mock/base-layer-front.jpg" alt="Shift Base Layers" width="40" height="40" loading="lazy">
-            <span class="category-pill__label">Shift Base Layers</span>
+
+          <a href="/collections/all?category=Essentials" class="category-card">
+            <img class="category-card__img" src="/assets/mock/base-layer-front.jpg?v=1793955" alt="Shift Base Layers" width="300" height="400" loading="lazy">
+            <div class="category-card__overlay"></div>
+            <span class="category-card__tag">Thermal Reg</span>
+            <div class="category-card__content">
+              <div class="category-card__title">Base Layers</div>
+              <div class="category-card__action">Explore Collection <span aria-hidden="true">→</span></div>
+            </div>
           </a>
-          <a href="/collections/all" class="category-pill">
-            <img class="category-pill__img" src="/assets/mock/scrub-cap-front.jpg" alt="Ergonomic Scrub Caps" width="40" height="40" loading="lazy">
-            <span class="category-pill__label">Scrub Caps</span>
+
+          <a href="/collections/all" class="category-card">
+            <img class="category-card__img" src="/assets/mock/scrub-cap-front.jpg?v=1793955" alt="Fluid-Shield Scrub Caps" width="300" height="400" loading="lazy">
+            <div class="category-card__overlay"></div>
+            <span class="category-card__tag">Fluid Shield</span>
+            <div class="category-card__content">
+              <div class="category-card__title">Scrub Caps</div>
+              <div class="category-card__action">Explore Collection <span aria-hidden="true">→</span></div>
+            </div>
           </a>
         </div>
       </div>
@@ -451,42 +506,62 @@ function renderShopByCategories() {
   `;
 }
 
-// Render Shop By Colours Visual Family Cards
+// Render Shop By Colours (Seamless, spacious, creative visual cards)
 function renderShopByColours() {
   return `
-    <section class="colours-section" aria-label="Shop by colours">
+    <section class="colours-section reveal" aria-label="Shop by colours">
       <div class="container">
-        <h2 class="colours-section__title">Shop By Colours</h2>
+        <div style="margin-bottom:var(--space-6);">
+          <span class="eyebrow eyebrow--sage">Clinical Colorways</span>
+          <h2 class="colours-section__title">Shop By Colours</h2>
+        </div>
+
         <div class="colours-grid">
           <a href="/collections/all?colour=Midnight+Navy" class="colour-card">
-            <img class="colour-card__preview" src="/assets/mock/pocket-detail.jpg" alt="Midnight Navy Scrubs" loading="lazy" width="300" height="180">
-            <div class="colour-card__info">
-              <span class="colour-card__name">All Blues (Midnight Navy)</span>
-              <span class="colour-card__dot" style="background:#101E35;"></span>
+            <img class="colour-card__preview" src="/assets/mock/product-front.jpg?v=1793955" alt="Midnight Navy Scrubs" loading="lazy" width="400" height="500">
+            <div class="colour-card__overlay"></div>
+            <div class="colour-card__footer">
+              <div class="colour-card__meta">
+                <span class="colour-card__dot" style="background:#101E35;"></span>
+                <span class="colour-card__name">Midnight Navy</span>
+              </div>
+              <span class="colour-card__family">All Blues</span>
             </div>
           </a>
 
           <a href="/collections/all?colour=Sage" class="colour-card">
-            <img class="colour-card__preview" src="/assets/mock/product-front-sage.jpg" alt="Muted Sage Scrubs" loading="lazy" width="300" height="180">
-            <div class="colour-card__info">
-              <span class="colour-card__name">All Greens (Muted Sage)</span>
-              <span class="colour-card__dot" style="background:#84958C;"></span>
+            <img class="colour-card__preview" src="/assets/mock/product-front-sage.jpg?v=1793955" alt="Muted Sage Scrubs" loading="lazy" width="400" height="500">
+            <div class="colour-card__overlay"></div>
+            <div class="colour-card__footer">
+              <div class="colour-card__meta">
+                <span class="colour-card__dot" style="background:#84958C;"></span>
+                <span class="colour-card__name">Muted Sage</span>
+              </div>
+              <span class="colour-card__family">All Greens</span>
             </div>
           </a>
 
           <a href="/collections/all?colour=Midnight+Navy" class="colour-card">
-            <img class="colour-card__preview" src="/assets/mock/cargo-pant-front.jpg" alt="Shadow Black Scrubs" loading="lazy" width="300" height="180">
-            <div class="colour-card__info">
-              <span class="colour-card__name">All Darks (Shadow Black)</span>
-              <span class="colour-card__dot" style="background:#18181b;"></span>
+            <img class="colour-card__preview" src="/assets/mock/cargo-pant-front.jpg?v=1793955" alt="Shadow Black Scrubs" loading="lazy" width="400" height="500">
+            <div class="colour-card__overlay"></div>
+            <div class="colour-card__footer">
+              <div class="colour-card__meta">
+                <span class="colour-card__dot" style="background:#18181b;"></span>
+                <span class="colour-card__name">Shadow Black</span>
+              </div>
+              <span class="colour-card__family">All Darks</span>
             </div>
           </a>
 
           <a href="/collections/all?colour=Stark+White" class="colour-card">
-            <img class="colour-card__preview" src="/assets/mock/lab-coat-front.jpg" alt="Stark White Lab Coats" loading="lazy" width="300" height="180">
-            <div class="colour-card__info">
-              <span class="colour-card__name">All Whites (Stark White)</span>
-              <span class="colour-card__dot" style="background:#FFFFFF;border:1px solid #D5D9DF;"></span>
+            <img class="colour-card__preview" src="/assets/mock/lab-coat-front.jpg?v=1793955" alt="Stark White Executive Lab Coat" loading="lazy" width="400" height="500">
+            <div class="colour-card__overlay"></div>
+            <div class="colour-card__footer">
+              <div class="colour-card__meta">
+                <span class="colour-card__dot" style="background:#FFFFFF;border:1px solid #D5D9DF;"></span>
+                <span class="colour-card__name">Stark White</span>
+              </div>
+              <span class="colour-card__family">All Whites</span>
             </div>
           </a>
         </div>
@@ -497,8 +572,12 @@ function renderShopByColours() {
 
 // Reusable Product Card Component
 function renderProductCard(p) {
-  const defaultImg = p.featured_image || '/assets/mock/product-front.jpg';
-  const hoverImg = p.hover_image || defaultImg;
+  const defaultImg = (p.featured_image || '/assets/mock/product-front.jpg').includes('?') 
+    ? (p.featured_image || '/assets/mock/product-front.jpg') 
+    : `${p.featured_image || '/assets/mock/product-front.jpg'}?v=1793955`;
+  const hoverImg = (p.hover_image || defaultImg).includes('?')
+    ? (p.hover_image || defaultImg)
+    : `${p.hover_image || defaultImg}?v=1793955`;
   const firstVariantId = p.variants && p.variants[0] ? p.variants[0].id : 10101;
   const colourVal = (p.options && p.options.find(o => o.name === 'Colour')) ? p.options.find(o => o.name === 'Colour').values[0] : 'Midnight Navy';
   const sizes = p.variants ? p.variants.map(v => v.title.split(' / ')[1] || v.title).join(',') : 'S,M,L';
@@ -583,8 +662,10 @@ function renderProductCarousel(title, subtitle, filterType) {
     items = products.filter(p => p.collection === 'flexfit-01');
   } else if (filterType === 'essentials') {
     items = products.filter(p => p.collection === 'essentials' || p.collection === 'lab-coats');
+  } else if (filterType === 'all') {
+    items = products;
   } else {
-    items = products.slice(0, 4);
+    items = products.slice(0, 6);
   }
 
   const cardsHtml = items.map(p => renderProductCard(p)).join('\n');
@@ -615,7 +696,7 @@ function renderProductCarousel(title, subtitle, filterType) {
   `;
 }
 
-// Render Featured Product Section (3-column split)
+// Render Featured Product Section (3-column split with full on-model portrait)
 function renderFeaturedProduct() {
   return `
     <section class="featured-product reveal" aria-label="Featured product: FLEXFIT 01">
@@ -625,28 +706,38 @@ function renderFeaturedProduct() {
         <span style="opacity:0.3">03</span>
       </div>
 
+      <!-- Column 1: Full-Bleed On-Model Portrait with View Switcher -->
       <div class="featured-product__images">
-        <img
-          class="featured-product__img-front"
-          src="/assets/mock/product-front.jpg"
-          alt="FLEXFIT 01 Midnight Navy — Front view"
-          loading="lazy"
-          width="400"
-          height="500"
-        >
-        <img
-          class="featured-product__img-back"
-          src="/assets/mock/product-back.jpg"
-          alt="FLEXFIT 01 Midnight Navy — Back view"
-          loading="lazy"
-          width="400"
-          height="500"
-        >
+        <div class="featured-product__canvas">
+          <img
+            class="featured-product__img is-active"
+            id="featured-img-front"
+            src="/assets/mock/product-front.jpg?v=1793955"
+            alt="FLEXFIT 01 Midnight Navy — On-Model Front View"
+            loading="lazy"
+            width="600"
+            height="750"
+          >
+          <img
+            class="featured-product__img"
+            id="featured-img-back"
+            src="/assets/mock/product-back.jpg?v=1793955"
+            alt="FLEXFIT 01 Midnight Navy — On-Model Back View"
+            loading="lazy"
+            width="600"
+            height="750"
+          >
+          <div class="featured-product__toggle-wrap">
+            <button type="button" class="featured-product__view-toggle is-active js-featured-view" data-view="front">Front View</button>
+            <button type="button" class="featured-product__view-toggle js-featured-view" data-view="back">Back View</button>
+          </div>
+        </div>
       </div>
 
+      <!-- Column 2: Product Detail & Actions -->
       <div class="featured-product__info">
         <div class="featured-product__collection eyebrow">
-          The First Collection
+          The Inaugural Collection
         </div>
 
         <h2 class="featured-product__name">
@@ -691,17 +782,18 @@ function renderFeaturedProduct() {
         </div>
 
         <a href="/products/flexfit-01-midnight-navy" class="link-underline" style="margin-top:var(--space-3);font-size:var(--text-xs);color:var(--sage);">
-          View full details <span aria-hidden="true">→</span>
+          View full garment specifications <span aria-hidden="true">→</span>
         </a>
       </div>
 
+      <!-- Column 3: Macro Pocket Bleed -->
       <img
         class="featured-product__pocket"
-        src="/assets/mock/pocket-detail.jpg"
-        alt="FLEXFIT 01 — Concealed zippered pocket detail"
+        src="/assets/mock/pocket-detail.jpg?v=1793955"
+        alt="FLEXFIT 01 — Concealed zippered pocket construction"
         loading="lazy"
-        width="400"
-        height="500"
+        width="500"
+        height="650"
       >
     </section>
   `;
@@ -756,124 +848,156 @@ function renderFeatureStrip() {
   `;
 }
 
-// Render Anatomy Section
+// Render Anatomy Section (Apple Pro style Motion Graphic HUD with photographic visuals and live macro telemetry)
 function renderAnatomy() {
   return `
     <section class="anatomy-section section reveal" id="anatomy" aria-label="FLEXFIT 01 Anatomy">
       <div class="container">
         <div class="anatomy-section__inner">
-          <div class="anatomy-image-wrap" aria-label="FLEXFIT 01 garment diagram with labelled features">
-            <div style="width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#0d1826 0%,#1a2f52 100%);border:1px solid rgba(244,241,233,0.1);border-radius:var(--radius-sm);position:relative;display:flex;align-items:center;justify-content:center;">
-              <svg width="220" height="280" viewBox="0 0 220 280" fill="none" aria-hidden="true" style="opacity:0.85;">
-                <path d="M110 30 C80 30 55 45 55 45 L15 95 L40 125 L65 110 V250 H155 V110 L180 125 L205 95 L165 45 S140 30 110 30 Z" stroke="#F4F1E9" stroke-width="1.5" fill="rgba(244,241,233,0.03)"/>
-                <path d="M85 30 L110 75 L135 30" stroke="#84958C" stroke-width="1.5"/>
-                <rect x="70" y="90" width="35" height="40" rx="2" stroke="#84958C" stroke-width="1.5" stroke-dasharray="2 2" fill="none"/>
-                <line x1="110" y1="75" x2="110" y2="250" stroke="rgba(244,241,233,0.15)" stroke-width="1" stroke-dasharray="3 3"/>
-              </svg>
+          <!-- Left Column: Interactive Motion Graphic HUD -->
+          <div class="anatomy-hud" aria-label="Interactive garment engineering visualizer">
+            <div class="anatomy-hud__grid-bg" aria-hidden="true"></div>
+            
+            <div class="anatomy-hud__telemetry">
+              <span class="anatomy-hud__coord">SPEC // FLEXFIT 01-NAVY</span>
+              <span class="anatomy-hud__status">SYSTEMS: OPTIMAL</span>
+            </div>
 
-              <!-- Hotspot 1: Neckline -->
-              <div class="hotspot" style="left:50%;top:18%;" data-hotspot-num="1">
-                <div class="hotspot__dot" role="button" tabindex="0" aria-label="Feature 1: Contoured V-Neckline" aria-expanded="false">
-                  <span class="hotspot__number" aria-hidden="true">1</span>
-                </div>
-                <div class="hotspot__tooltip" role="tooltip">
-                  <div class="hotspot__tooltip-label">Contoured V-Neckline</div>
-                  <div class="hotspot__tooltip-desc">Engineered bonded facing that lies flat against the collarbone without chafing during long procedures.</div>
-                </div>
+            <!-- Central Garment Photographic Visualizer -->
+            <div class="anatomy-hud__canvas">
+              <img
+                class="anatomy-hud__garment-img"
+                src="/assets/mock/product-front.jpg?v=1793955"
+                alt="VYRO FLEXFIT 01 Scrub Top Engineering Anatomy"
+                width="500"
+                height="650"
+              >
+
+              <!-- Pulsating Radar Beacons -->
+              <!-- 01 Collar -->
+              <div class="radar-beacon is-active" style="left: 50%; top: 16%;" data-hotspot-num="1" role="button" tabindex="0" aria-label="Feature 1: Contoured V-Neckline">
+                <div class="radar-beacon__ring"></div>
+                <div class="radar-beacon__dot"><span>01</span></div>
               </div>
 
-              <!-- Hotspot 2: Shoulder -->
-              <div class="hotspot" style="left:26%;top:30%;" data-hotspot-num="2">
-                <div class="hotspot__dot" role="button" tabindex="0" aria-label="Feature 2: Articulated Shoulder Panel" aria-expanded="false">
-                  <span class="hotspot__number" aria-hidden="true">2</span>
-                </div>
-                <div class="hotspot__tooltip" role="tooltip">
-                  <div class="hotspot__tooltip-label">Articulated Shoulder Yoke</div>
-                  <div class="hotspot__tooltip-desc">Forward-shifted shoulder seams prevent compression under heavy lead aprons and stethoscopes.</div>
-                </div>
+              <!-- 02 Shoulder -->
+              <div class="radar-beacon" style="left: 24%; top: 28%;" data-hotspot-num="2" role="button" tabindex="0" aria-label="Feature 2: Articulated Shoulder Yoke">
+                <div class="radar-beacon__ring"></div>
+                <div class="radar-beacon__dot"><span>02</span></div>
               </div>
 
-              <!-- Hotspot 3: Pocket -->
-              <div class="hotspot" style="left:40%;top:42%;" data-hotspot-num="3">
-                <div class="hotspot__dot" role="button" tabindex="0" aria-label="Feature 3: Concealed Pen & Chest Pocket" aria-expanded="false">
-                  <span class="hotspot__number" aria-hidden="true">3</span>
-                </div>
-                <div class="hotspot__tooltip" role="tooltip">
-                  <div class="hotspot__tooltip-label">Drop-In Chest Pocket</div>
-                  <div class="hotspot__tooltip-desc">Deep-welded pocket sized for clinical pagers, smartphones, and diagnostic penlights with zero sag.</div>
-                </div>
+              <!-- 03 Chest Pocket -->
+              <div class="radar-beacon" style="left: 42%; top: 40%;" data-hotspot-num="3" role="button" tabindex="0" aria-label="Feature 3: Drop-In Chest Pocket">
+                <div class="radar-beacon__ring"></div>
+                <div class="radar-beacon__dot"><span>03</span></div>
               </div>
 
-              <!-- Hotspot 4: Stitching -->
-              <div class="hotspot" style="left:72%;top:56%;" data-hotspot-num="4">
-                <div class="hotspot__dot" role="button" tabindex="0" aria-label="Feature 4: Reinforced Flatlock Stitching" aria-expanded="false">
-                  <span class="hotspot__number" aria-hidden="true">4</span>
-                </div>
-                <div class="hotspot__tooltip" role="tooltip">
-                  <div class="hotspot__tooltip-label">Bar-Tack Reinforcement</div>
-                  <div class="hotspot__tooltip-desc">Double-needle flatlock construction tested for high-stress torsional pull and industrial laundering.</div>
-                </div>
+              <!-- 04 Reinforcement Stitching -->
+              <div class="radar-beacon" style="left: 74%; top: 56%;" data-hotspot-num="4" role="button" tabindex="0" aria-label="Feature 4: Bar-Tack Reinforcement">
+                <div class="radar-beacon__ring"></div>
+                <div class="radar-beacon__dot"><span>04</span></div>
               </div>
 
-              <!-- Hotspot 5: Fabric -->
-              <div class="hotspot" style="left:50%;top:74%;" data-hotspot-num="5">
-                <div class="hotspot__dot" role="button" tabindex="0" aria-label="Feature 5: 4-Way Performance Weave" aria-expanded="false">
-                  <span class="hotspot__number" aria-hidden="true">5</span>
+              <!-- 05 Stretch Micro-Weave -->
+              <div class="radar-beacon" style="left: 50%; top: 76%;" data-hotspot-num="5" role="button" tabindex="0" aria-label="Feature 5: 4-Way Mechanical Stretch">
+                <div class="radar-beacon__ring"></div>
+                <div class="radar-beacon__dot"><span>05</span></div>
+              </div>
+            </div>
+
+            <!-- Interactive Macro Zoom HUD Lens -->
+            <div class="anatomy-hud__lens" id="anatomy-hud-lens">
+              <div class="anatomy-hud__lens-inner">
+                <div class="anatomy-hud__lens-header">
+                  <span class="anatomy-hud__lens-tag" id="anatomy-hud-tag">MAGNIFICATION: 8X</span>
+                  <span class="anatomy-hud__lens-live">● LIVE SPEC</span>
                 </div>
-                <div class="hotspot__tooltip" role="tooltip">
-                  <div class="hotspot__tooltip-label">4-Way Mechanical Stretch</div>
-                  <div class="hotspot__tooltip-desc">Poly-elastane micro-weave providing rapid thermal moisture management and silent stretch.</div>
+                <div class="anatomy-hud__lens-img-wrap">
+                  <img
+                    class="anatomy-hud__lens-img"
+                    id="anatomy-hud-img"
+                    src="/assets/mock/fabric-macro.jpg?v=1793955"
+                    alt="Technical detail magnification"
+                    width="160"
+                    height="120"
+                  >
+                  <div class="anatomy-hud__scan-line" aria-hidden="true"></div>
+                </div>
+                <div class="anatomy-hud__lens-footer">
+                  <div class="anatomy-hud__lens-title" id="anatomy-hud-title">Contoured V-Neckline</div>
+                  <div class="anatomy-hud__lens-readout" id="anatomy-hud-readout">DUAL-PLY FLATLOCK BOND // 0 CHAFE</div>
                 </div>
               </div>
             </div>
           </div>
 
+          <!-- Right Column: Interactive Callout Modules -->
           <div class="anatomy-info">
-            <span class="eyebrow eyebrow--light" style="margin-bottom:var(--space-4);">
+            <span class="eyebrow eyebrow--light">
               The Anatomy of FLEXFIT
             </span>
             <h2 class="h2" style="color:var(--ivory);margin-bottom:var(--space-6);">
               ENGINEERED IN DETAIL.
             </h2>
 
-            <div class="anatomy-callout-list">
-              <div class="anatomy-callout-item" data-hotspot-num="1" tabindex="0" role="button">
-                <div class="anatomy-callout-item__num">01</div>
-                <div>
-                  <div class="anatomy-callout-item__title">Contoured V-Neckline</div>
-                  <div class="anatomy-callout-item__desc">Structured flat-lay collar prevents friction against surgical scrubs and diagnostic leads.</div>
+            <div class="anatomy-modules" role="tablist" aria-label="Engineering specifications">
+              <div class="anatomy-module is-active" data-hotspot-num="1" role="tab" tabindex="0" aria-selected="true">
+                <div class="anatomy-module__bar"></div>
+                <div class="anatomy-module__num">01</div>
+                <div class="anatomy-module__content">
+                  <div class="anatomy-module__header">
+                    <h3 class="anatomy-module__title">Contoured V-Neckline</h3>
+                    <span class="anatomy-module__spec">Dual-ply bond</span>
+                  </div>
+                  <p class="anatomy-module__desc">Structured flat-lay collar prevents friction against surgical scrubs, chains, and diagnostic leads during procedures.</p>
                 </div>
               </div>
 
-              <div class="anatomy-callout-item" data-hotspot-num="2" tabindex="0" role="button">
-                <div class="anatomy-callout-item__num">02</div>
-                <div>
-                  <div class="anatomy-callout-item__title">Articulated Shoulder Yoke</div>
-                  <div class="anatomy-callout-item__desc">Zero-seam shoulder summit eliminates strap pressure points during long operative shifts.</div>
+              <div class="anatomy-module" data-hotspot-num="2" role="tab" tabindex="0" aria-selected="false">
+                <div class="anatomy-module__bar"></div>
+                <div class="anatomy-module__num">02</div>
+                <div class="anatomy-module__content">
+                  <div class="anatomy-module__header">
+                    <h3 class="anatomy-module__title">Articulated Shoulder Yoke</h3>
+                    <span class="anatomy-module__spec">Zero-seam summit</span>
+                  </div>
+                  <p class="anatomy-module__desc">Forward-shifted shoulder summit eliminates strap pressure points under heavy lead aprons and stethoscopes.</p>
                 </div>
               </div>
 
-              <div class="anatomy-callout-item" data-hotspot-num="3" tabindex="0" role="button">
-                <div class="anatomy-callout-item__num">03</div>
-                <div>
-                  <div class="anatomy-callout-item__title">Drop-In Chest Pocket</div>
-                  <div class="anatomy-callout-item__desc">Reinforced pen slot and internal divider for clinical tools with zero external bulge.</div>
+              <div class="anatomy-module" data-hotspot-num="3" role="tab" tabindex="0" aria-selected="false">
+                <div class="anatomy-module__bar"></div>
+                <div class="anatomy-module__num">03</div>
+                <div class="anatomy-module__content">
+                  <div class="anatomy-module__header">
+                    <h3 class="anatomy-module__title">Drop-In Chest Pocket</h3>
+                    <span class="anatomy-module__spec">Reinforced shear slot</span>
+                  </div>
+                  <p class="anatomy-module__desc">Deep-welded pocket sized for clinical pagers, smartphones, and diagnostic penlights with zero sag or bulge.</p>
                 </div>
               </div>
 
-              <div class="anatomy-callout-item" data-hotspot-num="4" tabindex="0" role="button">
-                <div class="anatomy-callout-item__num">04</div>
-                <div>
-                  <div class="anatomy-callout-item__title">Bar-Tack Reinforcement</div>
-                  <div class="anatomy-callout-item__desc">Triple-stitched side splits designed to withstand hospital-grade industrial drying.</div>
+              <div class="anatomy-module" data-hotspot-num="4" role="tab" tabindex="0" aria-selected="false">
+                <div class="anatomy-module__bar"></div>
+                <div class="anatomy-module__num">04</div>
+                <div class="anatomy-module__content">
+                  <div class="anatomy-module__header">
+                    <h3 class="anatomy-module__title">Bar-Tack Reinforcement</h3>
+                    <span class="anatomy-module__spec">12 stitches/inch</span>
+                  </div>
+                  <p class="anatomy-module__desc">Triple-stitched side splits designed to withstand hospital-grade industrial laundering and high torsional pull.</p>
                 </div>
               </div>
 
-              <div class="anatomy-callout-item" data-hotspot-num="5" tabindex="0" role="button">
-                <div class="anatomy-callout-item__num">05</div>
-                <div>
-                  <div class="anatomy-callout-item__title">4-Way Mechanical Stretch</div>
-                  <div class="anatomy-callout-item__desc">Micro-denier performance yarn engineered for silent mobility and wrinkle resistance.</div>
+              <div class="anatomy-module" data-hotspot-num="5" role="tab" tabindex="0" aria-selected="false">
+                <div class="anatomy-module__bar"></div>
+                <div class="anatomy-module__num">05</div>
+                <div class="anatomy-module__content">
+                  <div class="anatomy-module__header">
+                    <h3 class="anatomy-module__title">4-Way Mechanical Stretch</h3>
+                    <span class="anatomy-module__spec">185 GSM micro-denier</span>
+                  </div>
+                  <p class="anatomy-module__desc">Micro-denier performance yarn engineered for silent mobility, instant recovery, and liquid repellency.</p>
                 </div>
               </div>
             </div>
@@ -992,7 +1116,7 @@ function renderShiftJournal() {
         <div class="shift-journal__grid reveal-stagger">
           <article class="journal-card">
             <div class="journal-card__img-wrap">
-              <img src="/assets/mock/journal-1.jpg" alt="The Art of the Long Shift editorial photograph" loading="lazy" width="800" height="533">
+              <img src="/assets/mock/journal-1.jpg?v=1793955" alt="The Art of the Long Shift editorial photograph" loading="lazy" width="800" height="533">
             </div>
             <div class="journal-card__meta">
               <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -1006,7 +1130,7 @@ function renderShiftJournal() {
 
           <article class="journal-card">
             <div class="journal-card__img-wrap">
-              <img src="/assets/mock/journal-2.jpg" alt="What Your Scrubs Say About You editorial photograph" loading="lazy" width="800" height="533">
+              <img src="/assets/mock/journal-2.jpg?v=1793955" alt="What Your Scrubs Say About You editorial photograph" loading="lazy" width="800" height="533">
             </div>
             <div class="journal-card__meta">
               <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -1020,7 +1144,7 @@ function renderShiftJournal() {
 
           <article class="journal-card">
             <div class="journal-card__img-wrap">
-              <img src="/assets/mock/journal-3.jpg" alt="Designing for Comfort and Performance editorial photograph" loading="lazy" width="800" height="533">
+              <img src="/assets/mock/journal-3.jpg?v=1793955" alt="Designing for Comfort and Performance editorial photograph" loading="lazy" width="800" height="533">
             </div>
             <div class="journal-card__meta">
               <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -1408,11 +1532,10 @@ function buildHomepage() {
     renderHero(),
     renderMarqueeTicker(),
     renderShopByCategories(),
-    renderShopByColours(),
-    renderProductCarousel('Shop FLEXFIT 01 Sets', 'Engineered with 4-way mechanical stretch technology', 'flexfit'),
     renderFeaturedProduct(),
-    renderProductCarousel('Shop Shift Essentials & Lab Coats', 'High-utility clinical apparel engineered for long shifts', 'essentials'),
     renderFeatureStrip(),
+    renderProductCarousel('Shop The Collection', 'Engineered with 4-way mechanical stretch technology', 'all'),
+    renderShopByColours(),
     renderAnatomy(),
     renderScentShift(),
     renderPhilosophy(),
@@ -1442,17 +1565,17 @@ function buildProductPage() {
         <!-- Gallery -->
         <div class="product-gallery" aria-label="Product images">
           <div class="product-gallery__thumbnails" role="listbox" aria-label="Product image thumbnails">
-            <img class="product-gallery__thumb is-active" src="/assets/mock/product-front.jpg" data-full="/assets/mock/product-front.jpg" alt="Front view" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/product-back.jpg" data-full="/assets/mock/product-back.jpg" alt="Back view" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/product-side.jpg" data-full="/assets/mock/product-side.jpg" alt="Side profile" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/model-wearing.jpg" data-full="/assets/mock/model-wearing.jpg" alt="Model wearing in clinic" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/fabric-macro.jpg" data-full="/assets/mock/fabric-macro.jpg" alt="Fabric close-up" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/pocket-detail.jpg" data-full="/assets/mock/pocket-detail.jpg" alt="Pocket construction" tabindex="0" role="option">
-            <img class="product-gallery__thumb" src="/assets/mock/stitching-detail.jpg" data-full="/assets/mock/stitching-detail.jpg" alt="Bar-tack stitching" tabindex="0" role="option">
+            <img class="product-gallery__thumb is-active" src="/assets/mock/product-front.jpg?v=1793955" data-full="/assets/mock/product-front.jpg?v=1793955" alt="Front view" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/product-back.jpg?v=1793955" data-full="/assets/mock/product-back.jpg?v=1793955" alt="Back view" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/product-side.jpg?v=1793955" data-full="/assets/mock/product-side.jpg?v=1793955" alt="Side profile" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/model-wearing.jpg?v=1793955" data-full="/assets/mock/model-wearing.jpg?v=1793955" alt="Model wearing in clinic" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/fabric-macro.jpg?v=1793955" data-full="/assets/mock/fabric-macro.jpg?v=1793955" alt="Fabric close-up" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/pocket-detail.jpg?v=1793955" data-full="/assets/mock/pocket-detail.jpg?v=1793955" alt="Pocket construction" tabindex="0" role="option">
+            <img class="product-gallery__thumb" src="/assets/mock/stitching-detail.jpg?v=1793955" data-full="/assets/mock/stitching-detail.jpg?v=1793955" alt="Bar-tack stitching" tabindex="0" role="option">
           </div>
 
           <div class="product-gallery__main-wrap">
-            <img class="product-gallery__main" id="product-main-image" src="/assets/mock/product-front.jpg" alt="FLEXFIT 01 Midnight Navy" width="600" height="750" fetchpriority="high">
+            <img class="product-gallery__main" id="product-main-image" src="/assets/mock/product-front.jpg?v=1793955" alt="FLEXFIT 01 Midnight Navy" width="600" height="750" fetchpriority="high">
           </div>
         </div>
 

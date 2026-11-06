@@ -1,36 +1,56 @@
-<section class="colours-section" aria-label="Shop by colours">
+<section class="colours-section reveal" aria-label="Shop by colours">
   <div class="container">
-    <h2 class="colours-section__title">Shop By Colours</h2>
+    <div style="margin-bottom:var(--space-6);">
+      <span class="eyebrow eyebrow--sage">Clinical Colorways</span>
+      <h2 class="colours-section__title">Shop By Colours</h2>
+    </div>
+
     <div class="colours-grid">
       <a href="{{ routes.collections_url }}/all?colour=Midnight+Navy" class="colour-card">
-        <img class="colour-card__preview" src="{{ 'mock/pocket-detail.jpg' | asset_url }}" alt="Midnight Navy Scrubs" loading="lazy" width="300" height="180">
-        <div class="colour-card__info">
-          <span class="colour-card__name">All Blues (Midnight Navy)</span>
-          <span class="colour-card__dot" style="background:#101E35;"></span>
+        <img class="colour-card__preview" src="{{ 'mock/hero-slide-1.jpg' | asset_url }}" alt="Midnight Navy Scrubs" loading="lazy" width="400" height="500">
+        <div class="colour-card__overlay"></div>
+        <div class="colour-card__footer">
+          <div class="colour-card__meta">
+            <span class="colour-card__dot" style="background:#101E35;"></span>
+            <span class="colour-card__name">Midnight Navy</span>
+          </div>
+          <span class="colour-card__family">All Blues</span>
         </div>
       </a>
 
       <a href="{{ routes.collections_url }}/all?colour=Sage" class="colour-card">
-        <img class="colour-card__preview" src="{{ 'mock/product-front-sage.jpg' | asset_url }}" alt="Muted Sage Scrubs" loading="lazy" width="300" height="180">
-        <div class="colour-card__info">
-          <span class="colour-card__name">All Greens (Muted Sage)</span>
-          <span class="colour-card__dot" style="background:#84958C;"></span>
+        <img class="colour-card__preview" src="{{ 'mock/product-front-sage.jpg' | asset_url }}" alt="Muted Sage Scrubs" loading="lazy" width="400" height="500">
+        <div class="colour-card__overlay"></div>
+        <div class="colour-card__footer">
+          <div class="colour-card__meta">
+            <span class="colour-card__dot" style="background:#84958C;"></span>
+            <span class="colour-card__name">Muted Sage</span>
+          </div>
+          <span class="colour-card__family">All Greens</span>
         </div>
       </a>
 
       <a href="{{ routes.collections_url }}/all?colour=Midnight+Navy" class="colour-card">
-        <img class="colour-card__preview" src="{{ 'mock/cargo-pant-front.jpg' | asset_url }}" alt="Shadow Black Scrubs" loading="lazy" width="300" height="180">
-        <div class="colour-card__info">
-          <span class="colour-card__name">All Darks (Shadow Black)</span>
-          <span class="colour-card__dot" style="background:#18181b;"></span>
+        <img class="colour-card__preview" src="{{ 'mock/cargo-pant-front.jpg' | asset_url }}" alt="Shadow Black Scrubs" loading="lazy" width="400" height="500">
+        <div class="colour-card__overlay"></div>
+        <div class="colour-card__footer">
+          <div class="colour-card__meta">
+            <span class="colour-card__dot" style="background:#18181b;"></span>
+            <span class="colour-card__name">Shadow Black</span>
+          </div>
+          <span class="colour-card__family">All Darks</span>
         </div>
       </a>
 
       <a href="{{ routes.collections_url }}/all?colour=Stark+White" class="colour-card">
-        <img class="colour-card__preview" src="{{ 'mock/lab-coat-front.jpg' | asset_url }}" alt="Stark White Lab Coats" loading="lazy" width="300" height="180">
-        <div class="colour-card__info">
-          <span class="colour-card__name">All Whites (Stark White)</span>
-          <span class="colour-card__dot" style="background:#FFFFFF;border:1px solid #D5D9DF;"></span>
+        <img class="colour-card__preview" src="{{ 'mock/lab-coat-front.jpg' | asset_url }}" alt="Stark White Executive Lab Coat" loading="lazy" width="400" height="500">
+        <div class="colour-card__overlay"></div>
+        <div class="colour-card__footer">
+          <div class="colour-card__meta">
+            <span class="colour-card__dot" style="background:#FFFFFF;border:1px solid #D5D9DF;"></span>
+            <span class="colour-card__name">Stark White</span>
+          </div>
+          <span class="colour-card__family">All Whites</span>
         </div>
       </a>
     </div>

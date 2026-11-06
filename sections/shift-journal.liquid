@@ -34,14 +34,15 @@
                   style="width:100%;height:100%;object-fit:cover;"
                 >
               {%- else -%}
-                <!-- PLACEHOLDER: Shift Journal image {{ forloop.index }} — MOCK DATA. Style: documentary, hands/detail/light, no readable text -->
-                <div style="
-                  width:100%;height:100%;
-                  background:linear-gradient({{ forloop.index | times: 60 }}deg,#1a2f52,#101E35);
-                  display:flex;align-items:flex-end;padding:var(--space-3);
-                " aria-hidden="true">
-                  <span style="color:rgba(244,241,233,0.1);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;">Journal image {{ forloop.index }} — PLACEHOLDER</span>
-                </div>
+                {%- assign fallback_img = 'mock/journal-' | append: forloop.index | append: '.jpg' -%}
+                <img
+                  src="{{ fallback_img | asset_url }}"
+                  alt="{{ block.settings.title | default: 'Shift Journal editorial photograph' }}"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                  style="width:100%;height:100%;object-fit:cover;"
+                >
               {%- endif -%}
             </div>
 

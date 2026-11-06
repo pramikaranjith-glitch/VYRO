@@ -8,71 +8,79 @@
   <div class="container">
     <div class="anatomy-section__inner">
 
-      <!-- Left: Garment image with hotspots -->
-      <div class="anatomy-image-wrap" aria-label="FLEXFIT 01 garment diagram with labelled features">
+      <!-- Left Column: Interactive Motion Graphic HUD -->
+      <div class="anatomy-hud" aria-label="Interactive garment engineering visualizer">
+        <div class="anatomy-hud__grid-bg" aria-hidden="true"></div>
+        
+        <div class="anatomy-hud__telemetry">
+          <span class="anatomy-hud__coord">SPEC // FLEXFIT 01-NAVY</span>
+          <span class="anatomy-hud__status">SYSTEMS: OPTIMAL</span>
+        </div>
 
-        {%- if section.settings.garment_image != blank -%}
+        <!-- Central Garment Photographic Visualizer -->
+        <div class="anatomy-hud__canvas">
           <img
-            src="{{ section.settings.garment_image | image_url: width: 800 }}"
-            alt="{{ section.settings.garment_image_alt | default: 'FLEXFIT 01 garment — annotated view showing key design features' }}"
-            loading="lazy"
-            width="800"
-            height="1000"
-            style="width:100%;height:auto;"
+            class="anatomy-hud__garment-img"
+            src="{{ section.settings.garment_image | default: 'mock/product-front.jpg' | asset_url }}"
+            alt="VYRO FLEXFIT 01 Scrub Top Engineering Anatomy"
+            width="500"
+            height="650"
           >
-        {%- else -%}
-          <!-- PLACEHOLDER: Anatomy garment image — MOCK DATA, replace per PLACEHOLDERS.md -->
-          <div style="
-            width:100%;aspect-ratio:4/5;
-            background:rgba(244,241,233,0.04);
-            border:1px dashed rgba(244,241,233,0.1);
-            border-radius:var(--radius-sm);
-            display:flex;align-items:center;justify-content:center;
-            flex-direction:column;gap:1rem;
-          " aria-hidden="true">
-            <svg width="64" height="80" viewBox="0 0 64 80" fill="none" aria-hidden="true">
-              <path d="M32 4C22 4 14 8 14 8L4 20v8h8v44h40V28h8v-8L50 8S42 4 32 4z" stroke="rgba(244,241,233,0.2)" stroke-width="1.5" fill="none"/>
-              <path d="M22 8C22 8 20 16 20 24M42 8C42 8 44 16 44 24" stroke="rgba(244,241,233,0.1)" stroke-width="1" fill="none"/>
-              <rect x="24" y="30" width="16" height="12" rx="1" stroke="rgba(132,149,140,0.3)" stroke-width="1" fill="none"/>
-            </svg>
-            <span style="color:rgba(244,241,233,0.1);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;">Garment image — PLACEHOLDER</span>
+
+          <!-- Pulsating Radar Beacons -->
+          <div class="radar-beacon is-active" style="left: 50%; top: 16%;" data-hotspot-num="1" role="button" tabindex="0" aria-label="Feature 1: Contoured V-Neckline">
+            <div class="radar-beacon__ring"></div>
+            <div class="radar-beacon__dot"><span>01</span></div>
           </div>
-        {%- endif -%}
 
-        <!-- Hotspots — positions are % from top-left of image -->
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'hotspot' -%}
-            <div
-              class="hotspot"
-              style="left:{{ block.settings.position_x }}%;top:{{ block.settings.position_y }}%;"
-              data-hotspot-num="{{ forloop.index }}"
-              {{ block.shopify_attributes }}
-            >
-              <div
-                class="hotspot__dot"
-                role="button"
-                tabindex="0"
-                aria-label="Feature {{ forloop.index }}: {{ block.settings.label | default: '[Label pending]' }}"
-                aria-expanded="false"
-              >
-                <span class="hotspot__number" aria-hidden="true">{{ forloop.index }}</span>
-              </div>
-              <div class="hotspot__line" aria-hidden="true"></div>
-              <div class="hotspot__tooltip" role="tooltip" aria-hidden="true">
-                <div class="hotspot__tooltip-label">
-                  {{ block.settings.label | default: '[Feature Label — Pending Verification]' }}
-                </div>
-                <div class="hotspot__tooltip-desc">
-                  {{ block.settings.description | default: '[Description — Pending brand data. See PLACEHOLDERS.md]' }}
-                </div>
-              </div>
+          <div class="radar-beacon" style="left: 24%; top: 28%;" data-hotspot-num="2" role="button" tabindex="0" aria-label="Feature 2: Articulated Shoulder Yoke">
+            <div class="radar-beacon__ring"></div>
+            <div class="radar-beacon__dot"><span>02</span></div>
+          </div>
+
+          <div class="radar-beacon" style="left: 42%; top: 40%;" data-hotspot-num="3" role="button" tabindex="0" aria-label="Feature 3: Drop-In Chest Pocket">
+            <div class="radar-beacon__ring"></div>
+            <div class="radar-beacon__dot"><span>03</span></div>
+          </div>
+
+          <div class="radar-beacon" style="left: 74%; top: 56%;" data-hotspot-num="4" role="button" tabindex="0" aria-label="Feature 4: Bar-Tack Reinforcement">
+            <div class="radar-beacon__ring"></div>
+            <div class="radar-beacon__dot"><span>04</span></div>
+          </div>
+
+          <div class="radar-beacon" style="left: 50%; top: 76%;" data-hotspot-num="5" role="button" tabindex="0" aria-label="Feature 5: 4-Way Mechanical Stretch">
+            <div class="radar-beacon__ring"></div>
+            <div class="radar-beacon__dot"><span>05</span></div>
+          </div>
+        </div>
+
+        <!-- Interactive Macro Zoom HUD Lens -->
+        <div class="anatomy-hud__lens" id="anatomy-hud-lens">
+          <div class="anatomy-hud__lens-inner">
+            <div class="anatomy-hud__lens-header">
+              <span class="anatomy-hud__lens-tag" id="anatomy-hud-tag">MAGNIFICATION: 8X</span>
+              <span class="anatomy-hud__lens-live">● LIVE SPEC</span>
             </div>
-          {%- endif -%}
-        {%- endfor -%}
-
+            <div class="anatomy-hud__lens-img-wrap">
+              <img
+                class="anatomy-hud__lens-img"
+                id="anatomy-hud-img"
+                src="{{ 'mock/fabric-macro.jpg' | asset_url }}"
+                alt="Technical detail magnification"
+                width="160"
+                height="120"
+              >
+              <div class="anatomy-hud__scan-line" aria-hidden="true"></div>
+            </div>
+            <div class="anatomy-hud__lens-footer">
+              <div class="anatomy-hud__lens-title" id="anatomy-hud-title">Contoured V-Neckline</div>
+              <div class="anatomy-hud__lens-readout" id="anatomy-hud-readout">DUAL-PLY FLATLOCK BOND // 0 CHAFE</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Right: Callout list -->
+      <!-- Right Column: Interactive Callout Modules -->
       <div class="anatomy-info">
         <span class="eyebrow eyebrow--light" style="margin-bottom:var(--space-4);">
           The Anatomy of FLEXFIT
@@ -81,42 +89,66 @@
           {{ section.settings.headline | default: 'ENGINEERED IN DETAIL.' }}
         </h2>
 
-        <div class="anatomy-callout-list">
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'hotspot' -%}
-              <div
-                class="anatomy-callout-item"
-                data-hotspot-num="{{ forloop.index }}"
-                tabindex="0"
-                role="button"
-                aria-label="Feature {{ forloop.index }}: {{ block.settings.label | default: 'Feature pending' }}"
-              >
-                <div class="anatomy-callout-item__num">0{{ forloop.index }}</div>
-                <div>
-                  <div class="anatomy-callout-item__title">
-                    {{ block.settings.label | default: '[Feature Label — Pending Verification]' }}
-                  </div>
-                  <div class="anatomy-callout-item__desc">
-                    {{ block.settings.description | default: '[Description pending brand data. See PLACEHOLDERS.md]' }}
-                  </div>
-                </div>
+        <div class="anatomy-modules" role="tablist" aria-label="Engineering specifications">
+          <div class="anatomy-module is-active" data-hotspot-num="1" role="tab" tabindex="0" aria-selected="true">
+            <div class="anatomy-module__bar"></div>
+            <div class="anatomy-module__num">01</div>
+            <div class="anatomy-module__content">
+              <div class="anatomy-module__header">
+                <h3 class="anatomy-module__title">Contoured V-Neckline</h3>
+                <span class="anatomy-module__spec">Dual-ply bond</span>
               </div>
-            {%- endif -%}
-          {%- endfor -%}
+              <p class="anatomy-module__desc">Structured flat-lay collar prevents friction against surgical scrubs, chains, and diagnostic leads during procedures.</p>
+            </div>
+          </div>
 
-          {%- if section.blocks.size == 0 -%}
-            <!-- Default placeholder callouts -->
-            {%- assign placeholder_items = 'Neckline Construction,Shoulder Panel,Chest Pocket Design,Reinforced Stitching,Fabric Composition,Silhouette & Fit' | split: ',' -%}
-            {%- for item in placeholder_items -%}
-              <div class="anatomy-callout-item" tabindex="0" role="presentation">
-                <div class="anatomy-callout-item__num">0{{ forloop.index }}</div>
-                <div>
-                  <div class="anatomy-callout-item__title">{{ item }}</div>
-                  <div class="anatomy-callout-item__desc">[Detail pending brand verification — see PLACEHOLDERS.md]</div>
-                </div>
+          <div class="anatomy-module" data-hotspot-num="2" role="tab" tabindex="0" aria-selected="false">
+            <div class="anatomy-module__bar"></div>
+            <div class="anatomy-module__num">02</div>
+            <div class="anatomy-module__content">
+              <div class="anatomy-module__header">
+                <h3 class="anatomy-module__title">Articulated Shoulder Yoke</h3>
+                <span class="anatomy-module__spec">Zero-seam summit</span>
               </div>
-            {%- endfor -%}
-          {%- endif -%}
+              <p class="anatomy-module__desc">Forward-shifted shoulder summit eliminates strap pressure points under heavy lead aprons and stethoscopes.</p>
+            </div>
+          </div>
+
+          <div class="anatomy-module" data-hotspot-num="3" role="tab" tabindex="0" aria-selected="false">
+            <div class="anatomy-module__bar"></div>
+            <div class="anatomy-module__num">03</div>
+            <div class="anatomy-module__content">
+              <div class="anatomy-module__header">
+                <h3 class="anatomy-module__title">Drop-In Chest Pocket</h3>
+                <span class="anatomy-module__spec">Reinforced shear slot</span>
+              </div>
+              <p class="anatomy-module__desc">Deep-welded pocket sized for clinical pagers, smartphones, and diagnostic penlights with zero sag or bulge.</p>
+            </div>
+          </div>
+
+          <div class="anatomy-module" data-hotspot-num="4" role="tab" tabindex="0" aria-selected="false">
+            <div class="anatomy-module__bar"></div>
+            <div class="anatomy-module__num">04</div>
+            <div class="anatomy-module__content">
+              <div class="anatomy-module__header">
+                <h3 class="anatomy-module__title">Bar-Tack Reinforcement</h3>
+                <span class="anatomy-module__spec">12 stitches/inch</span>
+              </div>
+              <p class="anatomy-module__desc">Triple-stitched side splits designed to withstand hospital-grade industrial laundering and high torsional pull.</p>
+            </div>
+          </div>
+
+          <div class="anatomy-module" data-hotspot-num="5" role="tab" tabindex="0" aria-selected="false">
+            <div class="anatomy-module__bar"></div>
+            <div class="anatomy-module__num">05</div>
+            <div class="anatomy-module__content">
+              <div class="anatomy-module__header">
+                <h3 class="anatomy-module__title">4-Way Mechanical Stretch</h3>
+                <span class="anatomy-module__spec">185 GSM micro-denier</span>
+              </div>
+              <p class="anatomy-module__desc">Micro-denier performance yarn engineered for silent mobility, instant recovery, and liquid repellency.</p>
+            </div>
+          </div>
         </div>
       </div>
 

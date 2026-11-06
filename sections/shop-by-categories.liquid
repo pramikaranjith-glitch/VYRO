@@ -1,34 +1,103 @@
 <section class="category-strip" aria-label="Shop by categories">
   <div class="container">
-    <h2 class="category-strip__title">Shop By Categories</h2>
-    <div class="category-strip__row">
-      <a href="{{ routes.collections_url }}/all?gender=Women%27s" class="category-pill">
-        <img class="category-pill__img" src="{{ 'mock/product-front-womens.jpg' | asset_url }}" alt="Women's Medical Scrubs" width="40" height="40" loading="lazy">
-        <span class="category-pill__label">Women's</span>
+    <div class="category-strip__header">
+      <div class="category-strip__titles">
+        <span class="eyebrow" style="color:var(--sage);margin-bottom:var(--space-2);">CURATED WARDROBE</span>
+        <h2 class="category-strip__title">SHOP BY CATEGORIES</h2>
+      </div>
+      <div class="category-strip__nav">
+        <button type="button" class="category-nav-btn js-cat-prev" aria-label="Previous categories">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button type="button" class="category-nav-btn js-cat-next" aria-label="Next categories">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="category-track js-cat-track" tabindex="0" role="region" aria-label="Categories carousel">
+      <a href="{{ routes.collections_url }}/all?gender=Women%27s" class="category-card">
+        <div class="category-card__media">
+          <img class="category-card__img" src="{{ 'mock/product-front-womens.jpg' | asset_url }}" alt="Women's Medical Apparel" width="300" height="400" loading="lazy">
+          <div class="category-card__overlay"></div>
+        </div>
+        <div class="category-card__info">
+          <span class="category-card__count">04 STYLES</span>
+          <h3 class="category-card__label">Women's Collection</h3>
+          <span class="category-card__cta">Explore &rarr;</span>
+        </div>
       </a>
-      <a href="{{ routes.collections_url }}/all?gender=Men%27s" class="category-pill">
-        <img class="category-pill__img" src="{{ 'mock/product-front.jpg' | asset_url }}" alt="Men's Medical Scrubs" width="40" height="40" loading="lazy">
-        <span class="category-pill__label">Men's</span>
+
+      <a href="{{ routes.collections_url }}/all?gender=Men%27s" class="category-card">
+        <div class="category-card__media">
+          <img class="category-card__img" src="{{ 'mock/product-front.jpg' | asset_url }}" alt="Men's Medical Apparel" width="300" height="400" loading="lazy">
+          <div class="category-card__overlay"></div>
+        </div>
+        <div class="category-card__info">
+          <span class="category-card__count">04 STYLES</span>
+          <h3 class="category-card__label">Men's Collection</h3>
+          <span class="category-card__cta">Explore &rarr;</span>
+        </div>
       </a>
-      <a href="{{ routes.collections_url }}/all" class="category-pill">
-        <img class="category-pill__img" src="{{ 'mock/hero-slide-1.jpg' | asset_url }}" alt="FLEXFIT 01 Sets" width="40" height="40" loading="lazy">
-        <span class="category-pill__label">FLEXFIT 01 Sets</span>
+
+      <a href="{{ routes.collections_url }}/all" class="category-card">
+        <div class="category-card__media">
+          <img class="category-card__img" src="{{ 'mock/hero-slide-1.jpg' | asset_url }}" alt="FLEXFIT 01 Sets" width="300" height="400" loading="lazy">
+          <div class="category-card__overlay"></div>
+        </div>
+        <div class="category-card__info">
+          <span class="category-card__count">FLAGSHIP</span>
+          <h3 class="category-card__label">FLEXFIT 01 Sets</h3>
+          <span class="category-card__cta">Explore &rarr;</span>
+        </div>
       </a>
-      <a href="{{ routes.collections_url }}/all?category=Lab+Coats" class="category-pill">
-        <img class="category-pill__img" src="{{ 'mock/lab-coat-front.jpg' | asset_url }}" alt="Executive Lab Coats" width="40" height="40" loading="lazy">
-        <span class="category-pill__label">Executive Lab Coats</span>
+
+      <a href="{{ routes.collections_url }}/all?category=Lab+Coats" class="category-card">
+        <div class="category-card__media">
+          <img class="category-card__img" src="{{ 'mock/lab-coat-front.jpg' | asset_url }}" alt="Executive Lab Coats" width="300" height="400" loading="lazy">
+          <div class="category-card__overlay"></div>
+        </div>
+        <div class="category-card__info">
+          <span class="category-card__count">TAILORED</span>
+          <h3 class="category-card__label">Executive Lab Coats</h3>
+          <span class="category-card__cta">Explore &rarr;</span>
+        </div>
       </a>
-      <a href="{{ routes.collections_url }}/all" class="category-pill">
-        <img class="category-pill__img" src="{{ 'mock/cargo-pant-front.jpg' | asset_url }}" alt="Kinetic Cargo Pants" width="40" height="40" loading="lazy">
-        <span class="category-pill__label">Cargo Pants</span>
+
+      <a href="{{ routes.collections_url }}/all" class="category-card">
+        <div class="category-card__media">
+          <img class="category-card__img" src="{{ 'mock/cargo-pant-front.jpg' | asset_url }}" alt="Kinetic Cargo Pants" width="300" height="400" loading="lazy">
+          <div class="category-card__overlay"></div>
+        </div>
+        <div class="category-card__info">
+          <span class="category-card__count">HIGH STORAGE</span>
+          <h3 class="category-card__label">Kinetic Cargo Pants</h3>
+          <span class="category-card__cta">Explore &rarr;</span>
+        </div>
       </a>
-      <a href="{{ routes.collections_url }}/all?category=Essentials" class="category-pill">
-        <img class="category-pill__img" src="{{ 'mock/base-layer-front.jpg' | asset_url }}" alt="Shift Base Layers" width="40" height="40" loading="lazy">
-        <span class="category-pill__label">Shift Base Layers</span>
+
+      <a href="{{ routes.collections_url }}/all?category=Essentials" class="category-card">
+        <div class="category-card__media">
+          <img class="category-card__img" src="{{ 'mock/base-layer-front.jpg' | asset_url }}" alt="Shift Base Layers" width="300" height="400" loading="lazy">
+          <div class="category-card__overlay"></div>
+        </div>
+        <div class="category-card__info">
+          <span class="category-card__count">THERMOREGULATING</span>
+          <h3 class="category-card__label">Shift Base Layers</h3>
+          <span class="category-card__cta">Explore &rarr;</span>
+        </div>
       </a>
-      <a href="{{ routes.collections_url }}/all?category=Accessories" class="category-pill">
-        <img class="category-pill__img" src="{{ 'mock/scrub-cap-front.jpg' | asset_url }}" alt="Ergonomic Scrub Caps" width="40" height="40" loading="lazy">
-        <span class="category-pill__label">Scrub Caps</span>
+
+      <a href="{{ routes.collections_url }}/all?category=Accessories" class="category-card">
+        <div class="category-card__media">
+          <img class="category-card__img" src="{{ 'mock/scrub-cap-front.jpg' | asset_url }}" alt="Ergonomic Scrub Caps" width="300" height="400" loading="lazy">
+          <div class="category-card__overlay"></div>
+        </div>
+        <div class="category-card__info">
+          <span class="category-card__count">ANTIMICROBIAL</span>
+          <h3 class="category-card__label">Scrub Caps</h3>
+          <span class="category-card__cta">Explore &rarr;</span>
+        </div>
       </a>
     </div>
   </div>

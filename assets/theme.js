@@ -543,61 +543,183 @@ initCartDrawerListeners();
 })();
 
 /* ============================================================
-   ANATOMY HOTSPOTS
+   ANATOMY MOTION GRAPHIC HUD & HOTSPOTS
    ============================================================ */
 
 (function() {
-  var hotspots = $$('.hotspot');
-  if (!hotspots.length) return;
+  var beacons = $$('.radar-beacon');
+  var modules = $$('.anatomy-module');
+  var hudLens = $('#anatomy-hud-lens');
+  var hudTag = $('#anatomy-hud-tag');
+  var hudTitle = $('#anatomy-hud-title');
+  var hudReadout = $('#anatomy-hud-readout');
+  var hudImg = $('#anatomy-hud-img');
+  var hudContainer = $('.anatomy-hud');
 
-  var calloutItems = $$('.anatomy-callout-item');
+  var specs = {
+    '1': {
+      tag: 'MAGNIFICATION: 8X',
+      title: 'Contoured V-Neckline',
+      readout: 'DUAL-PLY FLATLOCK BOND // 0 CHAFE',
+      img: '/assets/mock/fabric-macro.jpg?v=1793955'
+    },
+    '2': {
+      tag: 'STRESS ANALYSIS: 0 PSI',
+      title: 'Articulated Shoulder Yoke',
+      readout: 'ZERO-SEAM RAGLAN SUMMIT // 0 STRAP PRESSURE',
+      img: '/assets/mock/product-front.jpg?v=1793955'
+    },
+    '3': {
+      tag: 'CAPACITY: 5.8 INCH PAGER',
+      title: 'Drop-In Chest Pocket',
+      readout: 'REINFORCED SHEAR SLOT // ZERO BULGE',
+      img: '/assets/mock/pocket-detail.jpg?v=1793955'
+    },
+    '4': {
+      tag: 'CYCLE TEST: 1,000+ CYCLES',
+      title: 'Bar-Tack Reinforcement',
+      readout: '12 STITCHES/INCH // HIGH TORSIONAL SPLIT',
+      img: '/assets/mock/stitching-detail.jpg?v=1793955'
+    },
+    '5': {
+      tag: 'FABRIC RECOVERY: 98.4%',
+      title: '4-Way Mechanical Stretch',
+      readout: '185 GSM MICRO-DENIER // FLUID REPELLENT',
+      img: '/assets/mock/fabric-macro.jpg?v=1793955'
+    }
+  };
 
-  function activateHotspot(hs) {
-    hotspots.forEach(function(h) { h.classList.remove('is-active'); });
-    hs.classList.add('is-active');
+  var currentIndex = 1;
+  var autoPlayTimer = null;
+  var isPaused = false;
 
-    var num = hs.dataset.hotspotNum;
-    calloutItems.forEach(function(item) {
-      item.classList.toggle('is-active', item.dataset.hotspotNum === num);
+  function selectHotspot(numStr) {
+    if (!specs[numStr]) return;
+    currentIndex = parseInt(numStr, 10);
+
+    beacons.forEach(function(b) {
+      b.classList.toggle('is-active', b.dataset.hotspotNum === numStr);
     });
+
+    modules.forEach(function(m) {
+      var active = m.dataset.hotspotNum === numStr;
+      m.classList.toggle('is-active', active);
+      m.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+
+    var data = specs[numStr];
+    if (hudTag) hudTag.textContent = data.tag;
+    if (hudTitle) hudTitle.textContent = data.title;
+    if (hudReadout) hudReadout.textContent = data.readout;
+    if (hudImg && hudImg.src.indexOf(data.img) === -1) {
+      hudImg.style.opacity = '0';
+      setTimeout(function() {
+        hudImg.src = data.img;
+        hudImg.style.opacity = '1';
+      }, 150);
+    }
   }
 
-  hotspots.forEach(function(hs) {
-    var dot = hs.querySelector('.hotspot__dot');
-    if (!dot) return;
-    dot.setAttribute('role', 'button');
-    dot.setAttribute('tabindex', '0');
-    dot.setAttribute('aria-expanded', 'false');
-    var label = hs.querySelector('.hotspot__tooltip-label');
-    if (label) dot.setAttribute('aria-label', label.textContent);
-
-    dot.addEventListener('click', function() {
-      var isActive = hs.classList.contains('is-active');
-      if (isActive) {
-        hs.classList.remove('is-active');
-        dot.setAttribute('aria-expanded', 'false');
-      } else {
-        activateHotspot(hs);
-        dot.setAttribute('aria-expanded', 'true');
-      }
+  beacons.forEach(function(b) {
+    b.addEventListener('click', function() {
+      selectHotspot(b.dataset.hotspotNum);
     });
-
-    dot.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dot.click(); }
-      if (e.key === 'Escape') { hs.classList.remove('is-active'); dot.setAttribute('aria-expanded', 'false'); }
+    b.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectHotspot(b.dataset.hotspotNum);
+      }
     });
   });
 
-  calloutItems.forEach(function(item) {
-    item.setAttribute('tabindex', '0');
-    item.addEventListener('click', function() {
-      var num = item.dataset.hotspotNum;
-      var hs  = document.querySelector('.hotspot[data-hotspot-num="' + num + '"]');
-      if (hs) activateHotspot(hs);
+  modules.forEach(function(m) {
+    m.addEventListener('click', function() {
+      selectHotspot(m.dataset.hotspotNum);
     });
-    item.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+    m.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectHotspot(m.dataset.hotspotNum);
+      }
     });
+  });
+
+  // Autoplay cycle every 4.5s
+  function startAutoPlay() {
+    if (autoPlayTimer) clearInterval(autoPlayTimer);
+    autoPlayTimer = setInterval(function() {
+      if (isPaused) return;
+      currentIndex = currentIndex >= 5 ? 1 : currentIndex + 1;
+      selectHotspot(String(currentIndex));
+    }, 4500);
+  }
+
+  if (hudContainer) {
+    hudContainer.addEventListener('mouseenter', function() { isPaused = true; });
+    hudContainer.addEventListener('mouseleave', function() { isPaused = false; });
+    hudContainer.addEventListener('touchstart', function() { isPaused = true; }, { passive: true });
+  }
+
+  if (beacons.length > 0) {
+    startAutoPlay();
+  }
+
+  // Also maintain backward-compatibility for legacy hotspots if present
+  var oldHotspots = $$('.hotspot');
+  if (oldHotspots.length) {
+    var calloutItems = $$('.anatomy-callout-item');
+    oldHotspots.forEach(function(hs) {
+      var dot = hs.querySelector('.hotspot__dot');
+      if (!dot) return;
+      dot.addEventListener('click', function() {
+        oldHotspots.forEach(function(h) { h.classList.remove('is-active'); });
+        hs.classList.add('is-active');
+        var num = hs.dataset.hotspotNum;
+        calloutItems.forEach(function(item) {
+          item.classList.toggle('is-active', item.dataset.hotspotNum === num);
+        });
+      });
+    });
+  }
+})();
+
+/* ============================================================
+   FEATURED PRODUCT VIEW TOGGLE (FRONT / BACK)
+   ============================================================ */
+
+(function() {
+  var viewBtns = $$('.js-featured-view');
+  if (!viewBtns.length) return;
+  var frontImg = $('#featured-img-front');
+  var backImg = $('#featured-img-back');
+
+  viewBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var view = btn.dataset.view;
+      viewBtns.forEach(function(b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      if (frontImg) frontImg.classList.toggle('is-active', view === 'front');
+      if (backImg) backImg.classList.toggle('is-active', view === 'back');
+    });
+  });
+})();
+
+/* ============================================================
+   SHOP BY CATEGORIES CAROUSEL CONTROLS
+   ============================================================ */
+
+(function() {
+  var track = $('.js-cat-track');
+  var prevBtn = $('.js-cat-prev');
+  var nextBtn = $('.js-cat-next');
+  if (!track || !prevBtn || !nextBtn) return;
+
+  prevBtn.addEventListener('click', function() {
+    track.scrollBy({ left: -340, behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', function() {
+    track.scrollBy({ left: 340, behavior: 'smooth' });
   });
 })();
 

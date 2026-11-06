@@ -18,39 +18,32 @@
     <span style="opacity:0.3">03</span>
   </div>
 
-  <!-- Left: Front + Back joined images -->
-  <div class="featured-product__images">
-    {%- if section.settings.image_front != blank -%}
+  <!-- Left: Full-bleed on-model portrait with view toggle -->
+  <div class="featured-product__canvas">
+    <div class="featured-product__media-wrap">
       <img
-        class="featured-product__img-front"
-        src="{{ section.settings.image_front | image_url: width: 800 }}"
-        srcset="{{ section.settings.image_front | image_url: width: 400 }} 400w, {{ section.settings.image_front | image_url: width: 800 }} 800w"
-        sizes="(max-width: 767px) 50vw, 33vw"
-        alt="{{ section.settings.front_alt | default: 'FLEXFIT 01 Midnight Navy — Front view' }}"
+        id="featured-img-front"
+        class="featured-product__hero-img is-active"
+        src="{{ section.settings.image_front | default: 'mock/product-front.jpg' | asset_url }}"
+        alt="{{ section.settings.front_alt | default: 'FLEXFIT 01 Midnight Navy Scrub Set Front View' }}"
         loading="lazy"
-        width="400"
-        height="500"
+        width="650"
+        height="850"
       >
       <img
-        class="featured-product__img-back"
-        src="{{ section.settings.image_back | image_url: width: 800 }}"
-        srcset="{{ section.settings.image_back | image_url: width: 400 }} 400w, {{ section.settings.image_back | image_url: width: 800 }} 800w"
-        sizes="(max-width: 767px) 50vw, 33vw"
-        alt="{{ section.settings.back_alt | default: 'FLEXFIT 01 Midnight Navy — Back view' }}"
+        id="featured-img-back"
+        class="featured-product__hero-img"
+        src="{{ section.settings.image_back | default: 'mock/product-back.jpg' | asset_url }}"
+        alt="{{ section.settings.back_alt | default: 'FLEXFIT 01 Midnight Navy Scrub Set Back View' }}"
         loading="lazy"
-        width="400"
-        height="500"
+        width="650"
+        height="850"
       >
-    {%- else -%}
-      <!-- PLACEHOLDER: Featured product front image — MOCK DATA, replace per PLACEHOLDERS.md -->
-      <div style="flex:1;background:#1a2f52;display:flex;align-items:flex-end;padding:var(--space-4);">
-        <span style="color:rgba(244,241,233,0.15);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;">Front — PLACEHOLDER</span>
+      <div class="featured-product__view-toggle" role="group" aria-label="Garment perspective">
+        <button type="button" class="view-toggle-btn js-featured-view is-active" data-view="front">FRONT VIEW</button>
+        <button type="button" class="view-toggle-btn js-featured-view" data-view="back">BACK VIEW</button>
       </div>
-      <!-- PLACEHOLDER: Featured product back image — MOCK DATA, replace per PLACEHOLDERS.md -->
-      <div style="flex:1;background:#101E35;border-left:1px solid rgba(255,255,255,0.08);display:flex;align-items:flex-end;padding:var(--space-4);">
-        <span style="color:rgba(244,241,233,0.15);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;">Back — PLACEHOLDER</span>
-      </div>
-    {%- endif -%}
+    </div>
   </div>
 
   <!-- Centre: Product info -->

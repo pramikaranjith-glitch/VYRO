@@ -39,8 +39,7 @@ To edit the homepage visually:
 ### Announcement Bar
 - Click on **Announcement Bar** in the sidebar.
 - You can customize:
-  - **Message 1:** (e.g. "Free Shipping Across India")
-  - **Message 2:** (e.g. "Easy Returns | 30-Day Policy")
+  - **Message:** (e.g. "Free Shipping Across India | Easy Returns")
   - **Track Order URL:** Link to your Shiprocket or tracking page.
   - **Support URL:** Link to your contact page.
 
@@ -75,7 +74,7 @@ To edit the homepage visually:
 
 1. Navigate to **Settings > Policies** in Shopify Admin.
 2. Edit your legal agreements:
-   - **Refund Policy:** Specify your 30-day exchange window and sanitary return requirements.
+   - **Refund Policy:** Specify your return and exchange window and sanitary return requirements.
    - **Privacy Policy:** Required for Google Analytics, Meta Pixel, and payment processing.
    - **Terms of Service:** Standard commercial terms for India.
    - **Shipping Policy:** Detail delivery timeframes (5–8 days across major metros).

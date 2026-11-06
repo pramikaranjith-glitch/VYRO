@@ -2,11 +2,10 @@
   SECTION: Announcement Bar
   Configurable via theme settings.
   Desktop: 3-column (brand mark | message | links)
-  Mobile: single rotating message
+  Mobile: single approved message
 {% endcomment %}
 
-{%- assign ann_message_1 = section.settings.message_1 | default: 'Free Shipping Across India' -%}
-{%- assign ann_message_2 = section.settings.message_2 | default: 'Easy Returns | 30-Day Policy' -%}
+{%- assign ann_message_1 = section.settings.message_1 | default: 'Free Shipping Across India | Easy Returns' -%}
 
 <div class="announcement-bar" role="banner" aria-label="Site announcement">
   <div class="announcement-bar__inner">
@@ -16,7 +15,7 @@
       <span class="vyro-mark">VYRO</span>
     </div>
 
-    <!-- Centre: rotating message -->
+    <!-- Centre: approved message -->
     <div class="announcement-bar__message" aria-live="polite" aria-atomic="true">
       <span class="announcement-bar__message-rotate js-ann-message">
         {{ ann_message_1 }}
@@ -25,7 +24,7 @@
 
     <!-- Right: utility links -->
     <div class="announcement-bar__links">
-      <a href="{{ section.settings.track_order_url | default: '#' }}">Track Order</a>
+      <a href="{{ section.settings.track_order_url | default: '/pages/contact' }}">Track Order</a>
       <a href="{{ section.settings.support_url | default: '/pages/contact' }}">Support</a>
     </div>
 
@@ -35,8 +34,7 @@
 <script>
   (function(){
     var msgs = [
-      {{ ann_message_1 | json }},
-      {{ ann_message_2 | json }}
+      {{ ann_message_1 | json }}
     ];
     var el = document.querySelector('.js-ann-message');
     if (!el || msgs.length < 2) return;
@@ -61,14 +59,8 @@
     {
       "type": "text",
       "id": "message_1",
-      "label": "Message 1",
-      "default": "Free Shipping Across India"
-    },
-    {
-      "type": "text",
-      "id": "message_2",
-      "label": "Message 2",
-      "default": "Easy Returns | 30-Day Policy"
+      "label": "Message",
+      "default": "Free Shipping Across India | Easy Returns"
     },
     {
       "type": "url",
@@ -79,16 +71,6 @@
       "type": "url",
       "id": "support_url",
       "label": "Support URL"
-    },
-    {
-      "type": "range",
-      "id": "rotate_interval",
-      "min": 2000,
-      "max": 8000,
-      "step": 500,
-      "unit": "ms",
-      "label": "Rotation interval",
-      "default": 4000
     }
   ],
   "presets": [

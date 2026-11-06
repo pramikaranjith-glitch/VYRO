@@ -3128,6 +3128,10 @@ h4, .h4 { font-size: var(--text-lg); }
   -webkit-appearance: none;
 }
 
+.mobile-filter-btn {
+  display: none;
+}
+
 @media (max-width: 1023px) {
   .collection-page {
     grid-template-columns: 1fr;
@@ -3135,6 +3139,14 @@ h4, .h4 { font-size: var(--text-lg); }
 
   .filter-sidebar {
     display: none; /* Use mobile drawer instead */
+  }
+
+  .mobile-filter-btn,
+  #mobile-filter-btn,
+  .collection-toolbar .js-filter-open {
+    display: inline-flex !important;
+    align-items: center;
+    gap: var(--space-2);
   }
 }
 

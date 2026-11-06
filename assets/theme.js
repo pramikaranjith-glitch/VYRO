@@ -666,42 +666,7 @@ initCartDrawerListeners();
   }
 })();
 
-/* ============================================================
-   FILTER DRAWER (mobile)
-   ============================================================ */
 
-(function() {
-  var openBtn  = $('.js-filter-open');
-  var drawer   = $('#filter-drawer');
-  var closeBtn = $('.js-filter-close');
-  var applyBtn = $('.js-filter-apply');
-  var clearBtn = $('.js-filter-clear');
-  var overlay  = $('#drawer-overlay');
-
-  if (!openBtn || !drawer) return;
-
-  openBtn.addEventListener('click', function() {
-    drawer.classList.add('is-open');
-    if (overlay) overlay.classList.add('is-visible');
-    document.body.style.overflow = 'hidden';
-    trapFocus(drawer);
-  });
-
-  function closeFilter() {
-    drawer.classList.remove('is-open');
-    if (overlay) overlay.classList.remove('is-visible');
-    document.body.style.overflow = '';
-    releaseFocus(drawer);
-  }
-
-  if (closeBtn) closeBtn.addEventListener('click', closeFilter);
-  if (applyBtn) applyBtn.addEventListener('click', function() { closeFilter(); /* apply filters */ });
-  if (clearBtn) clearBtn.addEventListener('click', function() { /* clear filters */ });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && drawer.classList.contains('is-open')) closeFilter();
-  });
-})();
 
 /* ============================================================
    SHIFT INDEX — progress bar animation
@@ -728,29 +693,7 @@ initCartDrawerListeners();
   });
 })();
 
-/* ============================================================
-   COLLECTION FILTERS (front-end simulation)
-   ============================================================ */
 
-(function() {
-  var filterOptions = $$('.filter-option');
-  filterOptions.forEach(function(opt) {
-    opt.addEventListener('click', function() {
-      opt.classList.toggle('is-active');
-      var checkbox = opt.querySelector('.filter-checkbox');
-      if (checkbox) {
-        var checked = opt.classList.contains('is-active');
-        opt.setAttribute('aria-checked', String(checked));
-      }
-    });
-    opt.setAttribute('role', 'checkbox');
-    opt.setAttribute('aria-checked', 'false');
-    opt.tabIndex = 0;
-    opt.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); opt.click(); }
-    });
-  });
-})();
 
 /* ============================================================
    NEWSLETTER SECTION
@@ -968,20 +911,20 @@ on($('.js-search-open'), 'click', function() {
   if (loginForm) {
     on(loginForm, 'submit', function(e) {
       e.preventDefault();
-      var email = $('#login-email');
-      var password = $('#login-password');
-      var emailErr = $('#login-email-error');
-      var pwdErr = $('#login-password-error');
+      var email = $('#login-email') || $('#CustomerEmail') || loginForm.querySelector('input[type="email"]');
+      var password = $('#login-password') || $('#CustomerPassword') || loginForm.querySelector('input[type="password"]');
+      var emailErr = $('#login-email-error') || loginForm.querySelector('#login-email-error');
+      var pwdErr = $('#login-password-error') || loginForm.querySelector('#login-password-error');
 
       var valid = true;
-      if (!email.value.trim() || !isValidEmail(email.value.trim())) {
+      if (!email || !email.value.trim() || !isValidEmail(email.value.trim())) {
         setFieldError(email, emailErr, true);
         valid = false;
       } else {
         setFieldError(email, emailErr, false);
       }
 
-      if (!password.value.trim()) {
+      if (!password || !password.value.trim()) {
         setFieldError(password, pwdErr, true);
         valid = false;
       } else {
@@ -1000,11 +943,11 @@ on($('.js-search-open'), 'click', function() {
   if (regForm) {
     on(regForm, 'submit', function(e) {
       e.preventDefault();
-      var fname = $('#reg-fname');
-      var lname = $('#reg-lname');
-      var email = $('#reg-email');
-      var pwd = $('#reg-password');
-      var confirm = $('#reg-confirm');
+      var fname = $('#reg-fname') || $('#FirstName') || regForm.querySelector('input[name*="first_name"]');
+      var lname = $('#reg-lname') || $('#LastName') || regForm.querySelector('input[name*="last_name"]');
+      var email = $('#reg-email') || $('#CustomerEmail') || regForm.querySelector('input[type="email"]');
+      var pwd = $('#reg-password') || $('#CreatePassword') || regForm.querySelector('input[name*="password"]');
+      var confirm = $('#reg-confirm') || $('#PasswordConfirmation') || regForm.querySelector('input[name*="confirm"]');
 
       var fnameErr = $('#reg-fname-error');
       var lnameErr = $('#reg-lname-error');
@@ -1014,19 +957,19 @@ on($('.js-search-open'), 'click', function() {
 
       var valid = true;
 
-      if (!fname.value.trim()) { setFieldError(fname, fnameErr, true); valid = false; }
+      if (!fname || !fname.value.trim()) { setFieldError(fname, fnameErr, true); valid = false; }
       else { setFieldError(fname, fnameErr, false); }
 
-      if (!lname.value.trim()) { setFieldError(lname, lnameErr, true); valid = false; }
+      if (!lname || !lname.value.trim()) { setFieldError(lname, lnameErr, true); valid = false; }
       else { setFieldError(lname, lnameErr, false); }
 
-      if (!email.value.trim() || !isValidEmail(email.value.trim())) { setFieldError(email, emailErr, true); valid = false; }
+      if (!email || !email.value.trim() || !isValidEmail(email.value.trim())) { setFieldError(email, emailErr, true); valid = false; }
       else { setFieldError(email, emailErr, false); }
 
-      if (!pwd.value || pwd.value.length < 6) { setFieldError(pwd, pwdErr, true); valid = false; }
+      if (!pwd || !pwd.value || pwd.value.length < 6) { setFieldError(pwd, pwdErr, true); valid = false; }
       else { setFieldError(pwd, pwdErr, false); }
 
-      if (!confirm.value || confirm.value !== pwd.value) { setFieldError(confirm, confirmErr, true); valid = false; }
+      if (!confirm || !confirm.value || confirm.value !== pwd.value) { setFieldError(confirm, confirmErr, true); valid = false; }
       else { setFieldError(confirm, confirmErr, false); }
 
       if (valid) {
@@ -1040,11 +983,11 @@ on($('.js-search-open'), 'click', function() {
   if (forgotForm) {
     on(forgotForm, 'submit', function(e) {
       e.preventDefault();
-      var email = $('#forgot-email');
-      var err = $('#forgot-email-error');
+      var email = $('#forgot-email') || $('#RecoverEmail') || forgotForm.querySelector('input[type="email"]');
+      var err = $('#forgot-email-error') || forgotForm.querySelector('.form-field__error');
       var successNotice = $('.js-forgot-success');
 
-      if (!email.value.trim() || !isValidEmail(email.value.trim())) {
+      if (!email || !email.value.trim() || !isValidEmail(email.value.trim())) {
         setFieldError(email, err, true);
         if (successNotice) successNotice.style.display = 'none';
       } else {
@@ -1055,6 +998,31 @@ on($('.js-search-open'), 'click', function() {
         }
       }
     });
+  }
+
+  // Toggle between Login and Recover Form
+  var recoverTrigger = $('.js-recover-trigger');
+  var loginTrigger = $('.js-login-trigger');
+  var recoverFormEl = $('#recover_password');
+  if (recoverTrigger && recoverFormEl && loginForm) {
+    on(recoverTrigger, 'click', function(e) {
+      e.preventDefault();
+      loginForm.style.display = 'none';
+      recoverFormEl.style.display = 'block';
+      window.location.hash = 'recover';
+    });
+  }
+  if (loginTrigger && recoverFormEl && loginForm) {
+    on(loginTrigger, 'click', function(e) {
+      e.preventDefault();
+      recoverFormEl.style.display = 'none';
+      loginForm.style.display = 'block';
+      window.location.hash = '';
+    });
+  }
+  if (window.location.hash === '#recover' && recoverFormEl && loginForm) {
+    loginForm.style.display = 'none';
+    recoverFormEl.style.display = 'block';
   }
 
   // Account Dashboard Tab Switching
@@ -1073,14 +1041,265 @@ on($('.js-search-open'), 'click', function() {
 })();
 
 /* ============================================================
-   COLLECTION SORTING & FILTERING
+   COLLECTION ENGINE: FILTERING, SORTING, DRAWER & ACTIVE CHIPS
    ============================================================ */
 
 (function() {
-  var sortSelect = $('.sort-select');
   var grid = $('.products-grid');
+  var countEl = $('.collection-count');
   var chipsBar = $('#active-chips');
+  var sortSelect = $('.sort-select');
+  var filterDrawer = $('#filter-drawer');
+  var filterOpenBtns = $$('.js-filter-open, #mobile-filter-btn');
+  var filterCloseBtns = $$('.js-filter-close');
+  var filterClearBtns = $$('.js-filter-clear');
+  var filterApplyBtns = $$('.js-filter-apply');
+  var overlay = $('#drawer-overlay');
+
   if (!grid) return;
+
+  // Filter Drawer Mobile Interactions
+  filterOpenBtns.forEach(function(btn) {
+    on(btn, 'click', function() {
+      if (!filterDrawer) return;
+      filterDrawer.classList.add('is-open');
+      if (overlay) overlay.classList.add('is-visible');
+      document.body.style.overflow = 'hidden';
+      trapFocus(filterDrawer);
+    });
+  });
+
+  function closeFilterDrawer() {
+    if (!filterDrawer) return;
+    filterDrawer.classList.remove('is-open');
+    if (overlay) overlay.classList.remove('is-visible');
+    document.body.style.overflow = '';
+    releaseFocus(filterDrawer);
+  }
+
+  filterCloseBtns.forEach(function(btn) {
+    on(btn, 'click', closeFilterDrawer);
+  });
+
+  filterApplyBtns.forEach(function(btn) {
+    on(btn, 'click', closeFilterDrawer);
+  });
+
+  filterClearBtns.forEach(function(btn) {
+    on(btn, 'click', function() {
+      clearAllFilters();
+    });
+  });
+
+  if (overlay) {
+    overlay.addEventListener('click', function() {
+      if (filterDrawer && filterDrawer.classList.contains('is-open')) {
+        closeFilterDrawer();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && filterDrawer && filterDrawer.classList.contains('is-open')) {
+      closeFilterDrawer();
+    }
+  });
+
+  // Wire all filter options (both in desktop sidebar and mobile drawer)
+  var allFilterOptions = $$('.filter-option');
+  allFilterOptions.forEach(function(opt) {
+    opt.setAttribute('role', 'checkbox');
+    opt.setAttribute('tabindex', '0');
+    if (!opt.hasAttribute('aria-checked')) {
+      opt.setAttribute('aria-checked', opt.classList.contains('is-active') ? 'true' : 'false');
+    }
+
+    on(opt, 'click', function() {
+      // Toggle state
+      var willBeActive = !opt.classList.contains('is-active');
+      var filterType = opt.dataset.filter || getGroupType(opt);
+      var filterVal = opt.dataset.value || getOptionText(opt);
+
+      // Sync across both desktop sidebar and mobile drawer
+      $$('.filter-option').forEach(function(other) {
+        var otherType = other.dataset.filter || getGroupType(other);
+        var otherVal = other.dataset.value || getOptionText(other);
+        if (otherType === filterType && otherVal === filterVal) {
+          other.classList.toggle('is-active', willBeActive);
+          other.setAttribute('aria-checked', willBeActive ? 'true' : 'false');
+          var cb = other.querySelector('input[type="checkbox"]');
+          if (cb) cb.checked = willBeActive;
+        }
+      });
+
+      applyFilters();
+    });
+
+    on(opt, 'keydown', function(e) {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        opt.click();
+      }
+    });
+  });
+
+  function getGroupType(opt) {
+    var group = opt.closest('.filter-group');
+    if (!group) return '';
+    var label = (group.querySelector('.filter-group__label') || {}).textContent || '';
+    if (/size/i.test(label)) return 'size';
+    if (/colo?ur/i.test(label)) return 'colour';
+    if (/gender/i.test(label)) return 'gender';
+    return '';
+  }
+
+  function getOptionText(opt) {
+    return opt.textContent.trim().replace(/\s*\(\d+\)$/, '');
+  }
+
+  function clearAllFilters() {
+    allFilterOptions.forEach(function(opt) {
+      opt.classList.remove('is-active');
+      opt.setAttribute('aria-checked', 'false');
+      var cb = opt.querySelector('input[type="checkbox"]');
+      if (cb) cb.checked = false;
+    });
+    applyFilters();
+  }
+
+  // Delegate clear-all clicks from empty state or chips
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.js-clear-all-filters')) {
+      clearAllFilters();
+    }
+  });
+
+  function applyFilters() {
+    var activeColours = [];
+    var activeSizes = [];
+    var activeGenders = [];
+
+    $$('.filter-option.is-active').forEach(function(opt) {
+      var type = opt.dataset.filter || getGroupType(opt);
+      var val = opt.dataset.value || getOptionText(opt);
+      if (type === 'colour' && activeColours.indexOf(val) === -1) activeColours.push(val);
+      if (type === 'size' && activeSizes.indexOf(val) === -1) activeSizes.push(val);
+      if (type === 'gender' && activeGenders.indexOf(val) === -1) activeGenders.push(val);
+    });
+
+    var cards = grid ? $$('.product-card', grid) : [];
+    var visibleCount = 0;
+
+    cards.forEach(function(card) {
+      var cardColour = (card.dataset.colour || '').trim();
+      var cardGender = (card.dataset.gender || '').trim();
+      var cardSizes = (card.dataset.sizes || '').split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+
+      // Fallbacks if data-* not present
+      if (!cardColour) {
+        var nameText = ((card.querySelector('.product-card__name') || {}).textContent || '').toLowerCase();
+        if (nameText.indexOf('sage') !== -1) cardColour = 'Sage';
+        else if (nameText.indexOf('ivory') !== -1) cardColour = 'Ivory';
+        else cardColour = 'Midnight Navy';
+      }
+      if (!cardGender) {
+        var nameText = ((card.querySelector('.product-card__name') || {}).textContent || '').toLowerCase();
+        if (nameText.indexOf('women') !== -1) cardGender = "Women's";
+        else cardGender = "Men's";
+      }
+      if (cardSizes.length === 0) {
+        var sizeEls = card.querySelectorAll('.product-card__size-label');
+        sizeEls.forEach(function(el) {
+          if (!el.style.textDecoration || el.style.textDecoration.indexOf('line-through') === -1) {
+            cardSizes.push(el.textContent.trim());
+          }
+        });
+      }
+
+      var matchesColour = activeColours.length === 0 || activeColours.indexOf(cardColour) !== -1;
+      var matchesGender = activeGenders.length === 0 || activeGenders.indexOf(cardGender) !== -1;
+      var matchesSize = activeSizes.length === 0 || activeSizes.some(function(s) { return cardSizes.indexOf(s) !== -1; });
+
+      var isMatch = matchesColour && matchesGender && matchesSize;
+      card.style.display = isMatch ? '' : 'none';
+      if (isMatch) visibleCount++;
+    });
+
+    // Update count
+    if (countEl) {
+      countEl.textContent = visibleCount + ' product' + (visibleCount === 1 ? '' : 's');
+    }
+
+    // Update empty state
+    var emptyNotice = $('#collection-empty-notice');
+    if (visibleCount === 0) {
+      if (!emptyNotice) {
+        emptyNotice = document.createElement('div');
+        emptyNotice.id = 'collection-empty-notice';
+        emptyNotice.style.cssText = 'text-align:center;padding:var(--space-12) var(--space-4);width:100%;grid-column:1/-1;';
+        emptyNotice.innerHTML = '<p class="h3" style="margin-bottom:var(--space-2);color:var(--navy);">No products found</p><p style="color:var(--sage);font-size:var(--text-sm);margin-bottom:var(--space-4);">No products match your selected filters.</p><button type="button" class="btn btn--outline js-clear-all-filters" style="display:inline-flex;">Clear all filters</button>';
+        grid.parentNode.insertBefore(emptyNotice, grid.nextSibling);
+      }
+      emptyNotice.style.display = 'block';
+    } else if (emptyNotice) {
+      emptyNotice.style.display = 'none';
+    }
+
+    // Update active filter chips
+    updateChips(activeColours, activeSizes, activeGenders);
+  }
+
+  function updateChips(colours, sizes, genders) {
+    if (!chipsBar) return;
+    var totalActive = colours.length + sizes.length + genders.length;
+
+    if (totalActive === 0) {
+      chipsBar.style.display = 'none';
+      chipsBar.innerHTML = '';
+      return;
+    }
+
+    chipsBar.style.display = 'flex';
+    chipsBar.innerHTML = '';
+
+    var allActive = []
+      .concat(colours.map(function(v) { return { type: 'colour', val: v }; }))
+      .concat(sizes.map(function(v) { return { type: 'size', val: v }; }))
+      .concat(genders.map(function(v) { return { type: 'gender', val: v }; }));
+
+    allActive.forEach(function(item) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'btn btn--outline';
+      chip.style.cssText = 'padding:4px 10px;font-size:11px;height:auto;gap:6px;';
+      chip.innerHTML = '<span>' + item.val + '</span> <span aria-hidden="true" style="font-weight:700;">×</span>';
+      chip.setAttribute('aria-label', 'Remove filter ' + item.val);
+      on(chip, 'click', function() {
+        $$('.filter-option').forEach(function(opt) {
+          var t = opt.dataset.filter || getGroupType(opt);
+          var v = opt.dataset.value || getOptionText(opt);
+          if (t === item.type && v === item.val) {
+            opt.classList.remove('is-active');
+            opt.setAttribute('aria-checked', 'false');
+            var cb = opt.querySelector('input[type="checkbox"]');
+            if (cb) cb.checked = false;
+          }
+        });
+        applyFilters();
+      });
+      chipsBar.appendChild(chip);
+    });
+
+    if (totalActive > 1) {
+      var clearBtn = document.createElement('button');
+      clearBtn.type = 'button';
+      clearBtn.className = 'btn btn--outline';
+      clearBtn.style.cssText = 'padding:4px 10px;font-size:11px;height:auto;background:transparent;border-color:var(--silver);color:var(--sage);';
+      clearBtn.textContent = 'Clear all';
+      on(clearBtn, 'click', clearAllFilters);
+      chipsBar.appendChild(clearBtn);
+    }
+  }
 
   // Sorting
   if (sortSelect) {
@@ -1090,14 +1309,14 @@ on($('.js-search-open'), 'click', function() {
       if (cards.length === 0) return;
 
       cards.sort(function(a, b) {
-        var priceA = parseInt((a.querySelector('.product-card__price') || {}).textContent.replace(/[^0-9]/g, '') || '0', 10);
-        var priceB = parseInt((b.querySelector('.product-card__price') || {}).textContent.replace(/[^0-9]/g, '') || '0', 10);
+        var priceA = parseInt(((a.querySelector('.product-card__price') || {}).textContent || '').replace(/[^0-9]/g, '') || '0', 10);
+        var priceB = parseInt(((b.querySelector('.product-card__price') || {}).textContent || '').replace(/[^0-9]/g, '') || '0', 10);
         var nameA = ((a.querySelector('.product-card__name') || {}).textContent || '').trim();
         var nameB = ((b.querySelector('.product-card__name') || {}).textContent || '').trim();
 
-        if (val === 'price-asc') return priceA - priceB;
-        if (val === 'price-desc') return priceB - priceA;
-        if (val === 'newest') return nameB.localeCompare(nameA);
+        if (val === 'price-asc' || val === 'price-ascending') return priceA - priceB;
+        if (val === 'price-desc' || val === 'price-descending') return priceB - priceA;
+        if (val === 'newest' || val === 'created-descending') return nameB.localeCompare(nameA);
         return 0; // featured default
       });
 
@@ -1105,50 +1324,8 @@ on($('.js-search-open'), 'click', function() {
     });
   }
 
-  // Filter options and active chips
-  var filterOptions = $$('.filter-sidebar .filter-option');
-  if (filterOptions.length > 0) {
-    filterOptions.forEach(function(opt) {
-      on(opt, 'click', function() {
-        var isActive = opt.classList.toggle('is-active');
-        opt.setAttribute('aria-checked', isActive ? 'true' : 'false');
-        updateFilterChips();
-      });
-
-      on(opt, 'keydown', function(e) {
-        if (e.key === ' ' || e.key === 'Enter') {
-          e.preventDefault();
-          opt.click();
-        }
-      });
-    });
-  }
-
-  function updateFilterChips() {
-    if (!chipsBar) return;
-    var activeOpts = $$('.filter-sidebar .filter-option.is-active');
-    if (activeOpts.length === 0) {
-      chipsBar.style.display = 'none';
-      chipsBar.innerHTML = '';
-      return;
-    }
-
-    chipsBar.style.display = 'flex';
-    chipsBar.innerHTML = '';
-    activeOpts.forEach(function(opt) {
-      var labelText = opt.textContent.trim().replace(/\s*\(\d+\)$/, '');
-      var chip = document.createElement('button');
-      chip.type = 'button';
-      chip.className = 'btn btn--outline';
-      chip.style.cssText = 'padding:4px 10px;font-size:11px;height:auto;gap:6px;';
-      chip.innerHTML = '<span>' + labelText + '</span> <span aria-hidden="true" style="font-weight:700;">×</span>';
-      chip.setAttribute('aria-label', 'Remove filter ' + labelText);
-      on(chip, 'click', function() {
-        opt.click();
-      });
-      chipsBar.appendChild(chip);
-    });
-  }
+  // Run once on load to sync if any filters are pre-selected
+  applyFilters();
 })();
 
 console.log('%cVYRO Theme loaded. WEAR THE PROFESSIONAL YOU.', 'color:#84958C;font-weight:700;font-size:12px;');

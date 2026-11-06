@@ -1,0 +1,77 @@
+{% comment %}
+  VYRO Theme — Classic Customer Register Template
+  Fields: first name, last name, email, password, confirm password, marketing opt-in checkbox.
+{% endcomment %}
+
+<!-- Shopify customer accounts note: Classic customer templates are utilized here for full bespoke UI parity; Shopify hosted customer accounts restrict custom design tokens. -->
+<div class="auth-page">
+  <div class="auth-page__image">
+    <img src="/assets/mock/login-editorial.svg" alt="VYRO Performance Medical Apparel" width="600" height="800">
+  </div>
+  <div class="auth-page__form-side">
+    {% form 'create_customer', class: 'auth-form js-auth-register' %}
+      <div>
+        <div class="auth-form__eyebrow">Join VYRO</div>
+        <h1 class="auth-form__title">Create Account</h1>
+      </div>
+
+      {{ form.errors | default_errors }}
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+        <div class="form-field">
+          <label class="form-field__label" for="FirstName">First Name</label>
+          <input class="form-field__input" type="text" id="FirstName" name="customer[first_name]" autocomplete="given-name" required placeholder="Pramika">
+          <div class="form-field__error" id="reg-fname-error">First name required.</div>
+        </div>
+        <div class="form-field">
+          <label class="form-field__label" for="LastName">Last Name</label>
+          <input class="form-field__input" type="text" id="LastName" name="customer[last_name]" autocomplete="family-name" required placeholder="Ranjith">
+          <div class="form-field__error" id="reg-lname-error">Last name required.</div>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label class="form-field__label" for="CustomerEmail">Email Address</label>
+        <input class="form-field__input" type="email" id="CustomerEmail" name="customer[email]" autocomplete="email" required placeholder="doctor@hospital.in">
+        <div class="form-field__error" id="reg-email-error">Please enter a valid email address.</div>
+      </div>
+
+      <div class="form-field form-field--password">
+        <label class="form-field__label" for="CreatePassword">Password</label>
+        <div class="form-field__password-wrap">
+          <input class="form-field__input" type="password" id="CreatePassword" name="customer[password]" autocomplete="new-password" required placeholder="At least 6 characters">
+          <button type="button" class="form-field__password-toggle js-pwd-toggle" aria-label="Toggle password visibility">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="form-field__error" id="reg-password-error">Password must be at least 6 characters.</div>
+      </div>
+
+      <div class="form-field form-field--password">
+        <label class="form-field__label" for="reg-confirm">Confirm Password</label>
+        <div class="form-field__password-wrap">
+          <input class="form-field__input" type="password" id="reg-confirm" name="confirm_password" autocomplete="new-password" required placeholder="Confirm password">
+        </div>
+        <div class="form-field__error" id="reg-confirm-error">Passwords must match.</div>
+      </div>
+
+      <label class="form-checkbox">
+        <input type="checkbox" name="customer[accepts_marketing]" id="reg-optin">
+        <span>Keep me informed on new performance colourways, sizing drops, and clinical apparel innovations.</span>
+      </label>
+
+      <button type="submit" class="btn btn--primary btn--full btn--lg" style="margin-top:var(--space-2);">
+        CREATE ACCOUNT
+      </button>
+
+      <div class="auth-form__links" style="justify-content:center;gap:var(--space-1);margin-top:var(--space-1);">
+        <span style="color:var(--sage);">Already registered?</span>
+        <a href="{{ routes.account_login_url }}" class="auth-form__link">Sign in</a>
+      </div>
+
+      <div class="auth-form__note">
+        Authentication will connect to Shopify customer accounts once the store is set up.
+      </div>
+    {% endform %}
+  </div>
+</div>

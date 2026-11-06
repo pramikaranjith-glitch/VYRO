@@ -106,16 +106,14 @@
         </div>
       {%- else -%}
         <!-- MOCK filter options when no Shopify filters available -->
-        {%- assign mock_filters = 'Size,Colour,Gender,Fit,Price' | split: ',' -%}
         {%- assign mock_size_opts = 'S,M,L,XL' | split: ',' -%}
-        {%- assign mock_colour_opts = 'Midnight Navy,Sage,Ivory' | split: ',' -%}
-        {%- assign mock_gender_opts = "Men's,Women's,Unisex" | split: ',' -%}
-        {%- assign mock_fit_opts = 'Regular,Slim,Relaxed' | split: ',' -%}
+        {%- assign mock_colour_opts = 'Midnight Navy,Sage' | split: ',' -%}
+        {%- assign mock_gender_opts = "Men's,Women's" | split: ',' -%}
 
         <div class="filter-group">
           <div class="filter-group__label">Size</div>
           {%- for opt in mock_size_opts -%}
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="{{ opt }}">
               <span class="filter-checkbox" aria-hidden="true"></span>
               {{ opt }}
             </label>
@@ -124,7 +122,7 @@
         <div class="filter-group">
           <div class="filter-group__label">Colour</div>
           {%- for opt in mock_colour_opts -%}
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="{{ opt }}">
               <span class="filter-checkbox" aria-hidden="true"></span>
               {{ opt }}
             </label>
@@ -133,16 +131,7 @@
         <div class="filter-group">
           <div class="filter-group__label">Gender</div>
           {%- for opt in mock_gender_opts -%}
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
-              <span class="filter-checkbox" aria-hidden="true"></span>
-              {{ opt }}
-            </label>
-          {%- endfor -%}
-        </div>
-        <div class="filter-group">
-          <div class="filter-group__label">Fit</div>
-          {%- for opt in mock_fit_opts -%}
-            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+            <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="{{ opt }}">
               <span class="filter-checkbox" aria-hidden="true"></span>
               {{ opt }}
             </label>
@@ -156,12 +145,12 @@
       <!-- Toolbar: count + sort -->
       <div class="collection-toolbar">
         <div class="collection-count">
-          {{ collection.products_count | default: 1 }} product{{ collection.products_count | default: 1 | plural: '', 's' }}
+          {{ collection.products_count | default: 3 }} products
         </div>
         <div style="display:flex;align-items:center;gap:var(--space-3);">
           <!-- Mobile filter trigger -->
-          <button class="btn btn--outline js-filter-open" style="display:none;" aria-label="Open filters" id="mobile-filter-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          <button type="button" class="btn btn--outline js-filter-open mobile-filter-btn" aria-label="Open filters" id="mobile-filter-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" style="margin-right:6px;"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
             Filters {%- if filter_count > 0 -%} ({{ filter_count }}){%- endif -%}
           </button>
 
@@ -220,29 +209,65 @@
 
       {%- else -%}
         <!-- MOCK product cards when no Shopify collection -->
-        <!-- PLACEHOLDER: Replace with real VYRO products per PLACEHOLDERS.md -->
         <div class="products-grid">
-          {%- assign mock_products = 'FLEXFIT 01 — Midnight Navy,FLEXFIT 01 — Sage [PLACEHOLDER],FLEXFIT 01 — Ivory [PLACEHOLDER]' | split: ',' -%}
-          {%- for mock_name in mock_products -%}
-            <div class="product-card">
-              <div class="product-card__img-wrap">
-                <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a2f52,#101E35);display:flex;align-items:center;justify-content:center;" aria-label="{{ mock_name }} — PLACEHOLDER image">
-                  <span style="color:rgba(244,241,233,0.1);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;text-align:center;padding:1rem;">PLACEHOLDER</span>
-                </div>
-                <button class="product-card__quick-add" data-variant-id="" aria-label="Quick add {{ mock_name }}">QUICK ADD</button>
-              </div>
-              <div class="product-card__name">{{ mock_name }}</div>
-              <div class="product-card__price">₹2,299</div>
-              <div class="product-card__swatches">
-                <span class="product-card__swatch is-active" style="background:#101E35;" aria-label="Midnight Navy" title="Midnight Navy"></span>
-              </div>
-              <div class="product-card__sizes">
-                {%- for s in 'S,M,L,XL' | split: ',' -%}
-                  <span class="product-card__size-label">{{ s }}</span>
-                {%- endfor -%}
-              </div>
+          <!-- Card 1 -->
+          <article class="product-card" aria-label="FLEXFIT 01 — Midnight Navy" data-colour="Midnight Navy" data-gender="Men's" data-sizes="S,M,L">
+            <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
+              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front.svg" alt="FLEXFIT 01 Midnight Navy" width="400" height="500">
+              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back.svg" alt="FLEXFIT 01 Midnight Navy back" width="400" height="500">
+              <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10102" aria-label="Quick add to bag">QUICK ADD</button>
+            </a>
+            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Midnight Navy</a></div>
+            <div class="product-card__price">₹2,299</div>
+            <div class="product-card__swatches">
+              <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
             </div>
-          {%- endfor -%}
+            <div class="product-card__sizes">
+              <span class="product-card__size-label">S</span>
+              <span class="product-card__size-label">M</span>
+              <span class="product-card__size-label">L</span>
+              <span class="product-card__size-label" style="text-decoration:line-through;opacity:0.3;">XL</span>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="product-card" aria-label="FLEXFIT 01 — Sage" data-colour="Sage" data-gender="Men's" data-sizes="S,M">
+            <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
+              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-sage.svg" alt="FLEXFIT 01 Sage" width="400" height="500">
+              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-sage.svg" alt="FLEXFIT 01 Sage back" width="400" height="500">
+              <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10202" aria-label="Quick add to bag">QUICK ADD</button>
+            </a>
+            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 — Sage<span class="mock-indicator" aria-hidden="true">MOCK</span></a></div>
+            <div class="product-card__price">₹2,299</div>
+            <div class="product-card__swatches">
+              <span class="product-card__swatch is-active" style="background:#84958C;" title="Sage"></span>
+            </div>
+            <div class="product-card__sizes">
+              <span class="product-card__size-label">S</span>
+              <span class="product-card__size-label">M</span>
+              <span class="product-card__size-label" style="text-decoration:line-through;opacity:0.3;">L</span>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="product-card" aria-label="FLEXFIT 01 Women's — Midnight Navy" data-colour="Midnight Navy" data-gender="Women's" data-sizes="XS,S,M,L">
+            <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
+              <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-womens.svg" alt="FLEXFIT 01 Women's" width="400" height="500">
+              <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-womens.svg" alt="FLEXFIT 01 Women's back" width="400" height="500">
+              <button type="button" class="product-card__quick-add js-add-to-cart" data-variant-id="10302" aria-label="Quick add to bag">QUICK ADD</button>
+            </a>
+            <div class="product-card__name"><a href="/products/flexfit-01-midnight-navy">FLEXFIT 01 Women's<span class="mock-indicator" aria-hidden="true">MOCK</span></a></div>
+            <div class="product-card__price">₹2,299</div>
+            <div class="product-card__swatches">
+              <span class="product-card__swatch is-active" style="background:#101E35;" title="Midnight Navy"></span>
+            </div>
+            <div class="product-card__sizes">
+              <span class="product-card__size-label">XS</span>
+              <span class="product-card__size-label">S</span>
+              <span class="product-card__size-label">M</span>
+              <span class="product-card__size-label">L</span>
+            </div>
+          </article>
         </div>
       {%- endif -%}
 
@@ -268,13 +293,13 @@
 
   <!-- Same filter groups as sidebar — duplicated for mobile -->
   {%- assign mobile_filter_opts_size = 'S,M,L,XL' | split: ',' -%}
-  {%- assign mobile_filter_opts_colour = 'Midnight Navy,Sage,Ivory' | split: ',' -%}
-  {%- assign mobile_filter_opts_gender = "Men's,Women's,Unisex" | split: ',' -%}
+  {%- assign mobile_filter_opts_colour = 'Midnight Navy,Sage' | split: ',' -%}
+  {%- assign mobile_filter_opts_gender = "Men's,Women's" | split: ',' -%}
 
   <div class="filter-group">
     <div class="filter-group__label">Size</div>
     {%- for opt in mobile_filter_opts_size -%}
-      <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+      <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="{{ opt }}">
         <span class="filter-checkbox" aria-hidden="true"></span>{{ opt }}
       </label>
     {%- endfor -%}
@@ -282,7 +307,7 @@
   <div class="filter-group">
     <div class="filter-group__label">Colour</div>
     {%- for opt in mobile_filter_opts_colour -%}
-      <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+      <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="{{ opt }}">
         <span class="filter-checkbox" aria-hidden="true"></span>{{ opt }}
       </label>
     {%- endfor -%}
@@ -290,7 +315,7 @@
   <div class="filter-group">
     <div class="filter-group__label">Gender</div>
     {%- for opt in mobile_filter_opts_gender -%}
-      <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0">
+      <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="{{ opt }}">
         <span class="filter-checkbox" aria-hidden="true"></span>{{ opt }}
       </label>
     {%- endfor -%}

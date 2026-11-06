@@ -1,0 +1,88 @@
+{% comment %}
+  VYRO Theme — Classic Customer Login Template
+  Split layout on desktop (editorial image on left, form on right), single column on mobile.
+{% endcomment %}
+
+<!-- Shopify customer accounts note: Classic customer templates are utilized here for full bespoke UI parity; Shopify hosted customer accounts restrict custom design tokens. -->
+<div class="auth-page">
+  <div class="auth-page__image">
+    <img src="/assets/mock/login-editorial.svg" alt="VYRO Performance Medical Apparel" width="600" height="800">
+  </div>
+  <div class="auth-page__form-side">
+    {% form 'customer_login', class: 'auth-form js-auth-login' %}
+      <div>
+        <div class="auth-form__eyebrow">VYRO Account</div>
+        <h1 class="auth-form__title">Sign In</h1>
+      </div>
+
+      {{ form.errors | default_errors }}
+
+      <div class="form-field">
+        <label class="form-field__label" for="CustomerEmail">Email Address</label>
+        <input class="form-field__input" type="email" id="CustomerEmail" name="customer[email]" autocomplete="email" required placeholder="doctor@hospital.in">
+        <div class="form-field__error" id="login-email-error">Please enter a valid email address.</div>
+      </div>
+
+      <div class="form-field form-field--password">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <label class="form-field__label" for="CustomerPassword" style="margin-bottom:0;">Password</label>
+          <a href="#recover" class="auth-form__link js-recover-trigger" style="font-size:var(--text-xs);">Forgot password?</a>
+        </div>
+        <div class="form-field__password-wrap">
+          <input class="form-field__input" type="password" id="CustomerPassword" name="customer[password]" autocomplete="current-password" required placeholder="••••••••">
+          <button type="button" class="form-field__password-toggle js-pwd-toggle" aria-label="Toggle password visibility">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="form-field__error" id="login-password-error">Password is required.</div>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--full btn--lg" style="margin-top:var(--space-2);">
+        SIGN IN
+      </button>
+
+      <div class="auth-form__links" style="justify-content:center;gap:var(--space-1);margin-top:var(--space-1);">
+        <span style="color:var(--sage);">New clinician?</span>
+        <a href="{{ routes.account_register_url }}" class="auth-form__link">Create account</a>
+      </div>
+
+      <div class="auth-form__note">
+        Authentication will connect to Shopify customer accounts once the store is set up.
+      </div>
+    {% endform %}
+
+    {% form 'recover_customer_password', class: 'auth-form js-auth-forgot', id: 'recover_password', style: 'display:none;' %}
+      <div>
+        <div class="auth-form__eyebrow">Recovery</div>
+        <h1 class="auth-form__title">Reset Password</h1>
+        <p style="font-size:var(--text-xs);color:var(--sage);margin-top:var(--space-1);line-height:1.6;">
+          Enter your registered clinical email to receive recovery instructions.
+        </p>
+      </div>
+
+      {{ form.errors | default_errors }}
+
+      <div class="form-field">
+        <label class="form-field__label" for="RecoverEmail">Email Address</label>
+        <input class="form-field__input" type="email" id="RecoverEmail" name="email" autocomplete="email" required placeholder="doctor@hospital.in">
+        <div class="form-field__error" id="forgot-email-error">Please enter a valid email address.</div>
+      </div>
+
+      <div class="form-field__note js-forgot-success" style="display:none;padding:var(--space-3);background:var(--ivory-grey);border:var(--border-hairline);border-radius:var(--radius-sm);color:var(--navy);font-size:var(--text-xs);line-height:1.6;">
+        If an account exists with this email address, password reset instructions have been dispatched.
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--full btn--lg">
+        SEND RESET LINK
+      </button>
+
+      <div class="auth-form__links" style="justify-content:center;margin-top:var(--space-1);">
+        <a href="#login" class="auth-form__link js-login-trigger">Back to Sign In</a>
+      </div>
+
+      <div class="auth-form__note">
+        Authentication will connect to Shopify customer accounts once the store is set up.
+      </div>
+    {% endform %}
+  </div>
+</div>

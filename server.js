@@ -1393,7 +1393,8 @@ function buildCollectionPage() {
           <div class="collection-toolbar">
             <div class="collection-count">3 products</div>
             <div style="display:flex;align-items:center;gap:var(--space-3);">
-              <button type="button" class="btn btn--outline js-filter-open" style="display:none;" id="mobile-filter-btn">
+              <button type="button" class="btn btn--outline js-filter-open mobile-filter-btn" id="mobile-filter-btn" aria-label="Open filters">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" style="margin-right:6px;"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
                 Filters
               </button>
               <select class="sort-select" aria-label="Sort products">
@@ -1411,7 +1412,7 @@ function buildCollectionPage() {
 
           <div class="products-grid">
             <!-- Card 1 -->
-            <article class="product-card" aria-label="FLEXFIT 01 — Midnight Navy">
+            <article class="product-card" aria-label="FLEXFIT 01 — Midnight Navy" data-colour="Midnight Navy" data-gender="Men's" data-sizes="S,M,L">
               <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
                 <img class="product-card__img product-card__img--default" src="/assets/mock/product-front.svg" alt="FLEXFIT 01 Midnight Navy" width="400" height="500">
                 <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back.svg" alt="FLEXFIT 01 Midnight Navy back" width="400" height="500">
@@ -1431,7 +1432,7 @@ function buildCollectionPage() {
             </article>
 
             <!-- Card 2 -->
-            <article class="product-card" aria-label="FLEXFIT 01 — Sage">
+            <article class="product-card" aria-label="FLEXFIT 01 — Sage" data-colour="Sage" data-gender="Men's" data-sizes="S,M">
               <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
                 <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-sage.svg" alt="FLEXFIT 01 Sage" width="400" height="500">
                 <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-sage.svg" alt="FLEXFIT 01 Sage back" width="400" height="500">
@@ -1450,7 +1451,7 @@ function buildCollectionPage() {
             </article>
 
             <!-- Card 3 -->
-            <article class="product-card" aria-label="FLEXFIT 01 Women's — Midnight Navy">
+            <article class="product-card" aria-label="FLEXFIT 01 Women's — Midnight Navy" data-colour="Midnight Navy" data-gender="Women's" data-sizes="XS,S,M,L">
               <a href="/products/flexfit-01-midnight-navy" class="product-card__img-wrap" tabindex="-1">
                 <img class="product-card__img product-card__img--default" src="/assets/mock/product-front-womens.svg" alt="FLEXFIT 01 Women's" width="400" height="500">
                 <img class="product-card__img product-card__img--hover" src="/assets/mock/product-back-womens.svg" alt="FLEXFIT 01 Women's back" width="400" height="500">
@@ -1484,10 +1485,22 @@ function buildCollectionPage() {
 
       <div class="filter-group">
         <div class="filter-group__label">Size</div>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0"><span class="filter-checkbox"></span> S</label>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0"><span class="filter-checkbox"></span> M</label>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0"><span class="filter-checkbox"></span> L</label>
-        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0"><span class="filter-checkbox"></span> XL</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="S"><span class="filter-checkbox"></span> S (3)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="M"><span class="filter-checkbox"></span> M (3)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="L"><span class="filter-checkbox"></span> L (3)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="size" data-value="XL"><span class="filter-checkbox"></span> XL (1)</label>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group__label">Colour</div>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Midnight Navy"><span class="filter-checkbox"></span> Midnight Navy (2)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="colour" data-value="Sage"><span class="filter-checkbox"></span> Sage (1)</label>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group__label">Gender</div>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Men's"><span class="filter-checkbox"></span> Men's (2)</label>
+        <label class="filter-option" role="checkbox" aria-checked="false" tabindex="0" data-filter="gender" data-value="Women's"><span class="filter-checkbox"></span> Women's (1)</label>
       </div>
 
       <div class="filter-drawer__actions">

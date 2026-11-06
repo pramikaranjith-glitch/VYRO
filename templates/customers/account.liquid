@@ -1,0 +1,111 @@
+{% comment %}
+  VYRO Theme — Classic Customer Account Dashboard Template
+  Shell: Orders, Addresses, Profile, Sign Out. Empty states only.
+{% endcomment %}
+
+<!-- Shopify customer accounts note: Classic customer templates are utilized here for full bespoke UI parity; Shopify hosted customer accounts restrict custom design tokens. -->
+<div class="container section">
+  <div style="border-bottom:var(--border-hairline);padding-bottom:var(--space-6);margin-bottom:var(--space-8);">
+    <span class="eyebrow eyebrow--sage">Clinical Concierge</span>
+    <h1 class="h2" style="margin-top:var(--space-1);margin-bottom:0;">My Account</h1>
+  </div>
+
+  <div class="account-dashboard">
+    <aside class="account-sidebar" aria-label="Account navigation">
+      <div class="account-sidebar__title">Navigation</div>
+      <nav class="account-nav">
+        <a href="#orders" class="account-nav__link is-active js-account-tab-btn" data-tab="orders">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Orders
+        </a>
+        <a href="{{ routes.account_addresses_url }}" class="account-nav__link js-account-tab-btn" data-tab="addresses">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Addresses
+        </a>
+        <a href="#profile" class="account-nav__link js-account-tab-btn" data-tab="profile">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          Profile
+        </a>
+        <a href="{{ routes.account_logout_url }}" class="account-nav__link account-nav__link--signout">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+          Sign Out
+        </a>
+      </nav>
+    </aside>
+
+    <main class="account-main">
+      <!-- Orders Tab -->
+      <div class="js-account-tab" id="tab-orders">
+        <h2 class="h4" style="margin-bottom:var(--space-4);">Order History</h2>
+        {%- paginate customer.orders by 10 -%}
+          {%- if customer.orders.size > 0 -%}
+            <div class="orders-table-wrap">
+              <table class="orders-table">
+                <thead>
+                  <tr>
+                    <th>Order</th>
+                    <th>Date</th>
+                    <th>Payment</th>
+                    <th>Fulfillment</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {%- for order in customer.orders -%}
+                    <tr>
+                      <td><a href="{{ order.customer_url }}" class="link-underline">{{ order.name }}</a></td>
+                      <td>{{ order.created_at | date: "%b %d, %Y" }}</td>
+                      <td>{{ order.financial_status_label }}</td>
+                      <td>{{ order.fulfillment_status_label }}</td>
+                      <td>{{ order.total_price | money }}</td>
+                    </tr>
+                  {%- endfor -%}
+                </tbody>
+              </table>
+            </div>
+            {{ paginate | default_pagination }}
+          {%- else -%}
+            <div class="account-content__empty">
+              <svg class="account-content__empty-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+              <div class="account-content__empty-title">No Orders Yet</div>
+              <p style="font-size:var(--text-sm);color:var(--sage);max-width:440px;line-height:1.6;">
+                You haven't placed any orders yet. Once you make your first order, tracking and details will appear here.
+              </p>
+              <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary" style="margin-top:var(--space-2);">
+                Explore Collection <span class="btn__arrow">→</span>
+              </a>
+            </div>
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+
+      <!-- Addresses Tab -->
+      <div class="js-account-tab" id="tab-addresses" style="display:none;">
+        <h2 class="h4" style="margin-bottom:var(--space-4);">Saved Addresses</h2>
+        <div class="account-content__empty">
+          <div class="account-content__empty-title">No Addresses Saved</div>
+          <p style="font-size:var(--text-sm);color:var(--sage);max-width:440px;line-height:1.6;">
+            Save default shipping and hospital/clinic billing addresses for faster checkout.
+          </p>
+        </div>
+      </div>
+
+      <!-- Profile Tab -->
+      <div class="js-account-tab" id="tab-profile" style="display:none;">
+        <h2 class="h4" style="margin-bottom:var(--space-4);">Profile Details</h2>
+        <div style="background:var(--ivory);border:var(--border-hairline);border-radius:var(--radius-sm);padding:var(--space-4);max-width:480px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);font-size:var(--text-sm);">
+            <div>
+              <div style="color:var(--sage);font-size:var(--text-xs);text-transform:uppercase;">Name</div>
+              <div style="font-weight:600;margin-top:2px;">{{ customer.name | default: 'Clinician Account' }}</div>
+            </div>
+            <div>
+              <div style="color:var(--sage);font-size:var(--text-xs);text-transform:uppercase;">Email</div>
+              <div style="font-weight:600;margin-top:2px;">{{ customer.email | default: '—' }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

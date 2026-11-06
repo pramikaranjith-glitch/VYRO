@@ -91,13 +91,13 @@
         </svg>
       </button>
 
-      <!-- Account (hidden on mobile, in drawer) -->
-      <a href="{{ routes.account_url }}" class="nav-icon-btn nav-icon-btn--account" aria-label="Account">
+      <!-- Account button (opens account drawer) -->
+      <button type="button" class="nav-icon-btn nav-icon-btn--account js-account-open" aria-label="Account" aria-expanded="false" aria-controls="account-drawer">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="8" r="4"/>
           <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke-linecap="round"/>
         </svg>
-      </a>
+      </button>
 
       <!-- Cart / Bag -->
       <button class="nav-icon-btn js-cart-open" aria-label="Open cart" aria-controls="cart-drawer">
@@ -112,6 +112,21 @@
     </div>
   </div>
 </header>
+
+<div class="account-drawer" id="account-drawer" role="dialog" aria-modal="false" aria-label="Account">
+  <div class="account-drawer__inner">
+    <div class="account-drawer__title">Account</div>
+    {%- if customer -%}
+      <div style="font-size:var(--text-sm);margin-bottom:var(--space-3);">Welcome, {{ customer.first_name }}</div>
+      <a href="{{ routes.account_url }}" class="btn btn--primary btn--full" style="margin-top:var(--space-2);">My Orders &amp; Profile</a>
+      <a href="{{ routes.account_logout_url }}" class="btn btn--outline btn--full">Sign Out</a>
+    {%- else -%}
+      <a href="{{ routes.account_login_url }}" class="btn btn--primary btn--full" style="margin-top:var(--space-2);">Sign In</a>
+      <a href="{{ routes.account_register_url }}" class="btn btn--outline btn--full">Create Account</a>
+      <p class="account-drawer__note">Authentication will connect to Shopify customer accounts once the store is set up.</p>
+    {%- endif -%}
+  </div>
+</div>
 
 <script>
   // Scroll-triggered header border
